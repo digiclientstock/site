@@ -1,0 +1,2448 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%231fb5b8%22/%3E%3Cstop offset=%221%22 stop-color=%22%2300708f%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22url(%23g)%22/%3E%3Ctext x=%2232%22 y=%2245%22 font-family=%22Arial%22 font-weight=%22900%22 font-size=%2238%22 fill=%22white%22 text-anchor=%22middle%22%3ED%3C/text%3E%3C/svg%3E">
+<title>Digi — DigiClient &amp; DigiStock</title>
+<meta name="description" content="Digi : logiciel de gestion clients, chèques, échéances et stock pour grossistes et négociants au Maroc. DigiClient + DigiStock, multi-postes, fonctionne sans internet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout : nav collante, "onglets" de site (pages par #ancre), sections larges 1180px,
+   héros sombre teal (couleur du logo) avec la vraie fenêtre du logiciel inclinée. */
+:root{
+  --ink:#0b2730;          /* texte principal */
+  --ink-2:#3d5a63;        /* texte secondaire */
+  --ink-3:#6b8389;
+  --paper:#f4f8f8;        /* fond de page */
+  --card:#ffffff;
+  --line:#d9e5e6;
+  --teal:#00708f;         /* teal du logo */
+  --teal-strong:#005c7b;
+  --aqua:#1fb5b8;         /* reflet clair du logo */
+  --saffron:#e39b2d;      /* accent chaud, utilisé avec parcimonie */
+  --danger:#c0362c;
+  --ok:#1e8a4c;
+  --hero:#06232c;         /* fond du héros (toujours sombre) */
+  --hero-2:#0b3a47;
+  --on-hero:#e8f4f5;
+  --on-hero-2:#9fc3c8;
+  --shadow:0 1px 2px rgba(6,35,44,.06),0 12px 32px -12px rgba(6,35,44,.22);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --r:14px;
+  --max:1180px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ink:#e4f0f1;--ink-2:#a9c2c6;--ink-3:#7c979c;--paper:#071b21;--card:#0d2a33;--line:#1d3f49;
+  --teal:#3cc3cf;--teal-strong:#6fd6de;--aqua:#4fd2d4;--saffron:#f0b252;--danger:#ff7d71;--ok:#5fd38f;
+  --hero:#04161c;--hero-2:#0a303b;--on-hero:#e8f4f5;--on-hero-2:#9fc3c8;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 14px 34px -14px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ink:#e4f0f1;--ink-2:#a9c2c6;--ink-3:#7c979c;--paper:#071b21;--card:#0d2a33;--line:#1d3f49;
+  --teal:#3cc3cf;--teal-strong:#6fd6de;--aqua:#4fd2d4;--saffron:#f0b252;--danger:#ff7d71;--ok:#5fd38f;
+  --hero:#04161c;--hero-2:#0a303b;--on-hero:#e8f4f5;--on-hero-2:#9fc3c8;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 14px 34px -14px rgba(0,0,0,.6);color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16.5px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--aqua);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font:600 12.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.lead{font-size:clamp(17px,1.5vw,19.5px);color:var(--ink-2);max-width:62ch}
+.sec{padding-block:clamp(56px,8vw,104px)}
+.sec-head{display:grid;gap:14px;margin-bottom:clamp(28px,4vw,48px);max-width:760px}
+.sec-head h2{font-size:clamp(30px,4vw,48px);font-weight:800}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:700;font-size:16px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s;text-decoration:none!important;white-space:nowrap}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-primary{background:linear-gradient(135deg,var(--aqua),#0a8aa3);color:#04161c;box-shadow:0 10px 30px -10px rgba(31,181,184,.75)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(31,181,184,.9)}
+.btn-ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn-ghost:hover{transform:translateY(-2px);background:rgba(127,200,205,.12)}
+.btn-solid{background:var(--teal-strong);color:var(--paper)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn .shine{position:relative;overflow:hidden}
+
+/* ---------- Navigation ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font:800 22px/1 var(--f-display);letter-spacing:-.02em;text-decoration:none!important;flex:none}
+.brand .mark{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--aqua),#00708f);color:#fff;font:800 20px/1 var(--f-display);letter-spacing:-.04em;box-shadow:0 6px 16px -8px rgba(0,112,143,.8);flex:none}
+.brand small{font:600 11px/1 var(--f-body);letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase;display:block;margin-top:3px}
+.tabs{display:flex;gap:2px;margin-left:auto;align-items:center}
+.tabs a{position:relative;white-space:nowrap;padding:9px 12px;border-radius:10px;color:var(--ink-2);font-weight:600;font-size:15px;text-decoration:none}
+.tabs a:hover{color:var(--ink);background:color-mix(in srgb,var(--teal) 9%,transparent)}
+.tabs a[aria-current="page"]{color:var(--teal-strong)}
+.tabs a[aria-current="page"]::after{content:"";position:absolute;left:13px;right:13px;bottom:2px;height:2.5px;border-radius:2px;background:var(--aqua)}
+.nav-cta{padding:10px 16px;font-size:14.5px}
+.icon-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;flex:none;color:var(--ink)}
+.icon-btn svg{width:19px;height:19px}
+.burger{display:none}
+@media (max-width:1360px){
+  .tabs{position:fixed;inset:68px 0 auto 0;flex-direction:column;align-items:stretch;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px 18px;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.2s}
+  .tabs.open{transform:none;opacity:1;pointer-events:auto}
+  .tabs a{padding:12px 14px;font-size:17px}
+  .burger{display:grid;margin-left:auto}
+  .nav-cta{display:none}
+}
+
+/* ---------- Pages ---------- */
+.page{display:none}
+.page.active{display:block;animation:pageIn .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pageIn{from{opacity:.0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- Héros ---------- */
+.hero{position:relative;background:radial-gradient(1200px 600px at 85% -10%,#0e5568 0%,transparent 60%),radial-gradient(900px 500px at -10% 110%,#0b4352 0%,transparent 60%),var(--hero);color:var(--on-hero);overflow:hidden;isolation:isolate}
+.hero canvas.zellige{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.55}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,4vw,56px);align-items:center;padding-block:clamp(48px,7vw,96px) clamp(56px,7vw,110px)}
+.hero h1{font-size:clamp(38px,5.4vw,70px);font-weight:800;letter-spacing:-.035em}
+.hero h1 .hl{background:linear-gradient(100deg,#7fe3e4,var(--aqua) 40%,#f3c06b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{color:var(--on-hero-2);margin-top:20px}
+.hero .eyebrow{color:#7fe3e4;display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid rgba(127,227,228,.28);border-radius:999px;background:rgba(127,227,228,.06);margin-bottom:22px;letter-spacing:.1em}
+.hero .eyebrow i{width:8px;height:8px;border-radius:50%;background:#5fe3a0;box-shadow:0 0 0 0 rgba(95,227,160,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(95,227,160,0)}100%{box-shadow:0 0 0 0 rgba(95,227,160,0)}}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .ctas .btn-ghost{color:var(--on-hero);border-color:rgba(232,244,245,.35)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:22px;color:var(--on-hero-2);font-size:14px}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px}
+.hero-meta svg{width:16px;height:16px;color:#5fe3a0}
+
+/* Fenêtre Windows qui contient les vraies captures */
+.win{border-radius:12px;background:#fff;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);overflow:hidden;color:#1b1b1b}
+.win-bar{display:flex;align-items:center;gap:8px;height:34px;padding:0 0 0 12px;background:#eef3f4;border-bottom:1px solid #d7e1e3;font:600 12.5px/1 var(--f-body);color:#33494f}
+.win-bar .wmark{width:16px;height:16px;border-radius:4px;background:linear-gradient(135deg,#1fb5b8,#00708f);color:#fff;font:800 10px/16px var(--f-display);text-align:center;flex:none}
+.win-bar .ctrl{margin-left:auto;display:flex;height:100%}
+.win-bar .ctrl span{width:44px;display:grid;place-items:center;color:#4d6166}
+.win-bar .ctrl span:last-child:hover{background:#e81123;color:#fff}
+.win-bar .ctrl svg{width:10px;height:10px}
+.win.dark{background:#1f1f1f}
+.win.dark .win-bar{background:#202629;border-color:#30393c;color:#c9d7da}
+.win.dark .win-bar .ctrl span{color:#b8c8cb}
+.win img.shot{width:100%;height:auto}
+
+.hero-stage{position:relative;perspective:1600px}
+.hero-stage .win{transform:rotateY(-9deg) rotateX(4deg) rotateZ(.5deg);transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
+.float{position:absolute;z-index:3;display:flex;gap:11px;align-items:center;background:rgba(9,40,49,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(127,227,228,.22);border-radius:14px;padding:11px 14px;color:var(--on-hero);font-size:13px;box-shadow:0 18px 40px -16px rgba(0,0,0,.7);animation:bob 6s ease-in-out infinite}
+.float b{display:block;font:700 15px/1.2 var(--f-mono)}
+.float small{color:var(--on-hero-2);font-size:12px}
+.float .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+.float .dot svg{width:18px;height:18px}
+.f1{left:-26px;bottom:16%;animation-delay:-1s}
+.f2{right:-14px;top:-18px;animation-delay:-3s}
+.f3{right:8%;bottom:-24px;animation-delay:-4.5s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-stage .win{transform:none}
+  .f1{left:6px}.f2{right:6px}
+}
+@media (max-width:520px){.float{display:none}}
+
+/* ---------- Bande chiffres ---------- */
+.stats{border-block:1px solid var(--line);background:var(--card)}
+.stats .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
+.stat{padding:26px 18px;border-left:1px solid var(--line);display:grid;gap:4px}
+.stat:first-child{border-left:0}
+.stat b{font:800 clamp(28px,3vw,38px)/1 var(--f-display);color:var(--teal-strong);letter-spacing:-.02em}
+.stat > span{color:var(--ink-2);font-size:14px;line-height:1.35}
+@media (max-width:900px){.stats .wrap{grid-template-columns:repeat(3,minmax(0,1fr))}.stat:nth-child(4){border-left:0}.stat{border-top:1px solid var(--line)}.stat:nth-child(-n+3){border-top:0}}
+@media (max-width:520px){.stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(odd){border-left:0}.stat:nth-child(4){border-left:1px solid var(--line)}.stat:nth-child(3){border-top:1px solid var(--line)}}
+
+/* ---------- Problèmes / solutions ---------- */
+.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pain{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:14px;align-content:start;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+.pain:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--aqua) 55%,var(--line))}
+.pain .q{font:600 14px/1.4 var(--f-body);color:var(--danger);display:flex;gap:8px;align-items:flex-start}
+.pain .q svg{width:18px;height:18px;flex:none;margin-top:1px}
+.pain h3{font-size:22px;font-weight:700}
+.pain p{color:var(--ink-2)}
+.pain .tag{justify-self:start;font:600 12.5px/1 var(--f-body);padding:7px 10px;border-radius:8px;background:color-mix(in srgb,var(--aqua) 14%,transparent);color:var(--teal-strong)}
+@media (max-width:900px){.pains{grid-template-columns:1fr}}
+
+/* ---------- Visite guidée ---------- */
+.tour{display:grid;grid-template-columns:260px minmax(0,1fr);gap:26px;align-items:start}
+.tour-list{display:grid;gap:4px;position:sticky;top:90px}
+.tour-list button{all:unset;cursor:pointer;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;padding:11px 12px;border-radius:12px;color:var(--ink-2);font-weight:600;transition:background .2s,color .2s}
+.tour-list button svg{width:20px;height:20px;justify-self:center}
+.tour-list button:hover{background:color-mix(in srgb,var(--teal) 8%,transparent);color:var(--ink)}
+.tour-list button[aria-selected="true"]{background:var(--card);color:var(--teal-strong);box-shadow:var(--shadow)}
+.tour-list button:focus-visible{outline:3px solid var(--aqua)}
+.tour-list .mod{font:700 11.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding:14px 12px 6px}
+.tour-view{display:grid;gap:18px;min-width:0}
+.tour-frame{position:relative}
+.tour-frame img.shot{transition:opacity .35s ease}
+.tour-frame.swap img.shot{opacity:0}
+.tour-cap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}
+.tour-cap h3{font-size:24px}
+.tour-cap p{color:var(--ink-2);margin-top:6px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
+.seg button{all:unset;cursor:pointer;padding:7px 13px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--teal-strong);color:var(--paper)}
+.seg button:focus-visible{outline:3px solid var(--aqua)}
+.hot{position:absolute;z-index:2;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:0;padding:0;cursor:pointer;background:var(--saffron);color:#231300;font:800 13px/26px var(--f-body);text-align:center;box-shadow:0 0 0 0 rgba(227,155,45,.6);animation:hot 2.2s infinite}
+@keyframes hot{0%{box-shadow:0 0 0 0 rgba(227,155,45,.65)}70%{box-shadow:0 0 0 14px rgba(227,155,45,0)}100%{box-shadow:0 0 0 0 rgba(227,155,45,0)}}
+.hot .tip{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,6px);width:max-content;max-width:250px;background:#071f26;color:#e8f4f5;font:500 13.5px/1.4 var(--f-body);padding:10px 12px;border-radius:10px;opacity:0;pointer-events:none;transition:.2s;text-align:left;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
+.hot.r .tip{left:auto;right:-8px;transform:translate(0,6px)}
+.hot.l .tip{left:-8px;transform:translate(0,6px)}
+.hot.b .tip{bottom:auto;top:calc(100% + 10px)}
+.hot:hover .tip,.hot:focus-visible .tip,.hot.show .tip{opacity:1;transform:translate(-50%,0)}
+.hot.r:hover .tip,.hot.r:focus-visible .tip,.hot.r.show .tip,.hot.l:hover .tip,.hot.l:focus-visible .tip,.hot.l.show .tip{transform:none}
+@media (max-width:900px){.tour{grid-template-columns:1fr}.tour-list{position:static;display:flex;overflow-x:auto;gap:6px;padding-bottom:6px}.tour-list .mod{display:none}.tour-list button{white-space:nowrap;grid-template-columns:22px auto}.tour-cap{grid-template-columns:1fr}}
+@media (max-width:600px){.hot{width:20px;height:20px;margin:-10px 0 0 -10px;font-size:11px;line-height:20px}.hot .tip{max-width:190px;font-size:12.5px}}
+
+/* ---------- Modules ---------- */
+.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.module{position:relative;border-radius:20px;overflow:hidden;padding:clamp(24px,3vw,36px);display:grid;gap:16px;align-content:start;color:var(--on-hero);background:var(--hero-2);isolation:isolate;min-height:100%}
+.module::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(500px 300px at var(--mx,80%) var(--my,0%),rgba(31,181,184,.35),transparent 70%);transition:background .1s}
+.module.stock{background:#13303a}
+.module.stock::before{background:radial-gradient(500px 300px at var(--mx,80%) var(--my,0%),rgba(227,155,45,.3),transparent 70%)}
+.module h3{font-size:clamp(28px,3vw,36px);font-weight:800}
+.module p{color:var(--on-hero-2)}
+.module ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.module li{display:flex;gap:10px;align-items:flex-start}
+.module li svg{width:18px;height:18px;flex:none;margin-top:3px;color:#7fe3e4}
+.module.stock li svg{color:#f3c06b}
+.module .thumb{border-radius:10px;overflow:hidden;box-shadow:0 20px 40px -18px rgba(0,0,0,.7);transform:translateY(0);transition:transform .4s ease}
+.module:hover .thumb{transform:translateY(-6px)}
+.module .btn{justify-self:start;color:var(--on-hero);border-color:rgba(232,244,245,.4)}
+.link-pair{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.liaison{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;border:1.5px dashed color-mix(in srgb,var(--teal) 45%,var(--line));border-radius:16px;padding:18px 22px;background:var(--card)}
+.liaison .flow{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--teal-strong);flex-wrap:wrap}
+.liaison .flow i{display:inline-block;width:60px;height:2px;background:repeating-linear-gradient(90deg,var(--aqua) 0 8px,transparent 8px 14px);background-size:28px 2px;animation:dash 1s linear infinite}
+@keyframes dash{to{background-position:28px 0}}
+@media (max-width:900px){.modules{grid-template-columns:1fr}.liaison{grid-template-columns:1fr}}
+
+/* ---------- Étapes ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:10px;align-content:start;position:relative}
+.step::before{counter-increment:s;content:counter(s);font:800 44px/1 var(--f-display);color:color-mix(in srgb,var(--aqua) 60%,transparent)}
+.step h3{font-size:20px}
+.step p{color:var(--ink-2)}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+
+/* ---------- Bandeau CTA ---------- */
+.cta-band{border-radius:24px;padding:clamp(28px,5vw,56px);background:radial-gradient(700px 300px at 100% 0%,#13667a,transparent 70%),var(--hero);color:var(--on-hero);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;position:relative;overflow:hidden}
+.cta-band h2{font-size:clamp(28px,3.6vw,44px);font-weight:800}
+.cta-band p{color:var(--on-hero-2);margin-top:10px}
+.cta-band .btns{display:flex;flex-wrap:wrap;gap:10px}
+.cta-band .btn-ghost{color:var(--on-hero);border-color:rgba(232,244,245,.35)}
+@media (max-width:800px){.cta-band{grid-template-columns:1fr}}
+
+/* ---------- Pages de fonctionnalités ---------- */
+.page-hero{padding-block:clamp(44px,6vw,80px) clamp(24px,3vw,36px)}
+.page-hero h1{font-size:clamp(36px,5vw,62px);font-weight:800;margin-top:14px}
+.page-hero .lead{margin-top:16px}
+.feat{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(36px,5vw,64px);border-top:1px solid var(--line)}
+.feat.flip > :first-child{order:2}
+.feat h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.feat .txt{display:grid;gap:16px;align-content:start;min-width:0}
+.feat .txt > p{color:var(--ink-2)}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.checks li svg{width:20px;height:20px;color:var(--ok);margin-top:2px}
+.checks b{font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 13px/1 var(--f-body);padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);display:inline-flex;gap:7px;align-items:center}
+.chip i{width:9px;height:9px;border-radius:50%}
+.zoomable{cursor:zoom-in}
+.shot-stack{position:relative}
+.shot-stack .win + .win{position:absolute;width:62%;right:-4%;bottom:-12%;box-shadow:0 26px 60px -20px rgba(0,0,0,.55)}
+.paper{background:#fff;border-radius:6px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+.docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.docs figure{margin:0;display:grid;gap:10px}
+.docs figcaption{font-size:14px;color:var(--ink-2)}
+.docs .paper{transition:transform .3s ease}
+.docs figure:nth-child(1) .paper{transform:rotate(-1.5deg)}
+.docs figure:nth-child(3) .paper{transform:rotate(1.5deg)}
+.docs figure:hover .paper{transform:rotate(0) translateY(-6px) scale(1.02)}
+@media (max-width:900px){.feat,.feat.flip{grid-template-columns:1fr}.feat.flip > :first-child{order:0}.docs{grid-template-columns:1fr}.shot-stack .win + .win{position:relative;width:100%;right:0;bottom:0;margin-top:14px}}
+
+.grid-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start;transition:border-color .2s,transform .2s}
+.tool:hover{border-color:var(--aqua);transform:translateY(-3px)}
+.tool h4{font:700 16.5px/1.25 var(--f-body);letter-spacing:0;display:flex;gap:9px;align-items:center}
+.tool h4 svg{width:19px;height:19px;color:var(--teal);flex:none}
+.tool p{color:var(--ink-2);font-size:15px}
+.tool .path{font:500 12px/1.3 var(--f-mono);color:var(--ink-3)}
+@media (max-width:900px){.grid-tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid-tools{grid-template-columns:1fr}}
+
+/* Modes de paiement */
+.paylist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pay{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:14px;display:grid;gap:4px}
+.pay b{font-size:15.5px}
+.pay span{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:640px){.paylist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- Simulateurs ---------- */
+.sim{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.sim-head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--teal) 5%,var(--card))}
+.sim-head h3{font-size:22px}
+.sim-head .badge{font:600 12px/1 var(--f-body);padding:6px 9px;border-radius:7px;background:color-mix(in srgb,var(--saffron) 18%,transparent);color:color-mix(in srgb,var(--saffron) 70%,var(--ink))}
+.sim-body{padding:22px;display:grid;gap:20px}
+.bl-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table.bl{width:100%;border-collapse:collapse;font-size:14.5px;min-width:620px}
+table.bl th{font:600 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);text-align:left;padding:11px 10px;background:color-mix(in srgb,var(--teal) 6%,var(--card));border-bottom:1px solid var(--line)}
+table.bl td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.bl tr:last-child td{border-bottom:0}
+table.bl td.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.bl tr.new{animation:rowIn .45s ease}
+@keyframes rowIn{from{background:color-mix(in srgb,var(--aqua) 25%,transparent)}}
+.in{width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font:500 14.5px var(--f-body)}
+.in.n{text-align:right;font-family:var(--f-mono);max-width:96px}
+.in:focus{outline:2px solid var(--aqua);border-color:transparent}
+.del{all:unset;cursor:pointer;width:28px;height:28px;display:grid;place-items:center;border-radius:7px;color:var(--ink-3)}
+.del:hover{background:color-mix(in srgb,var(--danger) 14%,transparent);color:var(--danger)}
+.del svg{width:16px;height:16px}
+.sim-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn-sm{padding:9px 14px;font-size:14px}
+.totals{display:grid;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.totals div{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.totals div:last-child{border-bottom:0}
+.totals span{color:var(--ink-2)}
+.totals b{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.totals .ttc{background:color-mix(in srgb,var(--teal) 9%,var(--card))}
+.totals .ttc b{font-size:22px;color:var(--teal-strong)}
+.lettres{font:600 15.5px/1.45 var(--f-body);padding:14px 16px;border-radius:12px;background:var(--paper);border:1px dashed var(--line)}
+.lettres small{display:block;font:600 11.5px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+.stockbox{display:grid;gap:8px}
+.stockbox h4{font:700 14px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;font-size:14px}
+.srow .bar{grid-column:1/-1;height:7px;border-radius:5px;background:color-mix(in srgb,var(--ink) 9%,transparent);overflow:hidden;position:relative}
+.srow .bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--teal),var(--aqua));border-radius:5px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.srow .bar u{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--saffron)}
+.srow.low .bar i{background:linear-gradient(90deg,var(--danger),var(--saffron))}
+.srow.low b{color:var(--danger)}
+.srow b{font-family:var(--f-mono);font-size:13.5px}
+@media (max-width:940px){.bl-grid{grid-template-columns:1fr}}
+
+.si-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.gauges{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gauge{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:6px;background:var(--paper)}
+.gauge span{font-size:13.5px;color:var(--ink-2);font-weight:600}
+.gauge b{font:700 clamp(22px,2.5vw,30px)/1.1 var(--f-mono);font-variant-numeric:tabular-nums;transition:color .3s}
+.gauge small{color:var(--ink-3);font-size:13px;line-height:1.35}
+.gauge.bump{animation:bump .5s ease}
+@keyframes bump{40%{transform:scale(1.04)}}
+.sim-btns{display:flex;flex-wrap:wrap;gap:8px}
+.ops{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:300px;overflow:auto}
+.ops li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 12px;border-radius:10px;background:var(--paper);border:1px solid var(--line);font-size:14px;animation:rowIn .5s ease}
+.ops li .t{font-weight:700}
+.ops li .m{font-family:var(--f-mono);font-size:13.5px;white-space:nowrap}
+.ops li i{width:10px;height:10px;border-radius:3px}
+.ops li.done{opacity:.6;font-style:italic}
+.empty{color:var(--ink-3);font-size:14px;padding:14px;border:1px dashed var(--line);border-radius:10px}
+@media (max-width:900px){.si-grid{grid-template-columns:1fr}}
+
+.net{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px;align-items:center}
+.net > svg{width:100%;height:auto;display:block}
+.net .log{font:500 13px/1.6 var(--f-mono);background:var(--hero);color:#bfe3e6;border-radius:12px;padding:14px;height:230px;overflow:auto}
+.net .log .w{color:#ffb7a8}.net .log .g{color:#8ff0bd}
+@media (max-width:900px){.net{grid-template-columns:1fr}}
+
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center}
+.range{display:grid;gap:6px}
+.range label{display:flex;justify-content:space-between;font-weight:600;font-size:14.5px}
+.range label b{font-family:var(--f-mono);color:var(--teal-strong)}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.big-out{display:grid;gap:6px;text-align:center;padding:26px;border-radius:16px;background:radial-gradient(400px 200px at 50% 0%,color-mix(in srgb,var(--aqua) 22%,transparent),transparent),var(--paper);border:1px solid var(--line)}
+.big-out b{font:800 clamp(44px,6vw,72px)/1 var(--f-display);color:var(--teal-strong);letter-spacing:-.03em}
+.big-out span{color:var(--ink-2)}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+
+/* ---------- Galerie ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;align-items:center}
+.filters .seg{margin-left:auto}
+.fbtn{all:unset;cursor:pointer;padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:14.5px;color:var(--ink-2)}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fbtn:focus-visible{outline:3px solid var(--aqua)}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.gallery figure{margin:0;display:grid;gap:10px;cursor:zoom-in}
+.gallery .frame{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--card);aspect-ratio:16/10;position:relative}
+.gallery .frame img{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.gallery figure:hover .frame img{transform:scale(1.06)}
+.gallery .frame::after{content:"Agrandir";position:absolute;right:10px;bottom:10px;font:600 12px/1 var(--f-body);padding:7px 10px;border-radius:999px;background:rgba(6,35,44,.8);color:#fff;opacity:0;transform:translateY(6px);transition:.25s}
+.gallery figure:hover .frame::after{opacity:1;transform:none}
+.gallery figcaption b{display:block;font-size:15.5px}
+.gallery figcaption span{font-size:14px;color:var(--ink-2)}
+.gallery figure.hide{display:none}
+@media (max-width:900px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.gallery{grid-template-columns:1fr}}
+
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(3,15,19,.92);display:grid;grid-template-rows:1fr auto;padding:clamp(12px,3vw,40px);gap:14px;opacity:0;pointer-events:none;transition:opacity .25s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox .stage{display:grid;place-items:center;min-height:0}
+.lightbox img{max-height:100%;max-width:100%;object-fit:contain;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#fff}
+.lightbox .bar{display:flex;gap:12px;align-items:center;justify-content:space-between;color:#e8f4f5;flex-wrap:wrap}
+.lightbox .bar p{max-width:70ch;color:#bcd6da;font-size:15px}
+.lightbox .bar b{color:#fff;display:block;font-size:17px}
+.lb-btn{all:unset;cursor:pointer;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+.lb-btn svg{width:22px;height:22px}
+.lb-btn:focus-visible{outline:3px solid var(--aqua)}
+
+/* ---------- Tarifs ---------- */
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px;grid-template-rows:auto auto auto 1fr auto;position:relative;transition:transform .25s,box-shadow .25s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.plan h3{font-size:22px}
+.plan .dur{font:700 30px/1 var(--f-display);color:var(--teal-strong);letter-spacing:-.02em}
+.plan .dur small{font:500 14px var(--f-body);color:var(--ink-3);letter-spacing:0}
+.plan p{color:var(--ink-2);font-size:15px}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px;align-content:start}
+.plan li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.plan li svg{width:17px;height:17px;color:var(--ok);margin-top:3px}
+.plan.best{border:2px solid var(--aqua);background:linear-gradient(180deg,color-mix(in srgb,var(--aqua) 10%,var(--card)),var(--card) 40%)}
+.plan .ribbon{position:absolute;top:-12px;left:24px;font:700 12px/1 var(--f-body);letter-spacing:.06em;padding:7px 10px;border-radius:7px;background:var(--saffron);color:#231300}
+.plan .btn{justify-content:center}
+@media (max-width:1000px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.plans{grid-template-columns:1fr}}
+.incl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.incl div{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2)}
+.incl svg{width:20px;height:20px;color:var(--teal);flex:none;margin-top:1px}
+@media (max-width:900px){.incl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 20px}
+.faq summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:700;font-size:17px;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 26px/1 var(--f-body);color:var(--teal);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 18px;color:var(--ink-2)}
+
+/* ---------- Contact ---------- */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:22px;align-items:start}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:6px}
+.ccard .lab{font:600 12px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.ccard .val{font:700 clamp(22px,2.6vw,30px)/1.2 var(--f-display);user-select:all;word-break:break-word}
+.ccard .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.contact-side{display:grid;gap:14px}
+form.cf{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px}
+form.cf h3{font-size:22px}
+.field{display:grid;gap:6px}
+.field label{font-weight:600;font-size:14.5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+textarea.in{min-height:110px;resize:vertical}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:12px;font-weight:600;opacity:0;transition:.25s;z-index:120;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+
+
+/* ---------- Guide des imports ---------- */
+.g-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:36px;align-items:start;padding-bottom:80px}
+.g-toc{position:sticky;top:90px;display:grid;gap:2px}
+.g-toc a{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:10px;color:var(--ink-2);font-weight:600;font-size:15px;text-decoration:none}
+.g-toc a b{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font:700 12px/1 var(--f-mono);background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal-strong)}
+.g-toc a:hover{background:color-mix(in srgb,var(--teal) 8%,transparent);color:var(--ink)}
+.g-toc a.on{background:var(--card);color:var(--teal-strong);box-shadow:var(--shadow)}
+.g-toc .g-toc-cta,.g-toc .g-toc-cta.on{margin-top:10px;background:var(--teal-strong);color:var(--paper)!important;justify-content:center}
+.g-main{display:grid;gap:28px;min-width:0}
+.g-block{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);display:grid;gap:18px;scroll-margin-top:90px;min-width:0}
+#g-verif{background:none;border:0;padding:0}
+.g-block h2{font-size:clamp(24px,2.6vw,30px);font-weight:800}
+.g-sub{color:var(--ink-2)}
+.g-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.g-rules div{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:15px;color:var(--ink-2)}
+.g-rules svg{width:22px;height:22px;color:var(--teal)}
+.g-rules b{color:var(--ink)}
+.g-note{border-radius:12px;padding:13px 16px;background:color-mix(in srgb,var(--teal) 8%,var(--card));border:1px solid color-mix(in srgb,var(--teal) 25%,var(--line));font-size:15px;color:var(--ink-2)}
+.g-note b{color:var(--ink)}
+.g-note.warn{background:color-mix(in srgb,var(--saffron) 12%,var(--card));border-color:color-mix(in srgb,var(--saffron) 45%,var(--line))}
+code{font:500 .9em var(--f-mono);background:color-mix(in srgb,var(--ink) 7%,transparent);padding:1px 6px;border-radius:5px;white-space:nowrap}
+.g-order{list-style:none;counter-reset:o;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.g-order li{counter-increment:o;position:relative;border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:4px;background:var(--paper)}
+.g-order li::before{content:counter(o);font:800 26px/1 var(--f-display);color:var(--aqua)}
+.g-order li span{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:900px){.g-order{grid-template-columns:1fr 1fr}}
+.imp-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center}
+.imp-n{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font:800 22px/1 var(--f-display);background:linear-gradient(135deg,var(--aqua),#00708f);color:#fff}
+.imp-n.stock{background:linear-gradient(135deg,#f3c06b,#c97c12)}
+.imp-head .path{font:500 13.5px/1.4 var(--f-mono);color:var(--ink-3);margin-top:4px}
+.imp-badge{font:700 12px/1 var(--f-body);padding:7px 10px;border-radius:999px;background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal-strong)}
+.imp-badge.stock{background:color-mix(in srgb,var(--saffron) 16%,transparent);color:color-mix(in srgb,var(--saffron) 60%,var(--ink))}
+.xl-wrap,.tbl-wrap{overflow-x:auto;border-radius:10px}
+table.xl{border-collapse:collapse;font:13.5px/1.2 Calibri,"Segoe UI",var(--f-body);background:#fff;color:#1b1b1b;min-width:560px;width:100%;border:1px solid #c8d1d3}
+table.xl th{background:#eef1f2;color:#5b6b70;font-weight:500;padding:5px 8px;border:1px solid #d3dadc;text-align:center}
+table.xl tbody th{width:34px}
+table.xl td{border:1px solid #dde3e5;padding:6px 8px;white-space:nowrap}
+table.xl td.r{text-align:right;font-variant-numeric:tabular-nums}
+table.xl tr.h td{font-weight:700;background:#00708f;color:#fff;border-color:#0b6178}
+table.g-cols{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+table.g-cols th{text-align:left;font:600 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);padding:10px;border-bottom:1px solid var(--line)}
+table.g-cols td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+table.g-cols td:first-child{white-space:nowrap;color:var(--ink)}
+table.g-cols tr:last-child td{border-bottom:0}
+.req{display:inline-block;font:700 10.5px/1 var(--f-body);letter-spacing:.04em;text-transform:uppercase;padding:4px 6px;border-radius:5px;background:color-mix(in srgb,var(--danger) 12%,transparent);color:var(--danger);margin-left:4px;vertical-align:2px}
+.g-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g-two > div{border-radius:14px;padding:16px 18px;border:1px solid var(--line)}
+.g-two h4{font:700 15px/1 var(--f-body);display:flex;gap:8px;align-items:center;margin:0 0 10px;letter-spacing:0}
+.g-two h4 svg{width:18px;height:18px}
+.g-two ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:14.5px;color:var(--ink-2)}
+.g-ko{background:color-mix(in srgb,var(--danger) 6%,var(--card))}
+.g-ko h4{color:var(--danger)}
+.g-ok{background:color-mix(in srgb,var(--ok) 6%,var(--card))}
+.g-ok h4{color:var(--ok)}
+.g-dl{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:900px){.g-layout{grid-template-columns:1fr}.g-toc{position:static;display:flex;overflow-x:auto;gap:6px;padding-bottom:4px}.g-toc a{white-space:nowrap}.g-toc .g-toc-cta{margin-top:0}.g-rules,.g-two{grid-template-columns:1fr}.imp-head{grid-template-columns:auto minmax(0,1fr)}.imp-badge{display:none}}
+/* Vérificateur */
+.v-top{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px}
+.drop{position:relative;border:2px dashed color-mix(in srgb,var(--teal) 45%,var(--line));border-radius:16px;padding:26px;display:grid;justify-items:center;gap:6px;text-align:center;cursor:pointer;background:var(--paper);transition:.2s}
+.drop:hover,.drop.over{border-color:var(--aqua);background:color-mix(in srgb,var(--aqua) 8%,var(--paper))}
+.drop svg{width:34px;height:34px;color:var(--teal)}
+.drop span{font-size:14px;color:var(--ink-3)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop:focus-within{outline:3px solid var(--aqua)}
+.v-side{display:grid;gap:10px;align-content:start}
+@media (max-width:700px){.v-top{grid-template-columns:1fr}}
+.v-sum{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.pill{font:600 13.5px/1 var(--f-body);padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+.pill.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.pill.ko{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,var(--line))}
+.pill.wa{color:color-mix(in srgb,var(--saffron) 70%,var(--ink));border-color:color-mix(in srgb,var(--saffron) 50%,var(--line))}
+.v-h{font:700 13px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 8px}
+.v-cols{display:flex;flex-wrap:wrap;gap:6px}
+.v-cols span{font-size:13.5px;padding:6px 9px;border-radius:8px;border:1px solid var(--line);background:var(--paper)}
+.v-cols span.ok{border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.v-cols span.ok i{color:var(--ok);font-style:normal}
+.v-cols span.no{color:var(--ink-3);text-decoration:line-through}
+.v-cols span.miss{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
+.v-issues{display:grid;gap:6px;max-height:420px;overflow:auto}
+.v-issues div{display:grid;grid-template-columns:72px 90px minmax(0,1fr);gap:10px;font-size:14px;padding:9px 12px;border-radius:10px;background:var(--paper);border:1px solid var(--line);align-items:start}
+.v-issues .l{font:600 13px var(--f-mono);color:var(--ink-3)}
+.v-issues .k{font:700 12px/1.6 var(--f-body);text-transform:uppercase;letter-spacing:.04em}
+.v-issues .e .k{color:var(--danger)}.v-issues .w .k{color:color-mix(in srgb,var(--saffron) 70%,var(--ink))}.v-issues .i .k{color:var(--teal)}
+.v-fatal{border-radius:12px;padding:14px 16px;background:color-mix(in srgb,var(--danger) 9%,var(--card));border:1px solid color-mix(in srgb,var(--danger) 40%,var(--line));color:var(--ink)}
+@media (max-width:560px){.v-issues div{grid-template-columns:60px minmax(0,1fr)}.v-issues .k{grid-column:2}.v-issues div > span:last-child{grid-column:1/-1}}
+
+/* ---------- Pied ---------- */
+footer{border-top:1px solid var(--line);margin-top:20px;padding-block:40px 30px;color:var(--ink-2);font-size:14.5px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+footer h5{font:700 13px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+footer a{color:var(--ink-2);display:block;padding:3px 0}
+footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;color:var(--ink-3);font-size:13.5px}
+@media (max-width:800px){footer .wrap{grid-template-columns:1fr 1fr}}
+
+/* Apparition au défilement : l'état de repos est visible */
+.rv{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.pre{transform:translateY(26px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .rv.pre{transform:none;opacity:1}}
+</style>
+</head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9L2.4 17.6A2 2 0 004.1 20.6h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5M16 4.6a3.5 3.5 0 010 6.8M18.5 14.8c1.7.7 2.8 2.4 3 5.2"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 00-1 1v16a1 1 0 001 1h12a1 1 0 001-1V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4a1 1 0 011-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a1 1 0 001 .8h9.2a1 1 0 001-.8L20 8H6.2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 018 0v3.5"/></symbol>
+    <symbol id="i-net" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="5" rx="1"/><rect x="2.5" y="16.5" width="6" height="5" rx="1"/><rect x="15.5" y="16.5" width="6" height="5" rx="1"/><path d="M12 7.5v4.5M5.5 16.5V12h13v4.5"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11l4 4v13a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol>
+    <symbol id="i-usb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="9" width="10" height="13" rx="2"/><path d="M9 9V3h6v6M11 5.5h.01M13 5.5h.01"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 103-6.7L3 8M3 3v5h5M12 7v5l3 2"/></symbol>
+    <symbol id="i-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 12l-4-4m4 4l4-4M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 006 6L16 13l5 2v4a2 2 0 01-2 2A17 17 0 013 5a2 2 0 012-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6l8.5 7 8.5-7"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.1-1.3c0-.1-.2-.2-.5-.3z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 00-2-2H5a2 2 0 00-2 2v9a2 2 0 002 2h3"/></symbol>
+    <symbol id="i-win" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3zM11.5 4.4L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></symbol>
+    <symbol id="i-wifi-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20M8.5 16.5a5 5 0 017 0M5 12.9a10 10 0 015.2-2.7M19 12.9a10 10 0 00-2-1.5M2 8.8a15 15 0 014.2-2.6M22 8.8A15 15 0 0010.7 5M12 20h.01"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 000 18c1.4 0 2-1 2-2s-1-1.6-1-2.6 1-1.4 2-1.4h2a4 4 0 004-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="#accueil" aria-label="Digi — accueil">
+      <span class="mark" aria-hidden="true">D</span>
+      <span>Digi<small>Client · Stock</small></span>
+    </a>
+    <nav class="tabs" id="tabs" aria-label="Sections du site">
+      <a href="#accueil">Accueil</a>
+      <a href="#digiclient">DigiClient</a>
+      <a href="#digistock">DigiStock</a>
+      <a href="#multiposte">Réseau &amp; sécurité</a>
+      <a href="#simulateurs">Simulateurs</a>
+      <a href="#captures">Captures</a>
+      <a href="#guide">Guide</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Changer de thème"><svg><use href="#i-moon"/></svg></button>
+    <a class="btn btn-primary nav-cta dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-dl"/></svg>Télécharger</a>
+    <button class="icon-btn burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="tabs"><svg><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main>
+<!-- =============================== ACCUEIL =============================== -->
+<section class="page" id="p-accueil" data-page="accueil">
+  <div class="hero">
+    <canvas class="zellige" id="zellige" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><i></i>Dernière version disponible · Windows</span>
+        <h1>Vos clients, vos chèques et votre stock. <span class="hl">Enfin au même endroit.</span></h1>
+        <p class="lead">Digi réunit deux logiciels en un : <b>DigiClient</b> pour les livraisons, paiements, échéances et factures, et <b>DigiStock</b> pour vos dépôts et votre inventaire. Pensé pour les grossistes et négociants marocains, en dirhams, au mètre ou à la pièce.</p>
+        <div class="ctas">
+          <a class="btn btn-primary dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-win"/></svg>Télécharger Digi</a>
+          <a class="btn btn-ghost" href="#simulateurs"><svg><use href="#i-play"/></svg>Essayer les simulateurs</a>
+        </div>
+        <div class="hero-meta">
+          <span><svg><use href="#i-check"/></svg>Essai gratuit 7 jours</span>
+          <span><svg><use href="#i-check"/></svg>Fonctionne sans internet</span>
+          <span><svg><use href="#i-check"/></svg>Vos données restent chez vous</span>
+        </div>
+      </div>
+      <div class="hero-stage" id="heroStage">
+        <div class="win" id="heroWin">
+          <div class="win-bar"><span class="wmark" aria-hidden="true">D</span>Gestion Clients 1.16.0<div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
+          <img class="shot" data-shot="dc_fiche" src="img/dc_fiche.webp" alt="Fiche client de DigiClient : historique des livraisons et paiements, solde client et instance" width="1800" height="1040">
+        </div>
+        <div class="float f2"><span class="dot" style="background:rgba(95,227,160,.16);color:#5fe3a0"><svg><use href="#i-swap"/></svg></span><div><b>Synchronisé</b><small>3 postes · il y a 12 s</small></div></div>
+        <div class="float f1"><span class="dot" style="background:rgba(243,192,107,.16);color:#f3c06b"><svg><use href="#i-cal"/></svg></span><div><b>25 920 DH</b><small>Échéances à 7 jours</small></div></div>
+        <div class="float f3"><span class="dot" style="background:rgba(255,125,113,.16);color:#ff9d93"><svg><use href="#i-box"/></svg></span><div><b>Satin Duchesse</b><small>Sous le seuil · Entrepôt Tanger</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b class="count" data-to="2">2</b><span>modules dans un seul programme</span></div>
+      <div class="stat"><b class="count" data-to="14">14</b><span>onglets de travail</span></div>
+      <div class="stat"><b class="count" data-to="6">6</b><span>modes de paiement suivis</span></div>
+      <div class="stat"><b><span class="count" data-to="60">60</span> s</b><span>entre deux synchronisations</span></div>
+      <div class="stat"><b class="count" data-to="892" data-sep="1">892</b><span>tests automatiques à chaque version</span></div>
+      <div class="stat"><b>0 DH</b><span>de serveur cloud à payer</span></div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Pourquoi Digi</span>
+        <h2>Les trois soucis du négoce, réglés par le logiciel.</h2>
+        <p class="lead">Un cahier, un classeur Excel et la mémoire du patron ne suffisent plus quand les chèques s'accumulent et que la marchandise sort de trois dépôts.</p>
+      </div>
+      <div class="pains">
+        <article class="pain rv">
+          <span class="q"><svg><use href="#i-warn"/></svg>« Ce chèque, il tombait quand déjà ? »</span>
+          <h3>Plus aucun chèque oublié</h3>
+          <p>L'Échéancier liste chaque chèque et effet en attente, tous clients confondus. Les retards passent en rouge et une alerte cliquable reste affichée en bas de l'écran.</p>
+          <span class="tag">Échéancier · Alerte retard</span>
+        </article>
+        <article class="pain rv">
+          <span class="q"><svg><use href="#i-warn"/></svg>« Le stock dit 300 m, il en reste 120. »</span>
+          <h3>Un stock juste, sans double saisie</h3>
+          <p>Une livraison saisie dans DigiClient sort automatiquement du dépôt choisi dans DigiStock. Modifiez ou supprimez-la : le stock est rectifié tout seul.</p>
+          <span class="tag">Liaison automatique</span>
+        </article>
+        <article class="pain rv">
+          <span class="q"><svg><use href="#i-warn"/></svg>« Mon employé n'a pas les mêmes chiffres. »</span>
+          <h3>Tous les postes à jour</h3>
+          <p>Le magasin et le bureau travaillent sur les mêmes données, synchronisées toutes les 60 secondes sur votre réseau local. Internet coupé ? On continue, tout repart au retour.</p>
+          <span class="tag">Multi-postes · Hors ligne</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Visite guidée</span>
+        <h2>Faites le tour du logiciel, écran par écran.</h2>
+        <p class="lead">Ce sont les vrais écrans de Digi 1.16, avec une entreprise de démonstration.</p>
+      </div>
+      <div class="tour" id="tour">
+        <div class="tour-list" role="tablist" aria-label="Écrans du logiciel" id="tourList"></div>
+        <div class="tour-view">
+          <div class="win" id="tourWin">
+            <div class="win-bar"><span class="wmark" aria-hidden="true">D</span><span id="tourTitle">Gestion Clients 1.16.0</span><div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
+            <div class="tour-frame" id="tourFrame"><img class="shot zoomable" id="tourImg" src="img/dc_accueil.webp" alt="" width="1800" height="1040"></div>
+          </div>
+          <div class="tour-cap">
+            <div><h3 id="tourH">Tableau de bord</h3><p id="tourP"></p></div>
+            <div class="seg" role="group" aria-label="Thème du logiciel">
+              <button type="button" data-shot-theme="light" aria-pressed="true">Clair</button>
+              <button type="button" data-shot-theme="dark" aria-pressed="false">Sombre</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Deux modules, une licence</span>
+        <h2>Un seul programme, deux métiers.</h2>
+        <p class="lead">À l'ouverture, l'écran d'accueil affiche votre logo, votre fond d'écran et deux boutons. Chaque module garde sa propre base et ses propres sauvegardes.</p>
+      </div>
+      <div class="modules">
+        <article class="module rv">
+          <span class="eyebrow" style="color:#7fe3e4">Clients · Paiements · Documents</span>
+          <h3>DigiClient</h3>
+          <p>Toute la relation client : du bon de livraison à l'encaissement du dernier chèque.</p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Bons de livraison multi-articles et factures en PDF</li>
+            <li><svg><use href="#i-check"/></svg>Solde et instance de chaque client, ligne par ligne</li>
+            <li><svg><use href="#i-check"/></svg>Échéancier, impayés, avoirs, encaissements</li>
+            <li><svg><use href="#i-check"/></svg>Chiffre d'affaires, statistiques, tarifs par client</li>
+          </ul>
+          <div class="thumb"><img src="img/dc_clients.webp" alt="Liste des clients dans DigiClient" width="1800" height="1040"></div>
+          <a class="btn btn-ghost" href="#digiclient">Tout DigiClient <svg><use href="#i-right"/></svg></a>
+        </article>
+        <article class="module stock rv">
+          <span class="eyebrow" style="color:#f3c06b">Dépôts · Mouvements · Inventaire</span>
+          <h3>DigiStock</h3>
+          <p>Ce que vous avez, où, et combien ça vaut. Dépôt par dépôt, au mètre ou à l'unité.</p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Stock par article et par dépôt, en temps réel</li>
+            <li><svg><use href="#i-check"/></svg>Seuils de réapprovisionnement et alertes</li>
+            <li><svg><use href="#i-check"/></svg>Inventaire valorisé au prix de revient, par période</li>
+            <li><svg><use href="#i-check"/></svg>Fournisseurs, achats, casse et pertes justifiées</li>
+          </ul>
+          <div class="thumb"><img src="img/ds_stock.webp" alt="Stock par dépôt dans DigiStock" width="1800" height="1075"></div>
+          <a class="btn btn-ghost" href="#digistock">Tout DigiStock <svg><use href="#i-right"/></svg></a>
+        </article>
+        <div class="liaison rv">
+          <svg style="width:30px;height:30px;color:var(--teal)"><use href="#i-bolt"/></svg>
+          <div><b>Les deux modules se parlent.</b> <span style="color:var(--ink-2)">Une livraison avec une « Source » retire la marchandise du dépôt. Un avoir marchandise avec « Retour vers » la remet en stock.</span></div>
+          <div class="flow">DigiClient <i></i> DigiStock</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Démarrer</span>
+        <h2>Installé et prêt en quelques minutes.</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><h3>Téléchargez l'installateur</h3><p>Un seul fichier. Double-clic, Suivant, Terminer : raccourci sur le Bureau, pare-feu réglé pour le réseau local.</p></div>
+        <div class="step rv"><h3>Envoyez votre code machine</h3><p>Au premier lancement, Digi affiche un code. Envoyez-le par WhatsApp au <b class="mono">06 78 65 13 59</b> ou par e-mail.</p></div>
+        <div class="step rv"><h3>Recevez votre licence</h3><p>Vous recevez un fichier de licence. Chargez-le, créez votre compte administrateur, c'est parti. Importez vos clients depuis Excel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band rv">
+        <div>
+          <h2>Essayez Digi gratuitement pendant 7 jours.</h2>
+          <p>Téléchargez, envoyez votre code machine, et travaillez avec vos vraies données dès aujourd'hui.</p>
+        </div>
+        <div class="btns">
+          <a class="btn btn-primary dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-dl"/></svg>Télécharger</a>
+          <a class="btn btn-ghost" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =============================== DIGICLIENT =============================== -->
+<section class="page" id="p-digiclient" data-page="digiclient">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Module DigiClient</span>
+    <h1>Chaque dirham suivi, de la livraison à l'encaissement.</h1>
+    <p class="lead">Huit onglets (Accueil, Clients, Fiche client, Chiffre d'affaires, Échéancier, Opération, Statistiques, Tarifs) et tous les outils pour tenir les comptes de vos clients sans erreur.</p>
+  </div>
+  <div class="wrap">
+    <div class="feat">
+      <div class="txt rv">
+        <span class="eyebrow">Tableau de bord</span>
+        <h2>Votre journée en un coup d'œil</h2>
+        <p>L'onglet Accueil rassemble ce qui compte, sans rien à saisir.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span><b>CA du mois</b> comparé au mois dernier</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Solde total dû</b> par l'ensemble des clients actifs</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Impayés en cours</b> et <b>échéances des 7 prochains jours</b></span></li>
+          <li><svg><use href="#i-check"/></svg><span>Prochaines échéances et <b>top clients</b> du mois</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dc_accueil" src="img/dc_accueil.webp" alt="Tableau de bord DigiClient" loading="lazy" width="1800" height="1040"></div>
+    </div>
+
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Fiche client</span>
+        <h2>L'historique complet, avec le solde à chaque ligne</h2>
+        <p>Livraisons en bleu, paiements en vert, impayés en rouge, avoirs en violet et orange. Les lignes d'un même bon de livraison sont regroupées.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span><b>Solde client</b> (ce qu'il doit) et <b>Instance</b> (ce qui n'est pas encore encaissé) recalculés à chaque ligne</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Filtre par période, tri par date ou par échéance</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Relevé de compte PDF, impression du BL et de la facture</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Historique de chaque modification, client par client</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Solde de départ repris de votre ancien cahier</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dc_fiche" src="img/dc_fiche.webp" alt="Fiche client avec historique coloré" loading="lazy" width="1800" height="1040"></div>
+    </div>
+
+    <div class="feat">
+      <div class="txt rv">
+        <span class="eyebrow">Bon de livraison multi-articles</span>
+        <h2>Un bon, plusieurs articles, un seul « Enregistrer »</h2>
+        <p>L'en-tête est saisi une fois : client, date, N° BL, type de livraison (Camion, Maroc Express…) et dépôt source. Ensuite, une ligne par article.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span><b>Prix suggéré automatiquement</b> : tarif spécial du client, sinon prix de base. Un prix tapé à la main n'est jamais écrasé.</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Remise en <b>prix au mètre négocié</b> ou en <b>montant</b> retiré du total</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Le stock disponible s'affiche ; le dépôt est débité à l'enregistrement</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Tout ou rien : en cas d'erreur, rien n'est enregistré à moitié</span></li>
+          <li><svg><use href="#i-check"/></svg><span>« Modifier le BL complet » rouvre toutes les lignes</span></li>
+        </ul>
+        <a class="btn btn-solid btn-sm" href="#simulateurs" style="justify-self:start">Essayer le simulateur de BL <svg><use href="#i-right"/></svg></a>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dlg_bon_livraison" src="img/dlg_bon_livraison.webp" alt="Saisie d'un bon de livraison multi-articles" loading="lazy" width="1800" height="946"></div>
+    </div>
+
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Paiements</span>
+        <h2>Chèques, effets, espèces : tout est tracé</h2>
+        <p>« Nouveaux paiements » enregistre en une fois les cinq chèques qu'un client vous remet. Un chèque à échéance reste « En attente » jusqu'à son encaissement.</p>
+        <div class="paylist">
+          <div class="pay"><b>Espèce</b><span>Encaissé immédiatement</span></div>
+          <div class="pay"><b>Virement</b><span>Encaissé immédiatement</span></div>
+          <div class="pay"><b>Versement espèce</b><span>Nouveau en 1.16</span></div>
+          <div class="pay"><b>Chèque à vue</b><span>Numéro suivi</span></div>
+          <div class="pay"><b>Chèque à échéance</b><span>En attente → Encaissé</span></div>
+          <div class="pay"><b>Effet</b><span>Échéance suivie</span></div>
+        </div>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span><b>Encaissement</b> : choisissez le chèque en attente dans une liste, tout se remplit seul</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Un même chèque ne peut pas être encaissé deux fois</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Impayé</b>, <b>avoir financier</b>, <b>avoir marchandise</b> (avec retour en stock)</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dlg_reglements" src="img/dlg_reglements.webp" alt="Saisie de plusieurs paiements en une fois" loading="lazy" width="1800" height="851"></div>
+    </div>
+
+    <div class="feat">
+      <div class="txt rv">
+        <span class="eyebrow">Échéancier</span>
+        <h2>Tous les chèques à venir, triés par date</h2>
+        <p>Chaque chèque et effet en attente, tous clients confondus, avec le nombre de jours de retard ou restants. Les retards sont en rouge, ceux de la semaine en orange.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>Filtre « À encaisser », période, recherche par client ou numéro</span></li>
+          <li><svg><use href="#i-check"/></svg><span>« Marquer réglé » en un clic, accès direct à la fiche du client</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Alerte « N chèque(s) en retard » cliquable sur tous les onglets</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Import des échéances depuis un fichier Excel (.xls)</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dc_echeancier" src="img/dc_echeancier.webp" alt="Échéancier des chèques et effets" loading="lazy" width="1800" height="1040"></div>
+    </div>
+
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Chiffre d'affaires &amp; statistiques</span>
+        <h2>Qui achète, qui paie, et en combien de temps</h2>
+        <p>Le CA se ventile par client, ville, commercial, activité (Tissage, Broderie, Tissus importés…) et période. Les statistiques mesurent le délai moyen de paiement de chaque client.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>Sélection libre de clients, CA cumulé de la sélection</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Meilleur client</b> et <b>meilleur commercial</b> de la période</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Nombre d'encaissements et d'impayés par client</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Impression et export CSV vers Excel</span></li>
+        </ul>
+      </div>
+      <div class="shot-stack rv">
+        <div class="win"><img class="shot zoomable" data-shot="dc_ca" src="img/dc_ca.webp" alt="Chiffre d'affaires par client" loading="lazy" width="1800" height="1040"></div>
+        <div class="win"><img class="shot zoomable" data-shot="dc_statistiques" src="img/dc_statistiques.webp" alt="Statistiques de délai de paiement" loading="lazy" width="1800" height="1040"></div>
+      </div>
+    </div>
+
+    <div class="feat" style="margin-top:40px">
+      <div class="txt rv">
+        <span class="eyebrow">Tarifs</span>
+        <h2>Prix de base et prix spécial par client</h2>
+        <p>Double-cliquez sur un prix pour le modifier : c'est enregistré tout de suite. Le bon prix apparaît ensuite automatiquement dans les bons de livraison du client.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>Import et export Excel/CSV, impression de la grille</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Les anciennes opérations ne sont jamais modifiées</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Chaque changement de prix est inscrit dans le journal</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dc_tarifs" src="img/dc_tarifs.webp" alt="Grille de tarifs par client" loading="lazy" width="1800" height="1040"></div>
+    </div>
+
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Saisie rapide</span>
+        <h2>L'onglet Opération pour les journées chargées</h2>
+        <p>Plusieurs clients passent payer le même jour ? Saisissez tout à la suite, sans ouvrir chaque fiche. Le tableau montre toutes les opérations de la date choisie et le total payé.</p>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="dc_operation" src="img/dc_operation.webp" alt="Onglet Opération : saisie du jour" loading="lazy" width="1800" height="1040"></div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Documents</span>
+        <h2>BL, facture et relevé prêts à imprimer</h2>
+        <p class="lead">Aperçu avant impression, « Enregistrer en PDF » ou « Imprimer ». Prix TTC, HT et TVA calculés au centime près, montant écrit en toutes lettres, pied de page avec vos RC, IF, ICE et adresse.</p>
+      </div>
+      <div class="docs">
+        <figure class="rv"><div class="paper"><img class="zoomable" src="img/doc_bl.webp" alt="Bon de livraison imprimé" loading="lazy" width="910" height="770"></div><figcaption><b>Bon de livraison</b> · métrage ou quantité par article</figcaption></figure>
+        <figure class="rv"><div class="paper"><img class="zoomable" src="img/doc_facture.webp" alt="Facture imprimée avec TVA et montant en lettres" loading="lazy" width="910" height="739"></div><figcaption><b>BL / Facture</b> · HT, TVA, TTC et « Quatorze mille dix dirhams »</figcaption></figure>
+        <figure class="rv"><div class="paper"><img class="zoomable" src="img/doc_inventaire.webp" alt="Inventaire valorisé imprimé" loading="lazy" width="910" height="550"></div><figcaption><b>Inventaire valorisé</b> · depuis DigiStock</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Outils inclus</span>
+        <h2>Les petits outils qui évitent les grosses erreurs</h2>
+      </div>
+      <div class="grid-tools">
+        <div class="tool rv"><h4><svg><use href="#i-history"/></svg>Journal des modifications</h4><p>Qui a créé, modifié ou supprimé quoi, et quand. Le contenu d'une opération supprimée reste lisible.</p><span class="path">Outils › Journal des modifications</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-search"/></svg>Contrôle des données</h4><p>Repère les dates illisibles, les impayés sans chèque correspondant, les livraisons sans activité.</p><span class="path">Outils › Contrôle des données</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-tag"/></svg>Renommer / fusionner un article</h4><p>Corrige un nom partout (opérations, BL, tarifs, stock). Deux doublons ? Ils sont fusionnés, stock additionné.</p><span class="path">Outils › Renommer / fusionner</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-import"/></svg>Imports Excel</h4><p>Clients (avec solde et instance de départ), échéances, correspondance article/activité, tarifs, stock initial.</p><span class="path">Fichier › Importer…</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-file"/></svg>Export complet</h4><p>Toutes vos données (clients, opérations, échéancier, tarifs) dans un seul fichier Excel lisible sans le logiciel.</p><span class="path">Fichier › Exporter toutes les données</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-list"/></svg>Classement par activité</h4><p>Rattache en lot les anciennes livraisons à une activité pour un chiffre d'affaires bien ventilé.</p><span class="path">Outils › Classer les opérations</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-box"/></svg>Mètre ou quantité</h4><p>Vous vendez au mètre ou à la pièce ? Un réglage change le libellé partout, jusque sur les documents imprimés.</p><span class="path">Paramètres › Affichage</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-users"/></svg>Commerciaux &amp; villes</h4><p>Rattachez chaque client à un commercial et filtrez le CA, les soldes et les statistiques par commercial.</p><span class="path">Paramètres › Listes</span></div>
+        <div class="tool rv"><h4><svg><use href="#i-bolt"/></svg>Recalcul des soldes</h4><p>Recalcule en une fois les soldes et instances de tous les clients, après un import par exemple.</p><span class="path">Outils › Recalculer tous les soldes</span></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =============================== DIGISTOCK =============================== -->
+<section class="page" id="p-digistock" data-page="digistock">
+  <div class="wrap page-hero">
+    <span class="eyebrow" style="color:var(--saffron)">Module DigiStock</span>
+    <h1>Votre stock, dépôt par dépôt, au mètre près.</h1>
+    <p class="lead">Six onglets (Stock, Mouvements, Réapprovisionnement, Inventaire, Comptage, Fournisseurs) pour savoir ce que vous avez, où il se trouve, et combien il vaut.</p>
+  </div>
+  <div class="wrap">
+    <div class="feat">
+      <div class="txt rv">
+        <span class="eyebrow">Stock</span>
+        <h2>Quantité actuelle de chaque article, dans chaque dépôt</h2>
+        <p>Magasin, dépôt de Fès, entrepôt de Tanger : choisissez un dépôt ou voyez-les tous. Chaque article a son unité (mètre ou unité) et son seuil.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>Recherche instantanée, articles actifs ou archivés</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Les quantités sous le seuil ressortent en rouge</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Import du stock initial depuis Excel ou CSV : la bonne feuille est trouvée seule</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="ds_stock" src="img/ds_stock.webp" alt="Stock par article et par dépôt" loading="lazy" width="1800" height="1075"></div>
+    </div>
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Mouvements</span>
+        <h2>Entrées, sorties, casse : chaque mètre a une trace</h2>
+        <p>Les sorties liées à une livraison DigiClient apparaissent avec le nom du client et le N° BL. Elles sont protégées : on les corrige depuis la livraison.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>Type <b>Casse/Perte</b> avec motif obligatoire : Cassé, Abîmé, Périmé, Volé, Autre</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Suppression d'un mouvement manuel : son effet sur le stock est annulé</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Un mouvement n'est jamais appliqué deux fois, même reçu deux fois par le réseau</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="ds_mouvements" src="img/ds_mouvements.webp" alt="Historique des mouvements de stock" loading="lazy" width="1800" height="1075"></div>
+    </div>
+    <div class="feat">
+      <div class="txt rv">
+        <span class="eyebrow">Réapprovisionnement</span>
+        <h2>La liste de commande se fait toute seule</h2>
+        <p>Les articles passés sous leur seuil, par dépôt, avec la quantité manquante. Même un article neuf jamais mouvementé est signalé.</p>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="ds_reappro" src="img/ds_reappro.webp" alt="Articles à réapprovisionner" loading="lazy" width="1800" height="1075"></div>
+    </div>
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Inventaire valorisé</span>
+        <h2>La valeur de votre stock, pour vous et votre comptable</h2>
+        <p>Quantité × prix de revient, dépôt par dépôt ou tous dépôts confondus. Double-cliquez sur un prix de revient pour le corriger.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span><b>Par période</b> : stock au début, entrées, sorties, stock à la fin</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Un article sans prix de revient est signalé, jamais valorisé à zéro par erreur</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Aperçu, impression et PDF</span></li>
+        </ul>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="ds_inventaire" src="img/ds_inventaire.webp" alt="Inventaire valorisé" loading="lazy" width="1800" height="1075"></div>
+    </div>
+    <div class="feat">
+      <div class="txt rv">
+        <span class="eyebrow">Fournisseurs &amp; achats</span>
+        <h2>Ce que vous avez acheté, à qui, et à quel prix</h2>
+        <p>Chaque achat (fournisseur, article, dépôt, quantité, prix unitaire, référence de facture) entre en stock automatiquement. Filtrez l'historique par fournisseur, article ou période.</p>
+      </div>
+      <div class="win rv"><img class="shot zoomable" data-shot="ds_fournisseurs" src="img/ds_fournisseurs.webp" alt="Fournisseurs et historique des achats" loading="lazy" width="1800" height="1075"></div>
+    </div>
+    <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Comptage &amp; pertes</span>
+        <h2>Le stock réel face au stock théorique</h2>
+        <p>Saisissez la quantité comptée : l'écart est calculé et l'ajustement enregistré. Le <b>Bilan des pertes</b> liste toutes les casses d'une période avec leur valeur au prix de revient, pour justifier l'écart au comptable.</p>
+      </div>
+      <div class="shot-stack rv">
+        <div class="win"><img class="shot zoomable" data-shot="ds_comptage" src="img/ds_comptage.webp" alt="Comptage physique" loading="lazy" width="1800" height="1075"></div>
+        <div class="win"><img class="shot zoomable" data-shot="dlg_pertes" src="img/dlg_pertes.webp" alt="Bilan des pertes valorisé" loading="lazy" width="1800" height="1008"></div>
+      </div>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="cta-band rv">
+        <div><h2>Voyez votre stock baisser en direct.</h2><p>Le simulateur de bon de livraison débite un dépôt fictif et déclenche l'alerte de réapprovisionnement.</p></div>
+        <div class="btns"><a class="btn btn-primary" href="#simulateurs"><svg><use href="#i-play"/></svg>Ouvrir le simulateur</a></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =============================== MULTI-POSTES =============================== -->
+<section class="page" id="p-multiposte" data-page="multiposte">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Réseau, comptes &amp; sauvegardes</span>
+    <h1>Plusieurs postes, un seul jeu de données. Chez vous.</h1>
+    <p class="lead">Le poste principal héberge les données sur votre réseau local. Les autres postes s'y connectent et se synchronisent toutes les 60 secondes. Pas d'abonnement cloud, pas de serveur à louer.</p>
+  </div>
+  <div class="wrap">
+    <div class="sim rv" style="margin-bottom:40px">
+      <div class="sim-head"><h3>Simulation du réseau</h3><span class="badge">Interactif</span></div>
+      <div class="sim-body">
+        <div class="net" id="net">
+          <svg viewBox="0 0 560 330" role="img" aria-label="Schéma : un poste principal relié à deux postes secondaires">
+            <defs>
+              <linearGradient id="gPc" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1fb5b8"/><stop offset="1" stop-color="#00708f"/></linearGradient>
+            </defs>
+            <g id="links" fill="none" stroke-width="3" stroke-linecap="round">
+              <path id="l1" d="M280 120 C 280 190, 120 170, 120 230" stroke="var(--line)"/>
+              <path id="l2" d="M280 120 C 280 190, 440 170, 440 230" stroke="var(--line)"/>
+            </g>
+            <g id="packets"></g>
+            <g id="nodeMain" transform="translate(220 30)">
+              <rect width="120" height="84" rx="12" fill="url(#gPc)"/>
+              <rect x="10" y="10" width="100" height="52" rx="5" fill="#062b36" opacity=".9"/>
+              <text x="60" y="41" fill="#e8f4f5" font-size="13" font-weight="700" text-anchor="middle" font-family="Figtree,sans-serif">Poste principal</text>
+              <text x="60" y="77" fill="#e8f4f5" font-size="11" text-anchor="middle" font-family="JetBrains Mono,monospace">192.168.1.50</text>
+              <circle id="mainDot" cx="108" cy="8" r="6" fill="#5fe3a0" stroke="#062b36" stroke-width="2"/>
+            </g>
+            <g transform="translate(60 230)">
+              <rect width="120" height="76" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+              <text x="60" y="30" fill="var(--ink)" font-size="13" font-weight="700" text-anchor="middle" font-family="Figtree,sans-serif">Magasin</text>
+              <text id="s1txt" x="60" y="52" fill="var(--ok)" font-size="11.5" text-anchor="middle" font-family="JetBrains Mono,monospace">En ligne</text>
+              <text id="s1q" x="60" y="68" fill="var(--ink-3)" font-size="10.5" text-anchor="middle" font-family="Figtree,sans-serif">0 en attente</text>
+            </g>
+            <g transform="translate(380 230)">
+              <rect width="120" height="76" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+              <text x="60" y="30" fill="var(--ink)" font-size="13" font-weight="700" text-anchor="middle" font-family="Figtree,sans-serif">Bureau</text>
+              <text id="s2txt" x="60" y="52" fill="var(--ok)" font-size="11.5" text-anchor="middle" font-family="JetBrains Mono,monospace">En ligne</text>
+              <text id="s2q" x="60" y="68" fill="var(--ink-3)" font-size="10.5" text-anchor="middle" font-family="Figtree,sans-serif">0 en attente</text>
+            </g>
+          </svg>
+          <div style="display:grid;gap:12px">
+            <div class="sim-btns">
+              <button class="btn btn-solid btn-sm" type="button" id="netAdd1">Saisir au Magasin</button>
+              <button class="btn btn-solid btn-sm" type="button" id="netAdd2">Saisir au Bureau</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="netCut" style="color:var(--danger)"><svg><use href="#i-wifi-off"/></svg><span>Éteindre le poste principal</span></button>
+            </div>
+            <div class="log" id="netLog" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-tools">
+      <div class="tool rv"><h4><svg><use href="#i-net"/></svg>Poste principal / secondaire</h4><p>Au premier lancement, une seule question : ce poste garde les données, ou se connecte à un poste déjà installé ?</p></div>
+      <div class="tool rv"><h4><svg><use href="#i-swap"/></svg>Synchronisation automatique</h4><p>Toutes les 60 secondes : clients, opérations, tarifs, stock, mouvements, comptages, achats. Suppressions comprises.</p></div>
+      <div class="tool rv"><h4><svg><use href="#i-wifi-off"/></svg>Mode hors ligne</h4><p>Poste principal éteint ? Les postes secondaires s'ouvrent quand même et gardent les saisies. Tout repart au retour.</p></div>
+      <div class="tool rv"><h4><svg><use href="#i-shield"/></svg>La version la plus récente gagne</h4><p>Une même fiche modifiée sur deux postes : la modification la plus récente est gardée, et le conflit est inscrit au journal.</p></div>
+      <div class="tool rv"><h4><svg><use href="#i-net"/></svg>Deux agences ?</h4><p>Reliez deux magasins dans des villes différentes avec un VPN privé (Tailscale), sans ouvrir votre box.</p></div>
+      <div class="tool rv"><h4><svg><use href="#i-cal"/></svg>Contrôle de l'heure</h4><p>Un poste dont l'horloge dérive de plus de 2 minutes est signalé, pour que les bonnes modifications soient gardées.</p></div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="feat" style="border-top:0;padding-top:0">
+        <div class="txt rv">
+          <span class="eyebrow">Comptes &amp; permissions</span>
+          <h2>Chacun voit ce qu'il doit voir</h2>
+          <p>L'administrateur crée les comptes de ses employés avec un mot de passe provisoire, et coche les modules et les onglets autorisés.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg><span>Trois rôles : <b>Administrateur</b>, <b>Employé</b>, <b>Lecture seule</b></span></li>
+            <li><svg><use href="#i-check"/></svg><span>Accès onglet par onglet, DigiClient et DigiStock séparés</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Compte supprimé ou mot de passe changé : l'employé est déconnecté dans la minute</span></li>
+            <li><svg><use href="#i-check"/></svg><span>5 essais ratés bloquent les tentatives pendant 5 minutes</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Mots de passe et numéro de secours stockés chiffrés, jamais en clair</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Liste des postes connectés pour l'administrateur</span></li>
+          </ul>
+        </div>
+        <div class="shot-stack rv">
+          <div class="win"><img class="shot zoomable" data-shot="dlg_nouveau_compte" src="img/dlg_nouveau_compte.webp" alt="Création d'un compte employé avec ses accès" loading="lazy" width="1440" height="844"></div>
+          <div class="win"><img class="shot zoomable" data-shot="dlg_login" src="img/dlg_login.webp" alt="Écran de connexion" loading="lazy" width="800" height="288"></div>
+        </div>
+      </div>
+      <div class="feat flip" style="margin-top:40px">
+        <div class="txt rv">
+          <span class="eyebrow">Sauvegardes</span>
+          <h2>Vos données ne se perdent pas</h2>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg><span><b>Sauvegarde automatique</b> chaque jour, 30 jours conservés</span></li>
+            <li><svg><use href="#i-check"/></svg><span><b>Copie sur clé USB</b> : la clé est reconnue quelle que soit sa lettre, la copie est vérifiée, un rappel s'affiche si elle tarde</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Ctrl+S, « Sauvegarder vers… », restauration en quelques clics</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Copie de sécurité avant chaque mise à jour de la base</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Une mise à jour ou une désinstallation ne touche jamais aux données</span></li>
+          </ul>
+        </div>
+        <div class="win rv"><img class="shot zoomable" data-shot="dlg_parametres" src="img/dlg_parametres.webp" alt="Paramètres : entreprise, listes, affichage, réseau, sauvegarde" loading="lazy" width="1800" height="1280"></div>
+      </div>
+      <div class="feat" style="margin-top:40px">
+        <div class="txt rv">
+          <span class="eyebrow">À votre image</span>
+          <h2>Votre logo, votre fond d'écran, votre thème</h2>
+          <p>L'écran d'accueil affiche le nom de votre entreprise, votre logo et le fond d'écran de votre choix. Thème clair, sombre, ou celui de Windows. F11 pour le plein écran, taille de fenêtre retenue.</p>
+          <div class="seg" role="group" aria-label="Thème de l'aperçu" style="justify-self:start">
+            <button type="button" data-shot-theme="light" aria-pressed="true">Clair</button>
+            <button type="button" data-shot-theme="dark" aria-pressed="false">Sombre</button>
+          </div>
+        </div>
+        <div class="win rv"><img class="shot zoomable" data-shot="bienvenue" src="img/bienvenue.webp" alt="Écran d'accueil personnalisé" loading="lazy" width="1800" height="1075"></div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =============================== GUIDE DES IMPORTS =============================== -->
+<section class="page" id="p-guide" data-page="guide">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Guide des imports</span>
+    <h1>Vos fichiers Excel dans Digi, sans ligne refusée.</h1>
+    <p class="lead">Les 5 fichiers que Digi sait importer, avec le nom exact de chaque colonne, ce qu'il faut écrire dedans et ce qui fait refuser une ligne. Vous pouvez aussi vérifier votre fichier ici avant de l'importer.</p>
+  </div>
+
+  <div class="wrap g-layout">
+    <nav class="g-toc" aria-label="Sommaire du guide">
+      <a href="#guide" data-g="g-regles">Règles communes</a>
+      <a href="#guide" data-g="g-ordre">Dans quel ordre ?</a>
+      <a href="#guide" data-g="g-clients"><b>1</b> Clients</a>
+      <a href="#guide" data-g="g-articles"><b>2</b> Articles &amp; activités</a>
+      <a href="#guide" data-g="g-tarifs"><b>3</b> Tarifs</a>
+      <a href="#guide" data-g="g-echeances"><b>4</b> Échéances</a>
+      <a href="#guide" data-g="g-stock"><b>5</b> Stock initial</a>
+      <a href="#guide" data-g="g-verif" class="g-toc-cta">Vérifier mon fichier</a>
+    </nav>
+
+    <div class="g-main">
+
+      <section class="g-block" id="g-regles">
+        <h2>Règles communes à tous les imports</h2>
+        <div class="g-rules">
+          <div><svg><use href="#i-list"/></svg><p><b>La première ligne contient les noms des colonnes.</b> Les données commencent à la ligne 2.</p></div>
+          <div><svg><use href="#i-swap"/></svg><p><b>L'ordre des colonnes est libre.</b> Les colonnes que Digi ne connaît pas sont simplement ignorées.</p></div>
+          <div><svg><use href="#i-search"/></svg><p><b>Majuscules et accents des en-têtes ignorés</b> (« Téléphone » = « telephone »), sauf pour les échéances.</p></div>
+          <div><svg><use href="#i-file"/></svg><p><b>Formats lus :</b> .xlsx, .xls, .xlsm, .ods, .csv, .tsv, .txt. Seule la première feuille est lue (sauf le stock, voir plus bas).</p></div>
+          <div><svg><use href="#i-shield"/></svg><p><b>Aperçu avant import :</b> Digi montre chaque ligne et son problème. Rien n'est enregistré avant « Importer ».</p></div>
+          <div><svg><use href="#i-users"/></svg><p><b>Les noms sont comparés</b> sans tenir compte des majuscules, des accents mal codés et des espaces en trop.</p></div>
+        </div>
+        <div class="g-note"><b>Nombres :</b> écrivez <code>1200,50</code> ou <code>1200.50</code>. Évitez <code>1.200,50</code> (point des milliers) et le texte autour du nombre (<code>593 m</code>, <code>1200 dh</code>) : selon le fichier, la ligne est refusée ou le montant lu comme 0.</div>
+      </section>
+
+      <section class="g-block" id="g-ordre">
+        <h2>Dans quel ordre importer ?</h2>
+        <p class="g-sub">Certains fichiers ont besoin que les clients existent déjà dans Digi.</p>
+        <ol class="g-order">
+          <li><b>Articles &amp; activités</b><span>la liste de vos articles et leur prix de base</span></li>
+          <li><b>Clients</b><span>avec leur solde de départ</span></li>
+          <li><b>Tarifs</b><span>les prix spéciaux par client</span></li>
+          <li><b>Échéances</b><span>les chèques et effets en attente</span></li>
+          <li><b>Stock initial</b><span>dans DigiStock</span></li>
+        </ol>
+      </section>
+
+      <!-- ======================= 1. CLIENTS ======================= -->
+      <article class="g-block imp" id="g-clients">
+        <header class="imp-head">
+          <span class="imp-n">1</span>
+          <div><h2>Clients</h2><p class="path">DigiClient › Fichier › Importer des clients…</p></div>
+          <span class="imp-badge">DigiClient</span>
+        </header>
+        <p class="g-sub">Crée vos fiches clients avec leur solde et leur instance de départ (repris de votre cahier ou de votre ancien logiciel).</p>
+        <div class="xl-wrap"><table class="xl">
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead>
+          <tbody>
+            <tr class="h"><th>1</th><td>Nom</td><td>Code client</td><td>Ville</td><td>Commercial</td><td>Téléphone</td><td>Solde initial</td><td>Instance initiale</td></tr>
+            <tr><th>2</th><td>Boutique El Amal</td><td>C101</td><td>Casablanca</td><td>Youssef</td><td>0612345678</td><td class="r">4800</td><td class="r">4800</td></tr>
+            <tr><th>3</th><td>Atelier Bennani</td><td>C102</td><td>Fès</td><td>Karim</td><td>0661223344</td><td class="r">12000,50</td><td class="r">8000</td></tr>
+            <tr><th>4</th><td>Textiles Nour</td><td></td><td>Tanger</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table></div>
+        <div class="tbl-wrap"><table class="g-cols">
+          <thead><tr><th>Colonne</th><th>Aussi accepté</th><th>À écrire</th></tr></thead>
+          <tbody>
+            <tr><td><b>Nom</b> <span class="req">obligatoire</span></td><td>Client, Nom client, Nom du client</td><td>Le nom du client. Deux clients ne peuvent pas avoir le même nom.</td></tr>
+            <tr><td><b>Code client</b></td><td>Code</td><td>Texte libre (C101, 2045…). Apparaît sur la facture.</td></tr>
+            <tr><td><b>Ville</b></td><td>—</td><td>Texte libre.</td></tr>
+            <tr><td><b>Commercial</b></td><td>—</td><td>Le prénom du commercial. Un nom nouveau est ajouté aux Paramètres (attention aux fautes de frappe).</td></tr>
+            <tr><td><b>Téléphone</b></td><td>Tel, Tél</td><td>Texte libre.</td></tr>
+            <tr><td><b>Adresse</b></td><td>—</td><td>Texte libre.</td></tr>
+            <tr><td><b>Notes</b></td><td>Note</td><td>Texte libre.</td></tr>
+            <tr><td><b>Solde initial</b></td><td>Solde, Solde initiale, Intitulé solde</td><td>Ce que le client doit au départ : <code>4800</code>, <code>12000,50</code>, <code>12 000</code>. Négatif = avance : <code>-350</code>.</td></tr>
+            <tr><td><b>Instance initiale</b></td><td>Instance, Instance initial</td><td>Même écriture que le solde.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="g-two">
+          <div class="g-ko"><h4><svg><use href="#i-x"/></svg>Refusé</h4><ul>
+            <li>Pas de colonne <b>Nom</b> : tout le fichier est refusé.</li>
+            <li>Nom vide : la ligne est refusée.</li>
+            <li>Même nom deux fois dans le fichier : la 2<sup>e</sup> ligne est refusée.</li>
+            <li><b>Fichier Excel avec des cellules au format Nombre</b> (téléphone, solde…) : l'import échoue. Mettez toutes les colonnes au format <b>Texte</b> (le modèle est déjà réglé) ou enregistrez en <b>CSV</b>.</li>
+          </ul></div>
+          <div class="g-ok"><h4><svg><use href="#i-check"/></svg>Bon à savoir</h4><ul>
+            <li>Solde écrit <code>1.200,50</code> ou <code>1200 DH</code> : lu comme <b>0</b>, sans message. Écrivez <code>1200,50</code>.</li>
+            <li>Client déjà dans Digi : vous choisissez « Ignorer » ou « Mettre à jour ». La mise à jour change ville, téléphone, commercial… mais <b>jamais</b> le solde ni l'historique.</li>
+            <li>Les colonnes vides ne posent aucun problème.</li>
+          </ul></div>
+        </div>
+        <!--MODELES--><div class="g-dl"><a class="btn btn-solid btn-sm" href="modeles/modele_clients.xlsx" download><svg><use href="#i-dl"/></svg>Modèle Excel</a><a class="btn btn-ghost btn-sm" href="modeles/modele_clients.csv" download><svg><use href="#i-dl"/></svg>Modèle CSV</a></div><!--/MODELES-->
+      </article>
+
+      <!-- ======================= 2. ARTICLES ======================= -->
+      <article class="g-block imp" id="g-articles">
+        <header class="imp-head">
+          <span class="imp-n">2</span>
+          <div><h2>Articles &amp; activités</h2><p class="path">DigiClient › Fichier › Importer la correspondance article/activité…</p></div>
+          <span class="imp-badge">DigiClient</span>
+        </header>
+        <p class="g-sub">Rattache chaque article à une activité (pour ventiler le chiffre d'affaires) et peut fixer son prix de base. Les articles apparaissent ensuite dans les bons de livraison.</p>
+        <div class="xl-wrap"><table class="xl">
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+          <tbody>
+            <tr class="h"><th>1</th><td>Article</td><td>Activité</td><td>Prix de base</td></tr>
+            <tr><th>2</th><td>Jacquard Royal</td><td>Tissage</td><td class="r">55</td></tr>
+            <tr><th>3</th><td>Organza Brodé</td><td>Broderie</td><td class="r">78</td></tr>
+            <tr><th>4</th><td>Satin Duchesse</td><td>Tissus importés</td><td class="r">42</td></tr>
+          </tbody>
+        </table></div>
+        <div class="tbl-wrap"><table class="g-cols">
+          <thead><tr><th>Colonne</th><th>Aussi accepté</th><th>À écrire</th></tr></thead>
+          <tbody>
+            <tr><td><b>Article</b> <span class="req">obligatoire</span></td><td>Nom article</td><td>Le nom de l'article, écrit comme dans vos bons.</td></tr>
+            <tr><td><b>Activité</b> <span class="req">obligatoire</span></td><td>Catégorie</td><td>Tissage, Broderie… Une activité nouvelle est ajoutée aux Paramètres.</td></tr>
+            <tr><td><b>Prix de base</b></td><td>Prix base, Prix</td><td>Prix TTC : <code>55</code>, <code>55,5</code>. Facultatif.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="g-two">
+          <div class="g-ko"><h4><svg><use href="#i-x"/></svg>Piège</h4><ul>
+            <li><b>Si les colonnes ne s'appellent pas exactement « Article » et « Activité »</b>, Digi lit le fichier dans l'ancien format : <b>chaque colonne devient une activité</b>. Un fichier « Désignation | Famille » créerait les activités « Désignation » et « Famille ».</li>
+            <li>Ligne sans article ou sans activité : ignorée.</li>
+          </ul></div>
+          <div class="g-ok"><h4><svg><use href="#i-check"/></svg>Bon à savoir</h4><ul>
+            <li>Ancien format accepté : une colonne par activité (titre = nom de l'activité), les articles en dessous. Pas de prix dans ce format.</li>
+            <li>Le bouton « Exporter la liste actuelle… » donne un fichier déjà au bon format.</li>
+          </ul></div>
+        </div>
+        <!--MODELES--><div class="g-dl"><a class="btn btn-solid btn-sm" href="modeles/modele_articles.xlsx" download><svg><use href="#i-dl"/></svg>Modèle Excel</a></div><!--/MODELES-->
+      </article>
+
+      <!-- ======================= 3. TARIFS ======================= -->
+      <article class="g-block imp" id="g-tarifs">
+        <header class="imp-head">
+          <span class="imp-n">3</span>
+          <div><h2>Tarifs</h2><p class="path">DigiClient › onglet Tarifs › Importer des tarifs…</p></div>
+          <span class="imp-badge">DigiClient</span>
+        </header>
+        <p class="g-sub">Prix de base des articles et prix spéciaux par client. Une ligne sans client = prix de base ; avec un client = prix spécial.</p>
+        <div class="xl-wrap"><table class="xl">
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+          <tbody>
+            <tr class="h"><th>1</th><td>Client</td><td>Article</td><td>Prix de base</td><td>Prix spécial</td></tr>
+            <tr><th>2</th><td></td><td>Jacquard Royal</td><td class="r">55</td><td></td></tr>
+            <tr><th>3</th><td>Boutique El Amal</td><td>Jacquard Royal</td><td></td><td class="r">52</td></tr>
+            <tr><th>4</th><td>Atelier Bennani</td><td>Satin Duchesse</td><td class="r">42</td><td class="r">40</td></tr>
+          </tbody>
+        </table></div>
+        <div class="tbl-wrap"><table class="g-cols">
+          <thead><tr><th>Colonne</th><th>Aussi accepté</th><th>À écrire</th></tr></thead>
+          <tbody>
+            <tr><td><b>Article</b> <span class="req">obligatoire</span></td><td>Nom article</td><td>Le nom de l'article.</td></tr>
+            <tr><td><b>Client</b></td><td>Nom client</td><td>Vide pour un prix de base. Sinon, un client <b>déjà présent dans Digi</b>.</td></tr>
+            <tr><td><b>Prix</b></td><td>—</td><td>Prix de base si la ligne n'a pas de client, prix spécial sinon.</td></tr>
+            <tr><td><b>Prix de base</b></td><td>Prix base</td><td>Nombre supérieur à 0.</td></tr>
+            <tr><td><b>Prix spécial</b></td><td>Prix special, Prix client</td><td>Nombre supérieur à 0.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="g-two">
+          <div class="g-ko"><h4><svg><use href="#i-x"/></svg>Ligne refusée si</h4><ul>
+            <li>Pas de colonne <b>Article</b> : tout le fichier est refusé.</li>
+            <li>Article vide.</li>
+            <li>Client introuvable dans Digi.</li>
+            <li>Prix illisible (<code>cinquante</code>, <code>55 dh</code> en minuscules) ou égal à 0 ou négatif.</li>
+          </ul></div>
+          <div class="g-ok"><h4><svg><use href="#i-check"/></svg>Bon à savoir</h4><ul>
+            <li>Écritures acceptées : <code>55</code> <code>55,5</code> <code>1 200,50</code> <code>1.200,50</code> <code>1,200.50</code> <code>55 DH</code>.</li>
+            <li>Un prix <b>vide</b> ne change rien : le tarif existant est gardé.</li>
+            <li>L'import ne supprime jamais un tarif absent du fichier.</li>
+          </ul></div>
+        </div>
+        <!--MODELES--><div class="g-dl"><a class="btn btn-solid btn-sm" href="modeles/modele_tarifs.xlsx" download><svg><use href="#i-dl"/></svg>Modèle Excel</a></div><!--/MODELES-->
+      </article>
+
+      <!-- ======================= 4. ECHEANCES ======================= -->
+      <article class="g-block imp" id="g-echeances">
+        <header class="imp-head">
+          <span class="imp-n">4</span>
+          <div><h2>Échéances (chèques et effets en attente)</h2><p class="path">DigiClient › Fichier › Importer les échéances…</p></div>
+          <span class="imp-badge">DigiClient</span>
+        </header>
+        <p class="g-sub">Chaque ligne devient un paiement « En attente » dans la fiche du client et apparaît dans l'Échéancier. C'est l'import le plus strict : suivez le modèle à la lettre.</p>
+        <div class="g-note warn"><b>Uniquement un fichier .xls</b> (Excel 97-2003). Dans Excel : Fichier › Enregistrer sous › « Classeur Excel 97-2003 (*.xls) ». Un .xlsx ou un .csv est refusé.</div>
+        <div class="xl-wrap"><table class="xl">
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead>
+          <tbody>
+            <tr class="h"><th>1</th><td>Client</td><td>DateSaisie</td><td>MontantReg</td><td>Mode Reglement</td><td>Num</td><td>DateEcheance</td><td>Payeur</td></tr>
+            <tr><th>2</th><td>Boutique El Amal</td><td class="r">01/09/2026</td><td class="r">8400</td><td>Chèque</td><td>3401234</td><td class="r">30/11/2026</td><td>Boutique El Amal</td></tr>
+            <tr><th>3</th><td>Atelier Bennani</td><td class="r">05/09/2026</td><td class="r">15000,5</td><td>Traite</td><td>LC3426738</td><td class="r">15/12/2026</td><td>Ahmed Bennani</td></tr>
+            <tr><th>4</th><td>Textiles Nour</td><td class="r">10/09/2026</td><td class="r">3200</td><td>Effet</td><td></td><td class="r">10/01/2027</td><td></td></tr>
+          </tbody>
+        </table></div>
+        <div class="tbl-wrap"><table class="g-cols">
+          <thead><tr><th>Colonne (titre exact)</th><th>À écrire</th></tr></thead>
+          <tbody>
+            <tr><td><b>Client</b> <span class="req">obligatoire</span></td><td>Le nom du client <b>tel qu'il existe dans Digi</b>. Majuscules, accents, espaces en trop et « M. / Mme » au début sont tolérés.</td></tr>
+            <tr><td><b>DateSaisie</b> <span class="req">obligatoire</span></td><td>Date de remise du chèque, en <b>vraie date Excel</b> (cellule au format Date). Écrite en texte, l'opération n'aura pas de date.</td></tr>
+            <tr><td><b>MontantReg</b> <span class="req">obligatoire</span></td><td>Montant en <b>cellule Nombre</b> : <code>8400</code>, <code>15000,5</code>. Un montant en texte avec espaces (<code>5 000,50</code>) est lu comme 0.</td></tr>
+            <tr><td><b>Mode Reglement</b> <span class="req">obligatoire</span></td><td><code>Chèque</code> ou <code>Cheque</code> → Chèque à échéance. <code>Traite</code> ou <code>Effet</code> → Effet. Rien d'autre.</td></tr>
+            <tr><td><b>Num</b> <span class="req">colonne obligatoire</span></td><td>Numéro du chèque ou de l'effet. Peut être vide : Digi crée alors un numéro provisoire « SN-… ».</td></tr>
+            <tr><td><b>DateEcheance</b> <span class="req">obligatoire</span></td><td>Date d'échéance, en <b>vraie date Excel</b>.</td></tr>
+            <tr><td><b>Payeur</b></td><td>Facultatif. S'il diffère du client, il est noté dans la ligne (« Payeur : … »).</td></tr>
+          </tbody>
+        </table></div>
+        <div class="g-two">
+          <div class="g-ko"><h4><svg><use href="#i-x"/></svg>Refusé</h4><ul>
+            <li>Fichier qui n'est pas en .xls : tout le fichier.</li>
+            <li>Titres différents : <code>Date saisie</code> (avec espace), <code>Montant</code>, <code>Mode règlement</code> (<b>avec accent</b>) ou <code>Date échéance</code> ne sont <b>pas reconnus</b> : tout le fichier est refusé.</li>
+            <li>Client vide ou introuvable dans Digi : ligne refusée. Importez d'abord vos clients.</li>
+            <li>Mode inconnu (<code>Virement</code>, <code>Espèce</code>, <code>LCN</code>…) : ligne refusée.</li>
+            <li>Échéance vide ou écrite en texte (<code>30/11/2026</code> tapé comme texte) : ligne refusée.</li>
+          </ul></div>
+          <div class="g-ok"><h4><svg><use href="#i-check"/></svg>Bon à savoir</h4><ul>
+            <li>Réimporter le même fichier ne crée pas de doublons : un titre déjà présent (même client, mode, numéro, montant, échéance) est ignoré.</li>
+            <li>Pour savoir si une date est une vraie date : sélectionnez-la, elle doit être alignée à droite et l'onglet Accueil › Nombre doit indiquer « Date ».</li>
+            <li>Un chèque « En attente » baisse le Solde du client, pas son Instance : c'est normal.</li>
+          </ul></div>
+        </div>
+        <!--MODELES--><div class="g-dl"><a class="btn btn-solid btn-sm" href="modeles/modele_echeances.xls" download><svg><use href="#i-dl"/></svg>Modèle .xls</a></div><!--/MODELES-->
+      </article>
+
+      <!-- ======================= 5. STOCK ======================= -->
+      <article class="g-block imp" id="g-stock">
+        <header class="imp-head">
+          <span class="imp-n stock">5</span>
+          <div><h2>Stock initial</h2><p class="path">DigiStock › Fichier › Importer un stock initial…</p></div>
+          <span class="imp-badge stock">DigiStock</span>
+        </header>
+        <p class="g-sub">Fixe la quantité de départ de chaque article dans chaque dépôt. Les articles et dépôts qui n'existent pas encore sont créés.</p>
+        <div class="xl-wrap"><table class="xl">
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+          <tbody>
+            <tr class="h"><th>1</th><td>Article</td><td>Dépôt</td><td>Quantité</td><td>Prix de revient</td><td>Seuil</td><td>Unité</td></tr>
+            <tr><th>2</th><td>Jacquard Royal</td><td>Magasin Derb Omar</td><td class="r">1450</td><td class="r">38</td><td class="r">300</td><td>Mètre</td></tr>
+            <tr><th>3</th><td>Jacquard Royal</td><td>Dépôt Fès</td><td class="r">620,5</td><td class="r">38</td><td class="r">300</td><td>Mètre</td></tr>
+            <tr><th>4</th><td>Djellaba Brodée</td><td>Magasin Derb Omar</td><td class="r">64</td><td class="r">420</td><td class="r">25</td><td>Quantité</td></tr>
+          </tbody>
+        </table></div>
+        <div class="tbl-wrap"><table class="g-cols">
+          <thead><tr><th>Colonne</th><th>Aussi accepté</th><th>À écrire</th></tr></thead>
+          <tbody>
+            <tr><td><b>Article</b> <span class="req">obligatoire</span></td><td>Nom article</td><td>Le nom de l'article.</td></tr>
+            <tr><td><b>Dépôt</b> <span class="req">obligatoire</span></td><td>Depot, Magasin, Entrepôt</td><td>Le nom du dépôt.</td></tr>
+            <tr><td><b>Quantité</b> <span class="req">obligatoire</span></td><td>Qté, Stock</td><td>Un nombre seul : <code>593</code>, <code>593,5</code>, <code>1 200,50</code>. Case vide = stock inchangé.</td></tr>
+            <tr><td><b>Prix de revient</b></td><td>Prix revient, Coût, Coût de revient, Coût unitaire, Prix de coût</td><td>Nombre positif. Vide = prix actuel conservé.</td></tr>
+            <tr><td><b>Seuil</b></td><td>Seuil réappro, Seuil de réapprovisionnement</td><td>Nombre. Pris en compte pour un article <b>nouveau</b> seulement.</td></tr>
+            <tr><td><b>Unité</b></td><td>—</td><td>Exactement <code>Mètre</code> ou <code>Quantité</code>. Vide = Quantité. Article nouveau seulement.</td></tr>
+          </tbody>
+        </table></div>
+        <div class="g-two">
+          <div class="g-ko"><h4><svg><use href="#i-x"/></svg>Refusé</h4><ul>
+            <li>Une des 3 colonnes Article, Dépôt, Quantité manque : tout le fichier.</li>
+            <li>Article ou dépôt vide : ligne refusée.</li>
+            <li>Quantité, seuil ou prix avec du texte (<code>593 m</code>, <code>abc</code>, <code>1.200,50</code>) : ligne refusée.</li>
+            <li>Prix de revient négatif : ligne refusée.</li>
+          </ul></div>
+          <div class="g-ok"><h4><svg><use href="#i-check"/></svg>Bon à savoir</h4><ul>
+            <li>La quantité <b>remplace</b> le stock (ce n'est pas un ajout).</li>
+            <li>Classeur à plusieurs feuilles (.xlsx) : Digi trouve seul la feuille qui a les colonnes Article / Dépôt / Quantité.</li>
+            <li>Même article et même dépôt sur deux lignes : la dernière ligne gagne.</li>
+            <li>Une unité écrite autrement (<code>m</code>, <code>mètres</code>, <code>pièce</code>) n'est pas refusée mais s'affichera mal : écrivez <code>Mètre</code> ou <code>Quantité</code>.</li>
+          </ul></div>
+        </div>
+        <!--MODELES--><div class="g-dl"><a class="btn btn-solid btn-sm" href="modeles/modele_stock.xlsx" download><svg><use href="#i-dl"/></svg>Modèle Excel</a></div><!--/MODELES-->
+      </article>
+
+      <!-- ======================= VERIFICATEUR ======================= -->
+      <section class="g-block" id="g-verif">
+        <div class="sim">
+          <div class="sim-head"><h3>Vérifier mon fichier avant de l'importer</h3><span class="badge">Rien n'est envoyé : tout se passe dans votre navigateur</span></div>
+          <div class="sim-body">
+            <div class="v-top">
+              <label class="drop" id="vDrop" for="vFile">
+                <svg><use href="#i-import"/></svg>
+                <b>Déposez votre fichier ici</b>
+                <span>ou cliquez pour le choisir · .xlsx .xls .ods .csv .txt</span>
+                <input type="file" id="vFile" accept=".xlsx,.xlsm,.xls,.ods,.csv,.tsv,.txt">
+              </label>
+              <div class="v-side">
+                <label for="vType" style="font-weight:600;font-size:14.5px">Type d'import</label>
+                <select class="in" id="vType">
+                  <option value="auto">Détecter automatiquement</option>
+                  <option value="clients">Clients</option>
+                  <option value="articles">Articles &amp; activités</option>
+                  <option value="tarifs">Tarifs</option>
+                  <option value="echeances">Échéances</option>
+                  <option value="stock">Stock initial</option>
+                </select>
+                <button class="btn btn-ghost btn-sm" type="button" id="vDemo">Essayer avec un fichier d'exemple</button>
+              </div>
+            </div>
+            <div id="vOut" aria-live="polite"><div class="empty">Le résultat apparaîtra ici : colonnes reconnues, lignes refusées et pourquoi.</div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== SIMULATEURS =============================== -->
+<section class="page" id="p-simulateurs" data-page="simulateurs">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Simulateurs</span>
+    <h1>Essayez la logique de Digi, ici, maintenant.</h1>
+    <p class="lead">Ces simulateurs reprennent les règles de calcul du logiciel : prix suggérés, remises, TVA sur prix TTC, montant en lettres, solde et instance, débit du stock. Les données sont fictives.</p>
+  </div>
+  <div class="wrap" style="display:grid;gap:36px;padding-bottom:80px">
+
+    <div class="sim rv" id="simBL">
+      <div class="sim-head">
+        <h3>Bon de livraison N° <span class="mono">2046</span> · Boutique El Amal</h3>
+        <span class="badge">Prix spéciaux du client appliqués</span>
+      </div>
+      <div class="sim-body">
+        <div class="bl-grid">
+          <div style="display:grid;gap:14px;min-width:0">
+            <div class="table-scroll">
+              <table class="bl">
+                <thead><tr><th>Article</th><th>Source</th><th style="text-align:right">Qté</th><th style="text-align:right">Prix/u</th><th>Remise</th><th style="text-align:right">Montant</th><th></th></tr></thead>
+                <tbody id="blBody"></tbody>
+              </table>
+            </div>
+            <div class="sim-actions">
+              <button class="btn btn-solid btn-sm" type="button" id="blAdd"><svg><use href="#i-plus"/></svg>Ajouter une ligne</button>
+              <label style="display:flex;gap:8px;align-items:center;font-weight:600;font-size:14.5px" for="blTva">TVA <input class="in n" id="blTva" type="number" min="0" max="30" step="0.5" value="20" style="max-width:80px"> %</label>
+            </div>
+            <div class="lettres" aria-live="polite"><small>Arrêté le présent document à la somme de</small><span id="blWords">—</span></div>
+          </div>
+          <div style="display:grid;gap:16px">
+            <div class="totals">
+              <div><span>Lignes</span><b id="blLines">0</b></div>
+              <div><span>Total HT</span><b id="blHT">0,00 DH</b></div>
+              <div><span>Montant TVA</span><b id="blTVA">0,00 DH</b></div>
+              <div class="ttc"><span>Total TTC</span><b id="blTTC">0,00 DH</b></div>
+            </div>
+            <div class="stockbox">
+              <h4>Stock restant · DigiStock</h4>
+              <div id="blStock" style="display:grid;gap:10px"></div>
+              <p style="font-size:13px;color:var(--ink-3)">Trait orange : seuil de réapprovisionnement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim rv" id="simSI">
+      <div class="sim-head"><h3>Solde client et Instance : la différence en 30 secondes</h3><span class="badge">Règles réelles du logiciel</span></div>
+      <div class="sim-body">
+        <div class="si-grid">
+          <div style="display:grid;gap:16px;align-content:start">
+            <div class="gauges">
+              <div class="gauge" id="gSolde"><span>Solde client</span><b id="vSolde">0,00 DH</b><small>Ce que le client vous doit, chèques remis déduits.</small></div>
+              <div class="gauge" id="gInst"><span>Instance</span><b id="vInst">0,00 DH</b><small>Ce qui n'est pas encore réellement encaissé.</small></div>
+            </div>
+            <div class="sim-btns" id="siBtns">
+              <button class="btn btn-solid btn-sm" type="button" data-act="liv">Livrer 12 000 DH</button>
+              <button class="btn btn-solid btn-sm" type="button" data-act="chq">Recevoir un chèque à échéance</button>
+              <button class="btn btn-solid btn-sm" type="button" data-act="enc">Encaisser le chèque</button>
+              <button class="btn btn-solid btn-sm" type="button" data-act="imp">Chèque revenu impayé</button>
+              <button class="btn btn-solid btn-sm" type="button" data-act="esp">Paiement espèce 2 000 DH</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-act="reset">Recommencer</button>
+            </div>
+            <p id="siHint" style="color:var(--ink-2);font-size:15px">Commencez par une livraison.</p>
+          </div>
+          <div style="display:grid;gap:10px;align-content:start">
+            <h4 style="font:700 14px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)">Fiche client</h4>
+            <ul class="ops" id="siOps"><li class="empty" style="display:block">Aucune opération pour l'instant.</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim rv" id="simTime">
+      <div class="sim-head"><h3>Combien de temps récupérez-vous ?</h3><span class="badge">Estimation à ajuster</span></div>
+      <div class="sim-body">
+        <div class="calc">
+          <div style="display:grid;gap:18px">
+            <div class="range"><label for="rBL">Bons de livraison par semaine <b id="oBL">40</b></label><input type="range" id="rBL" min="5" max="300" step="5" value="40"></div>
+            <div class="range"><label for="rCh">Chèques et effets reçus par semaine <b id="oCh">25</b></label><input type="range" id="rCh" min="0" max="200" step="5" value="25"></div>
+            <div class="range"><label for="rMin">Minutes par BL aujourd'hui (écrire, recopier, calculer) <b id="oMin">8</b></label><input type="range" id="rMin" min="3" max="20" step="1" value="8"></div>
+            <div class="range"><label for="rInv">Heures par inventaire mensuel <b id="oInv">6</b></label><input type="range" id="rInv" min="0" max="30" step="1" value="6"></div>
+            <p style="font-size:13.5px;color:var(--ink-3)">Hypothèses : 2 minutes par BL avec Digi (prix et totaux automatiques), 3 minutes de suivi gagnées par chèque, inventaire réduit de moitié. Mois de 4,3 semaines.</p>
+          </div>
+          <div class="big-out"><span>Temps gagné chaque mois</span><b id="oHours">0 h</b><span id="oDays">soit 0 journée de travail</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== CAPTURES =============================== -->
+<section class="page" id="p-captures" data-page="captures">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Captures d'écran</span>
+    <h1>Tous les écrans, sans retouche.</h1>
+    <p class="lead">Captures réelles de Digi 1.16 avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs). Cliquez pour agrandir, flèches du clavier pour naviguer.</p>
+  </div>
+  <div class="wrap" style="padding-bottom:80px">
+    <div class="filters" role="group" aria-label="Filtrer les captures">
+      <button class="fbtn" type="button" data-filter="all" aria-pressed="true">Tout</button>
+      <button class="fbtn" type="button" data-filter="dc" aria-pressed="false">DigiClient</button>
+      <button class="fbtn" type="button" data-filter="ds" aria-pressed="false">DigiStock</button>
+      <button class="fbtn" type="button" data-filter="dlg" aria-pressed="false">Fenêtres &amp; réglages</button>
+      <button class="fbtn" type="button" data-filter="doc" aria-pressed="false">Documents imprimés</button>
+      <div class="seg" role="group" aria-label="Thème du logiciel">
+        <button type="button" data-shot-theme="light" aria-pressed="true">Clair</button>
+        <button type="button" data-shot-theme="dark" aria-pressed="false">Sombre</button>
+      </div>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+<!-- =============================== TARIFS =============================== -->
+<section class="page" id="p-tarifs" data-page="tarifs">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Licences</span>
+    <h1>Une licence, les deux modules, toutes les fonctions.</h1>
+    <p class="lead">Pas de version « limitée » : chaque licence débloque DigiClient et DigiStock en entier. Choisissez simplement la durée.</p>
+  </div>
+  <div class="wrap" style="padding-bottom:30px">
+    <div class="plans">
+      <article class="plan rv">
+        <h3>Essai</h3>
+        <div class="dur">7 jours <small>gratuit</small></div>
+        <p>Pour tester avec vos vraies données avant de vous décider.</p>
+        <ul><li><svg><use href="#i-check"/></svg>Toutes les fonctions</li><li><svg><use href="#i-check"/></svg>Import de vos clients Excel</li><li><svg><use href="#i-check"/></svg>Vos données sont gardées si vous continuez</li></ul>
+        <a class="btn btn-ghost wa-plan" data-plan="Essai gratuit 7 jours" href="#contact">Demander l'essai</a>
+      </article>
+      <article class="plan rv">
+        <h3>Mensuelle</h3>
+        <div class="dur">30 jours <small><span class="price" data-plan-price="mensuelle">Tarif sur demande</span></small></div>
+        <p>La souplesse d'un abonnement court, sans engagement.</p>
+        <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li></ul>
+        <a class="btn btn-ghost wa-plan" data-plan="Licence mensuelle" href="#contact">Demander le tarif</a>
+      </article>
+      <article class="plan rv">
+        <h3>3 mois</h3>
+        <div class="dur">90 jours <small><span class="price" data-plan-price="3mois">Tarif sur demande</span></small></div>
+        <p>Un trimestre complet pour installer Digi dans vos habitudes.</p>
+        <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li></ul>
+        <a class="btn btn-ghost wa-plan" data-plan="Licence 3 mois" href="#contact">Demander le tarif</a>
+      </article>
+      <article class="plan best rv">
+        <span class="ribbon">LE PLUS CHOISI</span>
+        <h3>Annuelle</h3>
+        <div class="dur">365 jours <small><span class="price" data-plan-price="annuelle">Tarif sur demande</span></small></div>
+        <p>Une année sereine, au meilleur prix par mois.</p>
+        <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li><li><svg><use href="#i-check"/></svg>Un seul renouvellement par an</li></ul>
+        <a class="btn btn-primary wa-plan" data-plan="Licence annuelle" href="#contact">Demander le tarif</a>
+      </article>
+    </div>
+    <div class="liaison rv" style="margin-top:18px">
+      <svg style="width:30px;height:30px;color:var(--saffron)"><use href="#i-shield"/></svg>
+      <div><b>Licence permanente.</b> <span style="color:var(--ink-2)">Payez une fois, utilisez Digi sans date d'expiration sur le poste licencié.</span></div>
+      <a class="btn btn-solid btn-sm wa-plan" data-plan="Licence permanente" href="#contact">Nous en parler</a>
+    </div>
+    <div class="incl">
+      <div><svg><use href="#i-lock"/></svg>Licence liée à l'ordinateur, vérifiée sans internet</div>
+      <div><svg><use href="#i-cal"/></svg>La date d'expiration est affichée en haut à droite du logiciel</div>
+      <div><svg><use href="#i-save"/></svg>Licence expirée : vos données restent intactes</div>
+      <div><svg><use href="#i-phone"/></svg>Renouvellement en un message WhatsApp</div>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head rv"><span class="eyebrow">Questions fréquentes</span><h2>Ce qu'on nous demande souvent</h2></div>
+      <div class="faq">
+        <details><summary>Faut-il une connexion internet ?</summary><p>Non. Digi fonctionne sur votre ordinateur et votre réseau local. La licence se vérifie sans internet. Internet ne sert que si vous reliez deux agences éloignées par VPN.</p></details>
+        <details><summary>Sur quels ordinateurs fonctionne Digi ?</summary><p>Sur Windows (10 et 11). L'installateur place le programme dans « Program Files » et les données dans un dossier protégé, jamais touché par une mise à jour ou une désinstallation.</p></details>
+        <details><summary>Combien de postes puis-je connecter ?</summary><p>Un poste principal héberge les données, et autant de postes secondaires que nécessaire s'y connectent sur le réseau local. Chaque employé a son propre compte, avec ses propres droits.</p></details>
+        <details><summary>Où sont stockées mes données ?</summary><p>Chez vous, sur le poste principal. Rien n'est envoyé sur un serveur extérieur. Sauvegarde automatique quotidienne, copie sur clé USB, et export complet vers Excel à tout moment.</p></details>
+        <details><summary>Je travaille avec Excel. Puis-je reprendre mes fichiers ?</summary><p>Oui : import des clients (avec leur solde et instance de départ), des échéances, des tarifs, de la correspondance article/activité et du stock initial. L'aperçu signale chaque ligne illisible avant l'import.</p></details>
+        <details><summary>Je vends au mètre et à la pièce. Ça marche ?</summary><p>Oui. Chaque article de DigiStock a son unité (mètre ou unité), et DigiClient affiche « Métrage » ou « Quantité » selon l'article. Un réglage global change aussi le libellé sur tous les documents.</p></details>
+        <details><summary>Comment se font les mises à jour ?</summary><p>Lancez le nouvel installateur par-dessus l'ancien. Les bases sont mises à jour automatiquement, avec une copie de sécurité faite juste avant.</p></details>
+        <details><summary>J'ai perdu le mot de passe administrateur.</summary><p>Utilisez votre numéro de secours depuis l'écran de connexion. Si vous l'avez perdu aussi, un code de déblocage vous est fourni par l'assistance.</p></details>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- =============================== CONTACT =============================== -->
+<section class="page" id="p-contact" data-page="contact">
+  <div class="wrap page-hero">
+    <span class="eyebrow">Contact &amp; assistance</span>
+    <h1>Une question ? Un essai ? Écrivez-nous.</h1>
+    <p class="lead">Réponse rapide par WhatsApp ou par e-mail. Pour activer votre licence, joignez simplement le code machine affiché par Digi.</p>
+  </div>
+  <div class="wrap" style="padding-bottom:80px">
+    <div class="contact">
+      <div class="contact-side">
+        <div class="ccard rv">
+          <span class="lab">Téléphone &amp; WhatsApp</span>
+          <span class="val mono" id="telVal">06 78 65 13 59</span>
+          <div class="row">
+            <a class="btn btn-primary btn-sm" href="https://wa.me/212678651359" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+            <a class="btn btn-ghost btn-sm" href="tel:+212678651359"><svg><use href="#i-phone"/></svg>Appeler</a>
+            <button class="btn btn-ghost btn-sm copy" type="button" data-copy="06 78 65 13 59"><svg><use href="#i-copy"/></svg>Copier</button>
+          </div>
+        </div>
+        <div class="ccard rv">
+          <span class="lab">E-mail</span>
+          <span class="val" id="mailVal">digiclientstock@gmail.com</span>
+          <div class="row">
+            <a class="btn btn-ghost btn-sm" href="mailto:digiclientstock@gmail.com"><svg><use href="#i-mail"/></svg>Écrire</a>
+            <button class="btn btn-ghost btn-sm copy" type="button" data-copy="digiclientstock@gmail.com"><svg><use href="#i-copy"/></svg>Copier</button>
+          </div>
+        </div>
+        <div class="ccard rv">
+          <span class="lab">Dans le logiciel</span>
+          <p style="color:var(--ink-2)">Menu <b>Aide › Contact et assistance…</b> dans DigiClient comme dans DigiStock. Le numéro et l'e-mail figurent aussi dans la fenêtre de licence.</p>
+          <div class="win" style="margin-top:10px"><img class="shot" data-shot="dlg_licence" src="img/dlg_licence.webp" alt="Fenêtre de licence avec le code machine et le contact" loading="lazy" width="1120" height="344"></div>
+        </div>
+      </div>
+      <form class="cf rv" id="cf" novalidate>
+        <h3>Préparer votre message</h3>
+        <p style="color:var(--ink-2);font-size:15px">Remplissez, puis envoyez-le par WhatsApp ou par e-mail. Votre message s'ouvre déjà rédigé.</p>
+        <div class="two">
+          <div class="field"><label for="cfName">Votre nom</label><input class="in" id="cfName" name="nom" autocomplete="name" placeholder="Ex. Youssef Alaoui"></div>
+          <div class="field"><label for="cfCo">Entreprise</label><input class="in" id="cfCo" name="entreprise" autocomplete="organization" placeholder="Ex. Textiles Nour"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="cfCity">Ville</label><input class="in" id="cfCity" name="ville" placeholder="Ex. Casablanca"></div>
+          <div class="field"><label for="cfSubject">Objet</label>
+            <select class="in" id="cfSubject" name="objet">
+              <option>Essai gratuit 7 jours</option>
+              <option>Licence mensuelle</option>
+              <option>Licence 3 mois</option>
+              <option>Licence annuelle</option>
+              <option>Licence permanente</option>
+              <option>Activation (code machine)</option>
+              <option>Assistance</option>
+              <option>Autre question</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="cfPosts">Nombre de postes</label><input class="in" id="cfPosts" name="postes" type="number" min="1" value="1" style="max-width:120px"></div>
+        <div class="field"><label for="cfMsg">Message (ou code machine)</label><textarea class="in" id="cfMsg" name="message" placeholder="Ex. Je suis grossiste en tissus, 3 dépôts, 2 employés…"></textarea></div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <button class="btn btn-primary" type="submit" data-via="wa"><svg><use href="#i-wa"/></svg>Envoyer par WhatsApp</button>
+          <button class="btn btn-ghost" type="submit" data-via="mail"><svg><use href="#i-mail"/></svg>Envoyer par e-mail</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#accueil" style="padding:0"><span class="mark" aria-hidden="true">D</span><span>Digi<small>Client · Stock</small></span></a>
+      <p style="margin-top:12px;max-width:36ch">Gestion clients, paiements, échéances et stock pour grossistes et négociants. Version 1.16.</p>
+    </div>
+    <div><h5>Le logiciel</h5><a href="#digiclient">DigiClient</a><a href="#digistock">DigiStock</a><a href="#multiposte">Réseau &amp; sécurité</a><a href="#captures">Captures</a></div>
+    <div><h5>Essayer</h5><a href="#simulateurs">Simulateurs</a><a href="#guide">Guide des imports</a><a href="#tarifs">Licences</a><a class="dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener">Télécharger pour Windows</a></div>
+    <div><h5>Contact</h5><span class="mono" style="display:block;padding:3px 0">06 78 65 13 59</span><span style="display:block;padding:3px 0;word-break:break-all">digiclientstock@gmail.com</span><a href="#contact">Écrire un message</a></div>
+    <div class="legal"><span>© <span id="yr">2026</span> Digi — DigiClient &amp; DigiStock. Tous droits réservés.</span><span>Captures réalisées avec des données de démonstration fictives.</span></div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Capture agrandie">
+  <div class="stage"><img id="lbImg" src="" alt=""></div>
+  <div class="bar">
+    <button class="lb-btn" type="button" id="lbPrev" aria-label="Précédente"><svg><use href="#i-left"/></svg></button>
+    <div style="flex:1;min-width:200px"><b id="lbT"></b><p id="lbD"></p></div>
+    <button class="lb-btn" type="button" id="lbNext" aria-label="Suivante"><svg><use href="#i-right"/></svg></button>
+    <button class="lb-btn" type="button" id="lbClose" aria-label="Fermer"><svg><use href="#i-x"/></svg></button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+"use strict";
+var $ = function(s,c){ return (c||document).querySelector(s); };
+var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+/* ---------- Sommaire : défilement vers la section, sans changer de page ---------- */
+$$(".g-toc a").forEach(function(a){
+  a.addEventListener("click", function(e){
+    e.preventDefault();
+    var t=document.getElementById(a.getAttribute("data-g")); if(t) t.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+});
+if("IntersectionObserver" in window){
+  var obs=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(en.isIntersecting){ $$(".g-toc a").forEach(function(a){ a.classList.toggle("on", a.getAttribute("data-g")===en.target.id); }); } }); },{rootMargin:"-30% 0px -60% 0px"});
+  $$(".g-main > .g-block").forEach(function(b){ obs.observe(b); });
+}
+
+/* ---------- Lecture des tableurs (SheetJS chargé seulement sur cette page) ---------- */
+var xlsxState=0, xlsxWait=[];
+window.loadXLSX=function(cb){
+  if(window.XLSX){ if(cb) cb(); return; }
+  if(cb) xlsxWait.push(cb);
+  if(xlsxState) return; xlsxState=1;
+  var s=document.createElement("script"); s.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+  s.onload=function(){ xlsxState=2; xlsxWait.splice(0).forEach(function(f){f();}); };
+  s.onerror=function(){ xlsxState=0; xlsxWait.splice(0).forEach(function(f){f(new Error("lib"));}); };
+  document.head.appendChild(s);
+};
+
+function norm(s){ return String(s==null?"":s).normalize("NFKD").replace(/[̀-ͯ]/g,"").trim().toLowerCase(); }
+function isEmpty(v){ return v===null || v===undefined || String(v).trim()===""; }
+function txt(v){ if(v instanceof Date) return v.toLocaleDateString("fr-FR"); return v==null ? "" : String(v); }
+function pyFloat(s){ s=String(s).trim(); if(!/^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(s)) return NaN; return parseFloat(s); }
+
+function parseCSV(text, ext){
+  var sep = ext===".tsv" ? "\t" : ((text.split(";").length > text.split(",").length) ? ";" : ",");
+  var rows=[], row=[], cur="", q=false;
+  for(var i=0;i<text.length;i++){
+    var c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){ cur+='"'; i++; } else q=false; } else cur+=c; continue; }
+    if(c==='"' && cur===""){ q=true; continue; }
+    if(c===sep){ row.push(cur); cur=""; continue; }
+    if(c==="\r") continue;
+    if(c==="\n"){ row.push(cur); rows.push(row); row=[]; cur=""; continue; }
+    cur+=c;
+  }
+  if(cur!=="" || row.length){ row.push(cur); rows.push(row); }
+  return rows;
+}
+
+/* ---------- Règles, reprises du code de Digi 1.16 ---------- */
+var A_CLIENTS={"nom":"Nom","client":"Nom","nom client":"Nom","nom du client":"Nom","code client":"Code client","code":"Code client","ville":"Ville","commercial":"Commercial","telephone":"Téléphone","tel":"Téléphone","adresse":"Adresse","notes":"Notes","note":"Notes","solde":"Solde initial","solde initial":"Solde initial","solde initiale":"Solde initial","intitule solde":"Solde initial","instance":"Instance initiale","instance initial":"Instance initiale","instance initiale":"Instance initiale"};
+var A_TARIFS={"client":"Client","nom client":"Client","article":"Article","nom article":"Article","prix":"Prix","prix de base":"Prix de base","prix base":"Prix de base","prix special":"Prix spécial","prix client":"Prix spécial"};
+var A_STOCK={"article":"Article","nom article":"Article","depot":"Dépôt","magasin":"Dépôt","entrepot":"Dépôt","quantite":"Quantité","stock":"Quantité","qte":"Quantité","seuil":"Seuil","seuil reappro":"Seuil","seuil de reapprovisionnement":"Seuil","unite":"Unité","prix de revient":"Prix de revient","prix revient":"Prix de revient","prix de cout":"Prix de revient","prix de coutant":"Prix de revient","cout":"Prix de revient","cout de revient":"Prix de revient","cout unitaire":"Prix de revient"};
+var NAMES={clients:"Clients",articles:"Articles & activités",tarifs:"Tarifs",echeances:"Échéances",stock:"Stock initial"};
+
+function mapHeads(heads, alias, n){ var m={}, cols=[]; heads.forEach(function(h,i){ var k=(n||norm)(h); var t=alias[k]; if(t && m[t]===undefined) m[t]=i; cols.push({h:h,t:t}); }); return {m:m,cols:cols}; }
+function detect(heads){
+  var n=heads.map(norm), raw=heads.map(function(h){ return String(h).trim().toLowerCase(); });
+  var has=function(k){ return n.indexOf(k)>=0; };
+  if(raw.some(function(h){return h.indexOf("datesaisie")>=0||h.indexOf("montantreg")>=0||h.indexOf("dateecheance")>=0;})) return "echeances";
+  var st=mapHeads(heads,A_STOCK).m; if(st["Dépôt"]!==undefined && st["Quantité"]!==undefined) return "stock";
+  var n2=heads.map(function(h){ return norm(h).replace(/[-_]/g," "); });
+  if((n2.indexOf("article")>=0||n2.indexOf("nom article")>=0) && (n2.indexOf("activite")>=0||n2.indexOf("categorie")>=0)) return "articles";
+  if(has("article")||has("nom article")) return "tarifs";
+  return "clients";
+}
+
+function tarifNombre(v){
+  if(isEmpty(v)) return null;
+  if(typeof v==="number") return v;
+  var s=String(v).trim().split(" ").join("").replace("€","").split("DH").join("");
+  if(s.indexOf(",")>=0 && s.indexOf(".")>=0){ s = s.lastIndexOf(",")>s.lastIndexOf(".") ? s.split(".").join("").replace(",",".") : s.split(",").join(""); }
+  else s=s.split(",").join(".");
+  if(!s) return null; var f=pyFloat(s); return isNaN(f)?undefined:f;
+}
+function stockNombre(v){
+  if(isEmpty(v)) return null; if(typeof v==="number") return v;
+  var f=pyFloat(String(v).replace(/[\s  ]/g,"").split(",").join(".")); return isNaN(f)?undefined:f;
+}
+
+function check(type, rows, ext, numericCells){
+  var R={type:type, fatal:null, cols:[], miss:[], issues:[], total:rows.length-1, bad:0, warn:0};
+  var heads=rows[0].map(function(h){ return h instanceof Date ? txt(h) : String(h==null?"":h); });
+  var lines=rows.slice(1);
+  var badLines={}, warnLines={};
+  function add(lv, line, msg){ R.issues.push({lv:lv,line:line,msg:msg}); if(lv==="e") badLines[line]=1; if(lv==="w") warnLines[line]=1; }
+  function cell(r,i){ return i===undefined ? "" : (i<r.length ? r[i] : ""); }
+
+  if(type==="clients"){
+    var M=mapHeads(heads,A_CLIENTS); R.cols=M.cols;
+    if(M.m["Nom"]===undefined){ R.fatal="Aucune colonne « Nom » reconnue dans la première ligne. Digi refuse tout le fichier."; R.miss=["Nom"]; }
+    else{
+      var seen={};
+      lines.forEach(function(r,k){ var L=k+2;
+        if(numericCells){ Object.keys(M.m).forEach(function(c){ var v=cell(r,M.m[c]); if(typeof v==="number" || v instanceof Date) add("e",L,"« "+c+" » ("+txt(v)+") est une cellule au format Nombre/Date : avec Digi 1.16 l'import échoue. Mettez la colonne au format Texte ou enregistrez en CSV."); }); }
+        var nom=String(cell(r,M.m["Nom"])).trim();
+        if(!nom){ add("e",L,"Nom manquant : ligne refusée."); return; }
+        var key=nom.normalize("NFC").replace(/\s+/g," ").toLowerCase();
+        if(seen[key]) add("e",L,"« "+nom+" » est déjà à la ligne "+seen[key]+" : ligne refusée."); else seen[key]=L;
+        ["Solde initial","Instance initiale"].forEach(function(c){ if(M.m[c]===undefined) return; var v=cell(r,M.m[c]); if(isEmpty(v)||typeof v==="number") return;
+          var s=String(v).trim().split(" ").join("").split(",").join("."); if(isNaN(pyFloat(s))) add("w",L,"« "+c+" » = « "+v+" » sera lu comme 0. Écrivez par exemple 1200,50."); });
+      });
+      R.info="Les clients déjà présents dans Digi (même nom) vous seront proposés en « Ignorer » ou « Mettre à jour ».";
+    }
+  }
+
+  if(type==="echeances"){
+    var low=heads.map(function(h){ return String(h).trim().toLowerCase(); });
+    var need=[["client","Client"],["datesaisie","DateSaisie"],["montantreg","MontantReg"],["mode reglement","Mode Reglement"],["num","Num"],["dateecheance","DateEcheance"]];
+    if(ext!==".xls"){ R.fatal="Le fichier doit être au format .xls (Excel 97-2003). Votre fichier est en « "+ext+" » : Digi le refuse. Dans Excel : Enregistrer sous › Classeur Excel 97-2003."; }
+    var find=function(m){ for(var i=0;i<low.length;i++) if(low[i].indexOf(m)>=0) return i; return undefined; };
+    need.forEach(function(n){ if(find(n[0])===undefined) R.miss.push(n[1]); });
+    var idx={client: (low[0] && low[0].indexOf("client")>=0) ? find("client") : 0, date:find("datesaisie"), montant:find("montantreg"), mode:find("mode reglement"), num: find("numero")!==undefined ? find("numero") : find("num"), ech:find("dateecheance"), payeur:find("payeur")};
+    var lab={client:"Client",date:"DateSaisie",montant:"MontantReg",mode:"Mode Reglement",num:"Num",ech:"DateEcheance",payeur:"Payeur"};
+    R.cols=heads.map(function(h,i){ var t=null; Object.keys(idx).forEach(function(k){ if(idx[k]===i && !t) t=lab[k]; }); return {h:h,t:t}; });
+    if(R.miss.length && !R.fatal){ R.fatal="Colonnes introuvables : "+R.miss.join(", ")+". Les titres doivent être écrits comme dans le modèle (sans accent à « Reglement », « DateSaisie » et « DateEcheance » en un seul mot). Digi refuse tout le fichier."; }
+    if(!R.miss.length){
+      lines.forEach(function(r,k){ var L=k+2;
+        var cl=String(cell(r,idx.client)).trim(); if(!cl){ add("e",L,"Client manquant : ligne refusée."); return; }
+        var mode=String(cell(r,idx.mode)).trim().toLowerCase();
+        if(["cheque","chèque","traite","effet"].indexOf(mode)<0){ add("e",L,"Mode « "+txt(cell(r,idx.mode))+" » inconnu : écrivez Chèque, Cheque, Traite ou Effet. Ligne refusée."); return; }
+        var e=cell(r,idx.ech); if(!(e instanceof Date) && typeof e!=="number"){ add("e",L,isEmpty(e) ? "Date d'échéance vide : ligne refusée." : "Échéance « "+e+" » écrite en texte : ce doit être une vraie date Excel. Ligne refusée."); return; }
+        var d=cell(r,idx.date); if(!(d instanceof Date) && typeof d!=="number") add("w",L,"DateSaisie « "+txt(d)+" » n'est pas une vraie date : le paiement sera créé sans date.");
+        var m=cell(r,idx.montant); if(typeof m!=="number"){ var f=pyFloat(String(m).trim().split(",").join(".")); if(isEmpty(m)||isNaN(f)) add("w",L,"Montant « "+txt(m)+" » sera lu comme 0. Mettez un nombre (cellule au format Nombre)."); }
+        else if(m===0) add("w",L,"Montant à 0.");
+      });
+      R.info="Chaque client doit déjà exister dans Digi, écrit de la même façon (majuscules, accents, espaces en trop et « M. / Mme » tolérés).";
+    }
+  }
+
+  if(type==="tarifs"){
+    var T=mapHeads(heads,A_TARIFS); R.cols=T.cols;
+    if(T.m["Article"]===undefined){ R.fatal="La colonne « Article » est obligatoire. Digi refuse tout le fichier."; R.miss=["Article"]; }
+    else lines.forEach(function(r,k){ var L=k+2;
+      var art=String(cell(r,T.m["Article"])).trim(); if(!art){ add("e",L,"Article manquant : ligne refusée."); return; }
+      var any=false, err=false;
+      ["Prix de base","Prix spécial","Prix"].forEach(function(c){ if(err||T.m[c]===undefined) return; var v=cell(r,T.m[c]); if(isEmpty(v)) return;
+        var f=tarifNombre(v); if(f===undefined){ add("e",L,"Prix illisible « "+v+" » : ligne refusée."); err=true; return; }
+        if(f<=0){ add("e",L,"Prix nul ou négatif « "+txt(v)+" » : ligne refusée."); err=true; return; } any=true; });
+      if(!err && !any) add("i",L,"Aucun prix : rien ne change pour « "+art+" ».");
+    });
+    if(T.m["Client"]!==undefined) R.info="Les clients de la colonne Client doivent déjà exister dans Digi.";
+  }
+
+  if(type==="articles"){
+    var n2=heads.map(function(h){ return norm(h).replace(/[-_]/g," "); });
+    var ai=["article","nom article"].map(function(k){return n2.indexOf(k);}).filter(function(i){return i>=0;})[0];
+    var ci=["activite","categorie"].map(function(k){return n2.indexOf(k);}).filter(function(i){return i>=0;})[0];
+    var pi=["prix de base","prix base","prix"].map(function(k){return n2.indexOf(k);}).filter(function(i){return i>=0;})[0];
+    if(ai!==undefined && ci!==undefined){
+      R.cols=heads.map(function(h,i){ return {h:h,t: i===ai?"Article": i===ci?"Activité": i===pi?"Prix de base": null}; });
+      lines.forEach(function(r,k){ var L=k+2; var a=String(cell(r,ai)).trim(), c=String(cell(r,ci)).trim();
+        if(!a||!c){ add("w",L,"Article ou activité vide : ligne ignorée."); return; }
+        if(pi!==undefined){ var v=cell(r,pi); if(!isEmpty(v) && tarifNombre(v)===undefined) add("w",L,"Prix « "+v+" » illisible : l'article est importé sans prix."); } });
+    } else {
+      R.cols=heads.map(function(h){ return {h:h,t:isEmpty(h)?null:"Activité « "+h+" »"}; });
+      R.fatal=null;
+      R.issues.push({lv:"w",line:1,msg:"Pas de colonnes « Article » et « Activité » : Digi lit le fichier dans l'ancien format et chaque colonne devient une activité ("+heads.filter(function(h){return !isEmpty(h);}).join(", ")+"). Si ce n'est pas voulu, renommez vos colonnes Article et Activité."});
+    }
+  }
+
+  if(type==="stock"){
+    var S=mapHeads(heads,A_STOCK); R.cols=S.cols;
+    ["Article","Dépôt","Quantité"].forEach(function(c){ if(S.m[c]===undefined) R.miss.push(c); });
+    if(R.miss.length) R.fatal="Colonnes obligatoires introuvables : "+R.miss.join(", ")+". Digi refuse tout le fichier.";
+    else{ var last={};
+      lines.forEach(function(r,k){ var L=k+2;
+        var a=String(cell(r,S.m["Article"])).trim(), d=String(cell(r,S.m["Dépôt"])).trim();
+        if(!a||!d) add("e",L,"Article ou dépôt manquant : ligne refusée.");
+        var q=stockNombre(cell(r,S.m["Quantité"]));
+        if(q===undefined) add("e",L,"Quantité « "+cell(r,S.m["Quantité"])+" » n'est pas un nombre : ligne refusée.");
+        ["Seuil","Prix de revient"].forEach(function(c){ if(S.m[c]===undefined) return; var v=stockNombre(cell(r,S.m[c]));
+          if(v===undefined) add("e",L,c+" « "+cell(r,S.m[c])+" » n'est pas un nombre : ligne refusée.");
+          else if(c==="Prix de revient" && v!==null && v<0) add("e",L,"Prix de revient négatif : ligne refusée."); });
+        if(S.m["Unité"]!==undefined){ var u=String(cell(r,S.m["Unité"])).trim(); if(u && u!=="Mètre" && u!=="Quantité") add("w",L,"Unité « "+u+" » : écrivez exactement « Mètre » ou « Quantité », sinon elle s'affichera mal."); }
+        if(q===null && a && d) add("i",L,"Quantité vide : stock inchangé pour « "+a+" » ("+d+").");
+        if(a&&d&&typeof q==="number"){ var key=(a+"|"+d).toLowerCase(); if(last[key]) add("i",last[key],"Remplacée par la ligne "+L+" (même article, même dépôt)."); last[key]=L; }
+      });
+      R.info="La quantité remplace le stock actuel (ce n'est pas un ajout). Les articles et dépôts manquants seront créés.";
+    }
+  }
+
+  R.bad=Object.keys(badLines).length; R.warn=Object.keys(warnLines).filter(function(l){return !badLines[l];}).length;
+  return R;
+}
+
+function render(R, fileName, sheet){
+  var o=$("#vOut"), h="";
+  h+='<div class="v-sum"><span class="pill">'+esc(fileName)+(sheet?' · feuille « '+esc(sheet)+' »':'')+'</span><span class="pill">Import : <b>'+NAMES[R.type]+'</b></span>';
+  if(!R.fatal){ var ok=Math.max(0,R.total-R.bad); h+='<span class="pill ok">'+ok+' ligne'+(ok>1?'s':'')+' acceptée'+(ok>1?'s':'')+'</span>'; if(R.bad) h+='<span class="pill ko">'+R.bad+' refusée'+(R.bad>1?'s':'')+'</span>'; if(R.warn) h+='<span class="pill wa">'+R.warn+' à vérifier</span>'; }
+  h+='</div>';
+  if(R.fatal) h+='<div class="v-fatal"><b>Fichier refusé.</b> '+esc(R.fatal)+'</div>';
+  h+='<div class="v-h">Colonnes de votre fichier</div><div class="v-cols">';
+  R.cols.forEach(function(c){ if(isEmpty(c.h)) return; h+= c.t ? '<span class="ok"><i>✓</i> '+esc(c.h)+(norm(c.h)!==norm(c.t)?' → '+esc(c.t):'')+'</span>' : '<span class="no" title="Colonne ignorée">'+esc(c.h)+'</span>'; });
+  R.miss.forEach(function(m){ h+='<span class="miss">manque : '+esc(m)+'</span>'; });
+  h+='</div>';
+  if(R.issues.length){
+    h+='<div class="v-h">Détail ligne par ligne</div><div class="v-issues">';
+    R.issues.sort(function(a,b){return a.line-b.line;}).slice(0,300).forEach(function(x){ h+='<div class="'+x.lv+'"><span class="l">Ligne '+x.line+'</span><span class="k">'+({e:"Refusée",w:"À vérifier",i:"Info"})[x.lv]+'</span><span>'+esc(x.msg)+'</span></div>'; });
+    h+='</div>';
+  } else if(!R.fatal) h+='<div class="v-h">Résultat</div><p style="color:var(--ok);font-weight:600">Aucun problème trouvé : ce fichier peut être importé tel quel.</p>';
+  if(R.info && !R.fatal) h+='<p style="margin-top:12px;font-size:14px;color:var(--ink-3)">'+esc(R.info)+'</p>';
+  o.innerHTML=h;
+}
+
+function analyse(rows, ext, name, numericCells, sheet){
+  rows=rows.filter(function(r){ return r.some(function(c){ return !isEmpty(c instanceof Date ? "d" : c); }); });
+  if(!rows.length){ $("#vOut").innerHTML='<div class="v-fatal"><b>Fichier vide.</b> Aucune ligne trouvée.</div>'; return; }
+  var t=$("#vType").value;
+  if(t==="auto"){ t=detect(rows[0]);
+    if(t==="clients" && !Object.keys(mapHeads(rows[0].map(String),A_CLIENTS).m).length){
+      $("#vOut").innerHTML='<div class="v-fatal"><b>Type de fichier non reconnu.</b> Aucune colonne connue dans la première ligne ('+esc(rows[0].filter(function(h){return !isEmpty(h);}).join(", "))+'). Choisissez le type d\'import dans la liste à droite, puis redéposez le fichier : le détail des colonnes manquantes s\'affichera.</div>'; return; } }
+  render(check(t, rows, ext, numericCells), name, sheet);
+}
+
+function readFile(f){
+  var ext=(f.name.match(/\.[^.]+$/)||[""])[0].toLowerCase();
+  if([".csv",".tsv",".txt"].indexOf(ext)>=0){
+    var r=new FileReader();
+    r.onload=function(){ var t=new TextDecoder("utf-8").decode(r.result); if(t.indexOf("\uFFFD")>=0){ try{ t=new TextDecoder("windows-1252").decode(r.result); }catch(e){} } t=t.replace(/^﻿/,"");
+      analyse(parseCSV(t,ext), ext, f.name, false); };
+    r.readAsArrayBuffer(f); return;
+  }
+  if([".xlsx",".xlsm",".xls",".ods"].indexOf(ext)<0){ $("#vOut").innerHTML='<div class="v-fatal"><b>Format non reconnu ('+esc(ext||"sans extension")+').</b> Formats lus par Digi : .xlsx, .xlsm, .xls, .ods, .csv, .tsv, .txt.</div>'; return; }
+  $("#vOut").innerHTML='<div class="empty">Lecture du fichier…</div>';
+  loadXLSX(function(err){
+    if(err){ $("#vOut").innerHTML='<div class="v-fatal">Impossible de charger le lecteur Excel. Vérifiez votre connexion, ou enregistrez le fichier en CSV pour le vérifier.</div>'; return; }
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var wb=XLSX.read(new Uint8Array(r.result),{type:"array",cellDates:true});
+        var pick=wb.SheetNames[0];
+        var toRows=function(n){ return XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:""}); };
+        var t=$("#vType").value;
+        if((ext===".xlsx"||ext===".xlsm") && (t==="stock"||t==="auto")){
+          var cands=wb.SheetNames.filter(function(n){ var rows=toRows(n).filter(function(x){return x.some(function(c){return !isEmpty(c);});}); if(!rows.length) return false; var m=mapHeads(rows[0],A_STOCK).m; return m["Article"]!==undefined&&m["Dépôt"]!==undefined&&m["Quantité"]!==undefined; });
+          if(cands.length){ cands.sort(function(a,b){ var s=function(n){ return /stock|inventaire/.test(norm(n))?0:1; }; return s(a)-s(b); }); pick=cands[0]; }
+        }
+        analyse(toRows(pick), ext, f.name, ext!==".ods", wb.SheetNames.length>1?pick:null);
+      }catch(e){ $("#vOut").innerHTML='<div class="v-fatal"><b>Fichier illisible.</b> '+esc(e.message||e)+'</div>'; }
+    };
+    r.readAsArrayBuffer(f);
+  });
+}
+
+var inp=$("#vFile"), drop=$("#vDrop");
+if(inp){
+  inp.addEventListener("change", function(){ if(inp.files[0]) readFile(inp.files[0]); inp.value=""; });
+  ["dragenter","dragover"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop", function(e){ var f=e.dataTransfer && e.dataTransfer.files[0]; if(f) readFile(f); });
+  $("#vDemo").addEventListener("click", function(){
+    $("#vType").value="auto";
+    var demo="Nom;Ville;Commercial;Téléphone;Solde initial;Instance initiale;Remarque\nBoutique El Amal;Casablanca;Youssef;0612345678;4800;4800;client fidèle\n;Fès;Karim;;1200;;\nAtelier Bennani;Fès;Karim;0661223344;1.200,50;8000;\nboutique el amal;Rabat;;;;;\nTextiles Nour;Tanger;;;12 000;3500 DH;";
+    analyse(parseCSV(demo,".csv"), ".csv", "exemple_clients.csv", false);
+  });
+}
+})();
+</script>
+<script>
+(function(){
+"use strict";
+document.documentElement.classList.add("js");
+var root = document.documentElement;
+var $ = function(s, c){ return (c||document).querySelector(s); };
+var $$ = function(s, c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+var DL = "https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe";
+var WA = "212678651359", MAIL = "digiclientstock@gmail.com";
+
+function toast(msg){ var t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("show");},2600); }
+function fmt(n){ var neg=n<0; n=Math.abs(n); var s=n.toFixed(2).split("."); return (neg?"−":"")+s[0].replace(/\B(?=(\d{3})+(?!\d))/g," ")+","+s[1]; }
+function dh(n){ return fmt(n)+" DH"; }
+function openLink(href){ var a=document.createElement("a"); a.href=href; a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove(); }
+try{ $("#yr").textContent = new Date().getFullYear(); }catch(e){}
+
+/* ------------------------------ Thème ------------------------------ */
+function isDark(){ var t=root.getAttribute("data-theme"); if(t) return t==="dark"; return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches; }
+function themeIcon(){ $("#themeBtn use").setAttribute("href", isDark() ? "#i-sun" : "#i-moon"); }
+$("#themeBtn").addEventListener("click", function(){
+  root.setAttribute("data-theme", isDark() ? "light" : "dark");
+  try{ localStorage.setItem("digi-theme", root.getAttribute("data-theme")); }catch(e){}
+  themeIcon(); setShotTheme(isDark() ? "dark" : "light");
+});
+try{ var saved=localStorage.getItem("digi-theme"); if(saved && !root.getAttribute("data-theme")) root.setAttribute("data-theme", saved); }catch(e){}
+themeIcon();
+if(window.matchMedia){ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(){ themeIcon(); }); }
+
+/* ---------------- Captures : clair / sombre du logiciel ---------------- */
+var shotTheme = isDark() ? "dark" : "light";
+var NO_DARK = {};
+function shotSrc(name){ return "img/"+name+(shotTheme==="dark" && !NO_DARK[name] ? "_dark" : "")+".webp"; }
+function setShotTheme(t){
+  shotTheme = t;
+  $$("img[data-shot]").forEach(function(img){ img.src = shotSrc(img.getAttribute("data-shot")); });
+  $$(".win").forEach(function(w){ w.classList.toggle("dark", t==="dark"); });
+  $$("[data-shot-theme]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-shot-theme")===t ? "true":"false"); });
+}
+document.addEventListener("click", function(e){ var b=e.target.closest("[data-shot-theme]"); if(b) setShotTheme(b.getAttribute("data-shot-theme")); });
+
+/* ------------------------------ Routeur ------------------------------ */
+var PAGES = ["accueil","digiclient","digistock","multiposte","simulateurs","captures","guide","tarifs","contact"];
+function route(){
+  var h = (location.hash||"").replace("#","");
+  if(PAGES.indexOf(h)<0) h="accueil";
+  $$(".page").forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-page")===h); });
+  $$("#tabs a").forEach(function(a){ if(a.getAttribute("href")==="#"+h) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  $("#tabs").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+  observeReveal();
+  if(h==="multiposte") netStart(); else netStop();
+  if(h==="guide") loadXLSX();
+  document.title = (h==="accueil" ? "Digi — DigiClient & DigiStock" : ({digiclient:"DigiClient",digistock:"DigiStock",multiposte:"Réseau & sécurité",simulateurs:"Simulateurs",captures:"Captures d'écran",guide:"Guide des imports",tarifs:"Licences & tarifs",contact:"Contact"})[h]+" · Digi");
+}
+window.addEventListener("hashchange", route);
+$("#burger").addEventListener("click", function(){ var o=$("#tabs").classList.toggle("open"); this.setAttribute("aria-expanded", o?"true":"false"); });
+
+/* ----------------------- Apparition au défilement ----------------------- */
+var io = ("IntersectionObserver" in window) && !reduce ? new IntersectionObserver(function(ents){
+  ents.forEach(function(en){ if(en.isIntersecting){ en.target.classList.remove("pre"); io.unobserve(en.target); } });
+},{rootMargin:"0px 0px -8% 0px"}) : null;
+function observeReveal(){
+  if(!io) return;
+  $$(".page.active .rv").forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top > innerHeight*0.95){ el.classList.add("pre"); io.observe(el); }
+  });
+}
+
+/* ------------------------------ Compteurs ------------------------------ */
+var counted=false;
+function runCounters(){
+  if(counted||reduce) return; counted=true;
+  $$(".count").forEach(function(el){
+    var to=+el.getAttribute("data-to"), t0=null, d=1400;
+    function step(ts){ if(!t0) t0=ts; var p=Math.min(1,(ts-t0)/d), v=Math.round(to*(1-Math.pow(1-p,3)));
+      el.textContent = el.getAttribute("data-sep") ? String(v).replace(/\B(?=(\d{3})+(?!\d))/g," ") : v;
+      if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  });
+}
+if("IntersectionObserver" in window){ var co=new IntersectionObserver(function(e){ if(e[0].isIntersecting){ runCounters(); co.disconnect(); } }); co.observe($(".stats")); }
+
+/* --------------------- Héros : inclinaison 3D + zellige --------------------- */
+(function(){
+  var stage=$("#heroStage"), win=$("#heroWin");
+  if(!reduce && stage){
+    stage.addEventListener("mousemove", function(e){
+      var r=stage.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      win.style.transform="rotateY("+(-9+x*14)+"deg) rotateX("+(4-y*10)+"deg)";
+    });
+    stage.addEventListener("mouseleave", function(){ win.style.transform=""; });
+  }
+  var cv=$("#zellige"); if(!cv) return;
+  var ctx=cv.getContext("2d"), mx=-999, my=-999, raf=0, dpr=Math.min(2,window.devicePixelRatio||1);
+  function star(x,y,r){ ctx.beginPath(); for(var i=0;i<16;i++){ var a=Math.PI/8*i, rr= i%2 ? r*0.62 : r; ctx.lineTo(x+Math.cos(a)*rr, y+Math.sin(a)*rr); } ctx.closePath(); }
+  function draw(){
+    raf=0; var w=cv.clientWidth, h=cv.clientHeight; if(!w) return;
+    if(cv.width!==Math.round(w*dpr)){ cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); }
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+    var s=72;
+    for(var y=-s; y<h+s; y+=s){ for(var x=-s; x<w+s; x+=s){
+      var ox = x + ((y/s)%2 ? s/2 : 0);
+      var d=Math.hypot(ox-mx, y-my), glow=Math.max(0,1-d/260);
+      ctx.strokeStyle="rgba(127,227,228,"+(0.07+glow*0.5)+")"; ctx.lineWidth=1;
+      star(ox,y,22); ctx.stroke();
+      if(glow>0.05){ ctx.fillStyle="rgba(243,192,107,"+(glow*0.12)+")"; ctx.fill(); }
+    }}
+  }
+  function req(){ if(!raf) raf=requestAnimationFrame(draw); }
+  var hero=cv.parentElement;
+  hero.addEventListener("mousemove", function(e){ var r=cv.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; if(!reduce) req(); });
+  hero.addEventListener("mouseleave", function(){ mx=my=-999; req(); });
+  window.addEventListener("resize", req); req(); setTimeout(req,300);
+})();
+
+/* --------------- Cartes modules : halo qui suit le curseur --------------- */
+$$(".module").forEach(function(m){ m.addEventListener("mousemove", function(e){ var r=m.getBoundingClientRect(); m.style.setProperty("--mx",(e.clientX-r.left)+"px"); m.style.setProperty("--my",(e.clientY-r.top)+"px"); }); });
+
+/* ------------------------------ Visite guidée ------------------------------ */
+var TOUR = [
+  {mod:"DigiClient"},
+  {id:"dc_accueil", ic:"i-home", t:"Tableau de bord", p:"CA du mois, solde total dû, impayés, échéances des 7 prochains jours et meilleurs clients. Purement informatif : on ouvre le logiciel et on sait où on en est.",
+   h:[[7,21,"CA du mois et évolution par rapport au mois dernier."],[52,34,"Montant des chèques et effets qui tombent dans les 7 jours."],[12,45,"Les prochaines échéances, client par client."],[86,98,"Alerte permanente : un clic ouvre l'Échéancier sur les retards.","r"]]},
+  {id:"dc_clients", ic:"i-users", t:"Clients", p:"Recherche par nom, ville ou téléphone, filtres par ville et commercial, solde et instance de chaque client. Archivage sans perte d'historique.",
+   h:[[25,8,"Recherche instantanée par nom, ville ou téléphone.","l b"],[80,12,"Solde client : en rouge ce qu'il doit, en vert son avance.","b"],[22,87,"Totaux de la vue : solde et instance cumulés."]]},
+  {id:"dc_fiche", ic:"i-file", t:"Fiche client", p:"Tout l'historique du client, une couleur par type d'opération, et le solde recalculé à chaque ligne. Les boutons du bas créent BL, paiements, relevés et factures.",
+   h:[[71,12,"Solde et instance du client, mis à jour à chaque saisie.","b"],[13,27,"Bleu : livraison. Vert : paiement. Rouge : impayé.","l b"],[40,94,"Nouveau BL, plusieurs paiements, impression du BL et de la facture."],[90,17.5,"Tri par date ou par échéance.","r b"]]},
+  {id:"dc_echeancier", ic:"i-cal", t:"Échéancier", p:"Chaque chèque et effet en attente, tous clients confondus. Les retards en rouge, les échéances proches en orange, le total en bas.",
+   h:[[94,19,"Le retard en jours, calculé automatiquement.","r b"],[60,69,"Orange : échéance dans les 7 jours."],[28,91,"Total des titres, montant en retard, montant à 7 jours."]]},
+  {id:"dc_operation", ic:"i-bolt", t:"Opération", p:"La saisie rapide du jour : plusieurs clients à la suite, sans ouvrir leurs fiches. Toutes les opérations d'une date et le total payé."},
+  {id:"dc_ca", ic:"i-chart", t:"Chiffre d'affaires", p:"CA par client, ville, commercial, activité et période. Cochez des clients pour obtenir le CA de votre sélection."},
+  {id:"dc_statistiques", ic:"i-chart", t:"Statistiques", p:"Délai moyen de paiement de chaque client, nombre d'encaissements et d'impayés, meilleur client et meilleur commercial."},
+  {id:"dc_tarifs", ic:"i-tag", t:"Tarifs", p:"Prix de base de chaque article et prix spécial par client. Ils sont proposés automatiquement dans les bons de livraison."},
+  {mod:"DigiStock"},
+  {id:"ds_stock", ic:"i-box", t:"Stock", p:"Quantité de chaque article dans chaque dépôt, avec son unité et son seuil de réapprovisionnement.",
+   h:[[86,13,"En rouge : quantité sous le seuil de ce dépôt.","r b"],[60,8,"Un dépôt ou tous les dépôts.","b"]]},
+  {id:"ds_mouvements", ic:"i-swap", t:"Mouvements", p:"Entrées, sorties, casse et pertes. Les sorties des livraisons DigiClient arrivent seules, avec le client et le N° BL."},
+  {id:"ds_reappro", ic:"i-cart", t:"Réapprovisionnement", p:"Les articles sous leur seuil, dépôt par dépôt, avec la quantité manquante."},
+  {id:"ds_inventaire", ic:"i-list", t:"Inventaire valorisé", p:"Quantité × prix de revient, total de la valeur du stock, par dépôt ou par période. Aperçu et PDF."},
+  {id:"ds_fournisseurs", ic:"i-truck", t:"Fournisseurs", p:"Achats par fournisseur, article et dépôt, avec prix unitaire et référence de facture. Entrée en stock automatique."}
+];
+(function(){
+  var list=$("#tourList"), img=$("#tourImg"), frame=$("#tourFrame"), cur=null;
+  TOUR.forEach(function(s){
+    if(s.mod){ var d=document.createElement("div"); d.className="mod"; d.textContent=s.mod; list.appendChild(d); return; }
+    var b=document.createElement("button"); b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected","false"); b.dataset.id=s.id;
+    b.innerHTML='<svg><use href="#'+s.ic+'"/></svg><span>'+s.t+'</span>';
+    b.addEventListener("click", function(){ show(s, true); });
+    list.appendChild(b);
+  });
+  function show(s, user){
+    if(cur===s) return; cur=s;
+    $$("button",list).forEach(function(b){ b.setAttribute("aria-selected", b.dataset.id===s.id ? "true":"false"); });
+    frame.classList.add("swap");
+    setTimeout(function(){
+      img.setAttribute("data-shot", s.id); img.src=shotSrc(s.id); img.alt="Écran « "+s.t+" » de Digi";
+      img.setAttribute("height", s.id.indexOf("ds_")===0 ? 1075 : 1040);
+      $("#tourTitle").textContent = (s.id.indexOf("ds_")===0 ? "DigiStock" : "Gestion Clients")+" 1.16.0 — "+s.t;
+      $("#tourH").textContent=s.t; $("#tourP").textContent=s.p;
+      frame.classList.remove("swap");
+    }, cur && user ? 180 : 0);
+  }
+  show(TOUR[1]);
+})();
+
+/* ------------------------------ Galerie ------------------------------ */
+var GAL = [
+  ["bienvenue","dlg","Écran d'accueil","Votre entreprise, votre logo, votre fond d'écran, et le choix du module."],
+  ["dc_accueil","dc","Tableau de bord","CA du mois, solde dû, impayés, échéances à 7 jours, top clients."],
+  ["dc_clients","dc","Clients","Liste, recherche, filtres par ville et commercial, solde et instance."],
+  ["dc_fiche","dc","Fiche client","Historique coloré par type d'opération, solde à chaque ligne."],
+  ["dc_echeancier","dc","Échéancier","Chèques et effets en attente, retards et échéances proches."],
+  ["dc_operation","dc","Opération","Saisie rapide du jour pour plusieurs clients."],
+  ["dc_ca","dc","Chiffre d'affaires","Par client, ville, commercial, activité et période."],
+  ["dc_statistiques","dc","Statistiques","Délai moyen de paiement, meilleur client, meilleur commercial."],
+  ["dc_tarifs","dc","Tarifs","Prix de base et prix spéciaux par client."],
+  ["dlg_bon_livraison","dc","Bon de livraison","Plusieurs articles, un N° BL, remises et dépôt source."],
+  ["dlg_reglements","dc","Nouveaux paiements","Plusieurs chèques d'un client enregistrés en une fois."],
+  ["ds_stock","ds","Stock","Quantité par article et par dépôt, seuils de réapprovisionnement."],
+  ["ds_mouvements","ds","Mouvements","Entrées, sorties, casse/perte, sorties liées aux BL."],
+  ["ds_reappro","ds","Réapprovisionnement","Articles sous leur seuil et quantités manquantes."],
+  ["ds_inventaire","ds","Inventaire valorisé","Valeur du stock au prix de revient, par dépôt ou période."],
+  ["ds_comptage","ds","Comptage","Inventaire physique, écart et ajustement."],
+  ["ds_fournisseurs","ds","Fournisseurs","Achats, prix unitaires et références de facture."],
+  ["dlg_pertes","ds","Bilan des pertes","Casse et pertes valorisées, pour le comptable."],
+  ["dlg_articles","ds","Articles","Unité, seuil de réapprovisionnement, archivage."],
+  ["dlg_parametres","dlg","Paramètres","Entreprise, Listes, Affichage, Réseau, Sauvegarde."],
+  ["dlg_journal","dlg","Journal des modifications","Qui a fait quoi, et quand."],
+  ["dlg_controle","dlg","Contrôle des données","Les incohérences repérées avant qu'elles coûtent cher."],
+  ["dlg_nouveau_compte","dlg","Comptes employés","Rôle et accès module par module, onglet par onglet."],
+  ["dlg_login","dlg","Connexion","Un compte par personne, mot de passe chiffré."],
+  ["dlg_choix_poste","dlg","Première installation","Poste principal ou poste qui se connecte."],
+  ["dlg_licence","dlg","Licence","Code machine à envoyer, licence à charger."],
+  ["doc_bl","doc","Bon de livraison imprimé","Métrage ou quantité, nombre de pièces, total."],
+  ["doc_facture","doc","BL / Facture","HT, TVA, TTC et montant en toutes lettres."],
+  ["doc_inventaire","doc","Inventaire imprimé","État valorisé prêt pour le comptable."]
+];
+NO_DARK.doc_bl=NO_DARK.doc_facture=NO_DARK.doc_inventaire=1;
+(function(){
+  var g=$("#gallery");
+  GAL.forEach(function(it){
+    var f=document.createElement("figure"); f.dataset.cat=it[1]; f.tabIndex=0;
+    f.innerHTML='<div class="frame"><img '+(it[1]==="doc"?'':'data-shot="'+it[0]+'" ')+'src="'+shotSrc(it[0])+'" alt="'+it[2]+'" loading="lazy" width="1800" height="1100"></div><figcaption><b>'+it[2]+'</b><span>'+it[3]+'</span></figcaption>';
+    g.appendChild(f);
+  });
+  $$(".fbtn").forEach(function(b){ b.addEventListener("click", function(){
+    var c=b.getAttribute("data-filter");
+    $$(".fbtn").forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); });
+    $$("figure",g).forEach(function(f){ f.classList.toggle("hide", c!=="all" && f.dataset.cat!==c); });
+  }); });
+})();
+
+/* ------------------------------ Visionneuse ------------------------------ */
+var lb=$("#lb"), lbList=[], lbI=0, lastFocus=null;
+function lbShow(){ var it=lbList[lbI]; $("#lbImg").src=it.src; $("#lbImg").alt=it.t; $("#lbT").textContent=it.t; $("#lbD").textContent=it.d||""; }
+function lbOpen(list,i){ lbList=list; lbI=i; lastFocus=document.activeElement; lbShow(); lb.classList.add("open"); $("#lbClose").focus(); document.body.style.overflow="hidden"; }
+function lbClose(){ lb.classList.remove("open"); document.body.style.overflow=""; if(lastFocus) lastFocus.focus(); }
+function lbStep(d){ lbI=(lbI+d+lbList.length)%lbList.length; lbShow(); }
+$("#lbClose").addEventListener("click", lbClose);
+$("#lbPrev").addEventListener("click", function(){lbStep(-1);});
+$("#lbNext").addEventListener("click", function(){lbStep(1);});
+lb.addEventListener("click", function(e){ if(e.target===lb || e.target.classList.contains("stage")) lbClose(); });
+document.addEventListener("keydown", function(e){
+  if(!lb.classList.contains("open")){ if(e.key==="Enter" && e.target.matches && e.target.matches(".gallery figure")) e.target.click(); return; }
+  if(e.key==="Escape") lbClose(); if(e.key==="ArrowRight") lbStep(1); if(e.key==="ArrowLeft") lbStep(-1);
+});
+document.addEventListener("click", function(e){
+  var fig=e.target.closest(".gallery figure");
+  if(fig){ var vis=$$(".gallery figure:not(.hide)"); lbOpen(vis.map(function(f){ var im=$("img",f); return {src:im.src,t:$("b",f).textContent,d:$("span",f).textContent}; }), vis.indexOf(fig)); return; }
+  var z=e.target.closest(".zoomable");
+  if(z){ var page=z.closest(".page"); var zs=$$(".zoomable",page);
+    lbOpen(zs.map(function(im){ var cap = im.id==="tourImg" ? {t:$("#tourH").textContent,d:$("#tourP").textContent} : {t:im.alt,d:""}; return {src:im.src,t:cap.t,d:cap.d}; }), zs.indexOf(z)); }
+});
+
+/* ------------------------------ Montant en lettres ------------------------------ */
+var U=["zéro","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix","onze","douze","treize","quatorze","quinze","seize"];
+function lt100(n,acc){ if(acc===undefined) acc=true;
+  if(n<17) return U[n]; if(n<20) return "dix-"+U[n-10];
+  var d=Math.floor(n/10), u=n%10;
+  if(d===7){ if(n===71) return "soixante et onze"; return "soixante-"+lt100(n-60); }
+  if(d===8){ if(u===0) return acc?"quatre-vingts":"quatre-vingt"; return "quatre-vingt-"+lt100(u); }
+  if(d===9) return "quatre-vingt-"+lt100(n-80);
+  var m={2:"vingt",3:"trente",4:"quarante",5:"cinquante",6:"soixante"}[d];
+  if(u===0) return m; if(u===1) return m+" et un"; return m+"-"+lt100(u);
+}
+function lt1000(n,acc){ if(acc===undefined) acc=true; if(n<100) return lt100(n,acc);
+  var c=Math.floor(n/100), r=n%100, p= c===1 ? "cent" : U[c]+" cent"; if(r===0 && c>1 && acc) p+="s"; return r===0 ? p : p+" "+lt100(r,acc); }
+function entier(n){ if(n<1000) return lt1000(n);
+  var g=[], md=Math.floor(n/1e9); n%=1e9; var mi=Math.floor(n/1e6); n%=1e6; var k=Math.floor(n/1000), r=n%1000;
+  if(md) g.push(lt1000(md)+" milliard"+(md>1?"s":"")); if(mi) g.push(lt1000(mi)+" million"+(mi>1?"s":""));
+  if(k) g.push(k===1?"mille":lt1000(k,false)+" mille"); if(r) g.push(lt1000(r)); return g.join(" ")||"zéro"; }
+function enLettres(v){
+  var c=Math.round(Math.max(0,v)*100), e=Math.floor(c/100), ct=c%100, txt;
+  if(e===0 && ct) txt=entier(ct)+(ct===1?" centime":" centimes");
+  else { txt=entier(e)+(e && e%1e6===0 ? " de":"")+" "+(e<2?"dirham":"dirhams"); if(ct) txt+=" et "+entier(ct)+(ct===1?" centime":" centimes"); }
+  return txt.charAt(0).toUpperCase()+txt.slice(1);
+}
+
+/* ------------------------------ Simulateur BL ------------------------------ */
+var ART = {
+  "Jacquard Royal":{u:"m",base:55,sp:52,act:"Tissage"},
+  "Brocart Doré":{u:"m",base:89,sp:86,act:"Tissage"},
+  "Satin Duchesse":{u:"m",base:42,sp:40,act:"Tissus importés"},
+  "Crêpe Georgette":{u:"m",base:34,act:"Tissus importés"},
+  "Velours Côtelé":{u:"m",base:48,act:"Tissus importés"},
+  "Mousseline Soie":{u:"m",base:65,act:"Tissus importés"},
+  "Organza Brodé":{u:"m",base:78,act:"Broderie"},
+  "Lin Naturel":{u:"m",base:39,sp:37,act:"Tissage"},
+  "Djellaba Brodée":{u:"u.",base:650,act:"Broderie"},
+  "Caftan Sfifa":{u:"u.",base:1250,act:"Broderie"}
+};
+var DEPOTS=["Magasin Derb Omar","Dépôt Fès","Entrepôt Tanger"];
+var STOCK={}, SEUIL={};
+(function(){ var seed=[[620,980,300,300],[260,120,95,150],[745,965,120,250],[410,305,880,200],[385,105,720,180],[405,415,270,120],[450,360,210,100],[355,580,570,220],[101,11,71,25],[19,8,12,15]];
+  Object.keys(ART).forEach(function(a,i){ STOCK[a]={}; DEPOTS.forEach(function(d,j){ STOCK[a][d]=seed[i][j]; }); SEUIL[a]=seed[i][3]; }); })();
+var rows=[], rid=0;
+function addRow(a,q,src,dirty){
+  var r={id:++rid, art:a||"", q:q||0, src:src||DEPOTS[0], price:0, dirty:!!dirty, rt:"", rv:0};
+  if(r.art){ var s=suggest(r.art); r.price=s.p; }
+  rows.push(r); return r;
+}
+function suggest(a){ var x=ART[a]; if(!x) return {p:0,k:""}; return x.sp ? {p:x.sp,k:"spécial"} : {p:x.base,k:"base"}; }
+function montant(r){ var m=r.q*r.price; if(r.rt==="Prix/m" && r.rv) m=r.q*r.rv; else if(r.rt==="Montant" && r.rv) m=Math.max(0,m-r.rv); return m; }
+function opts(list,sel,empty){ return (empty?'<option value="">— Article —</option>':'')+list.map(function(v){ return '<option'+(v===sel?' selected':'')+'>'+v+'</option>'; }).join(""); }
+function renderBL(newId){
+  var tb=$("#blBody"); tb.innerHTML="";
+  rows.forEach(function(r){
+    var tr=document.createElement("tr"); if(r.id===newId) tr.className="new";
+    var s=suggest(r.art), u=ART[r.art]?ART[r.art].u:"";
+    tr.innerHTML='<td><select class="in" aria-label="Article" data-k="art">'+opts(Object.keys(ART),r.art,true)+'</select></td>'+
+      '<td><select class="in" aria-label="Dépôt source" data-k="src">'+opts(DEPOTS,r.src)+'</select></td>'+
+      '<td class="num"><input class="in n" type="number" min="0" step="1" aria-label="Quantité" data-k="q" value="'+(r.q||"")+'"> <span style="color:var(--ink-3);font-size:12px">'+u+'</span></td>'+
+      '<td class="num"><input class="in n" type="number" min="0" step="0.5" aria-label="Prix unitaire" data-k="price" value="'+(r.price||"")+'">'+(r.art && !r.dirty && s.k ? '<div style="font:600 11px var(--f-body);color:var(--teal);margin-top:2px">prix '+s.k+'</div>' : '')+'</td>'+
+      '<td><div style="display:flex;gap:4px"><select class="in" aria-label="Type de remise" data-k="rt" style="min-width:92px"><option value="">Aucune</option><option'+(r.rt==="Prix/m"?" selected":"")+'>Prix/m</option><option'+(r.rt==="Montant"?" selected":"")+'>Montant</option></select>'+(r.rt?'<input class="in n" type="number" min="0" step="0.5" aria-label="Remise" data-k="rv" value="'+(r.rv||"")+'" style="max-width:76px">':'')+'</div></td>'+
+      '<td class="num"><b>'+fmt(montant(r))+'</b></td>'+
+      '<td><button class="del" type="button" aria-label="Supprimer la ligne"><svg><use href="#i-trash"/></svg></button></td>';
+    $$("[data-k]",tr).forEach(function(el){
+      el.addEventListener(el.tagName==="SELECT"?"change":"input", function(){
+        var k=el.getAttribute("data-k"), v=el.value;
+        if(k==="art"){ r.art=v; if(!r.dirty || !r.price){ r.price=suggest(v).p; r.dirty=false; } renderBL(); return; }
+        if(k==="src"||k==="rt"){ r[k]=v; renderBL(); return; }
+        r[k]=parseFloat(v.replace(",", "."))||0; if(k==="price") r.dirty=true;
+        tr.querySelector("td.num b").textContent=fmt(montant(r)); totals();
+      });
+    });
+    $(".del",tr).addEventListener("click", function(){ rows=rows.filter(function(x){return x!==r;}); renderBL(); });
+    tb.appendChild(tr);
+  });
+  totals();
+}
+function totals(){
+  var tva=Math.max(0, parseFloat($("#blTva").value)||0), ttcC=0, n=0, used={};
+  rows.forEach(function(r){ if(r.art && r.q>0){ n++; ttcC+=Math.round(montant(r)*100); var k=r.art+"|"+r.src; used[k]=(used[k]||0)+r.q; } });
+  var htC= tva>0 ? Math.round(ttcC/(1+tva/100)) : ttcC;
+  $("#blLines").textContent=n; $("#blHT").textContent=dh(htC/100); $("#blTVA").textContent=dh((ttcC-htC)/100); $("#blTTC").textContent=dh(ttcC/100);
+  $("#blWords").textContent = ttcC ? enLettres(ttcC/100) : "—";
+  var box=$("#blStock"); box.innerHTML="";
+  var keys=Object.keys(used);
+  if(!keys.length){ box.innerHTML='<div class="empty">Choisissez un article : son stock apparaît ici.</div>'; return; }
+  keys.forEach(function(k){
+    var p=k.split("|"), a=p[0], d=p[1], avant=STOCK[a][d], apres=avant-used[k], se=SEUIL[a], max=Math.max(avant, se*1.6, 1);
+    var low=apres<se, row=document.createElement("div"); row.className="srow"+(low?" low":"");
+    row.innerHTML='<span>'+a+' <span style="color:var(--ink-3)">· '+d+'</span></span><b>'+fmt(apres).replace(",00","")+' '+ART[a].u+(low?' · sous le seuil':'')+'</b><div class="bar"><i style="width:'+Math.max(0,Math.min(100,apres/max*100))+'%"></i><u style="left:'+Math.min(100,se/max*100)+'%"></u></div>';
+    box.appendChild(row);
+  });
+}
+$("#blAdd").addEventListener("click", function(){ var r=addRow(); renderBL(r.id); var s=$$("#blBody select[data-k=art]"); if(s.length) s[s.length-1].focus(); });
+$("#blTva").addEventListener("input", totals);
+addRow("Jacquard Royal",120); addRow("Brocart Doré",45); addRow("Djellaba Brodée",6); renderBL();
+
+/* ------------------------- Simulateur Solde / Instance ------------------------- */
+(function(){
+  var ops=[], solde=0, inst=0, chqNo=3418070, d=new Date(2026,9,6);
+  var COL={liv:"#1f5fae",pay:"#1e7d46",enc:"#00796b",imp:"#b3261e"};
+  function day(){ d=new Date(d.getTime()+86400000*3); return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear(); }
+  function bump(id){ var g=$(id); g.classList.remove("bump"); void g.offsetWidth; g.classList.add("bump"); }
+  function paint(){
+    $("#vSolde").textContent=dh(solde); $("#vInst").textContent=dh(inst);
+    $("#vSolde").style.color= solde>0 ? "var(--danger)" : (solde<0 ? "var(--ok)" : "var(--ink)");
+    $("#vInst").style.color= inst>0 ? "var(--danger)" : (inst<0 ? "var(--ok)" : "var(--ink)");
+    var ul=$("#siOps"); ul.innerHTML="";
+    if(!ops.length){ ul.innerHTML='<li class="empty" style="display:block">Aucune opération pour l\'instant.</li>'; }
+    ops.slice().reverse().forEach(function(o){ var li=document.createElement("li"); if(o.done) li.className="done";
+      li.innerHTML='<i style="background:'+o.c+'"></i><span><span class="t" style="color:'+o.c+'">'+o.t+'</span> <span style="color:var(--ink-3)">'+o.date+'</span><br><span style="font-size:13px;color:var(--ink-2)">'+o.info+'</span></span><span class="m">'+o.m+'</span>'; ul.appendChild(li); });
+    var pend=ops.filter(function(o){return o.kind==="chq" && o.state==="att";}).length;
+    var lastChq=ops.filter(function(o){return o.kind==="chq" && o.state!=="imp";}).length;
+    $('[data-act="enc"]').disabled=!pend; $('[data-act="imp"]').disabled=!lastChq;
+    $$("#siBtns button").forEach(function(b){ b.style.opacity=b.disabled?.45:1; b.style.cursor=b.disabled?"not-allowed":"pointer"; });
+  }
+  var hints={
+    liv:"Une livraison augmente le Solde ET l'Instance : le client vous doit cette somme.",
+    chq:"Le chèque remis baisse le Solde tout de suite, mais PAS l'Instance : l'argent n'est pas encore sur votre compte.",
+    enc:"À l'encaissement, l'Instance baisse à son tour. La ligne du chèque reste visible, grisée, pour la traçabilité.",
+    imp:"Chèque impayé : son effet est annulé, le Solde (et l'Instance s'il était encaissé) remontent.",
+    esp:"Un paiement en espèces est encaissé immédiatement : il baisse les deux à la fois.",
+    reset:"Commencez par une livraison."
+  };
+  $("#siBtns").addEventListener("click", function(e){
+    var b=e.target.closest("button[data-act]"); if(!b||b.disabled) return; var a=b.getAttribute("data-act");
+    if(a==="reset"){ ops=[]; solde=inst=0; d=new Date(2026,9,6); }
+    if(a==="liv"){ solde+=12000; inst+=12000; ops.push({kind:"liv",t:"Livraison",c:COL.liv,date:day(),info:"BL "+(2046+ops.length)+" · Jacquard Royal 120 m + Brocart Doré 60 m",m:"+"+dh(12000)}); }
+    if(a==="chq"){ chqNo+=Math.floor(Math.random()*900)+11; var ech=new Date(d.getTime()+86400000*60);
+      solde-=8000; ops.push({kind:"chq",state:"att",no:chqNo,t:"Paiement",c:COL.pay,date:day(),info:"Chèque à échéance n° "+chqNo+" · En attente · échéance "+("0"+ech.getDate()).slice(-2)+"/"+("0"+(ech.getMonth()+1)).slice(-2),m:"−"+dh(8000)}); }
+    if(a==="enc"){ var c=ops.filter(function(o){return o.kind==="chq"&&o.state==="att";})[0]; var dt=day();
+      c.state="enc"; c.done=true; c.info+=" · ✓ encaissé le "+dt; inst-=8000;
+      ops.push({kind:"enc",t:"Encaissement",c:COL.enc,date:dt,info:"Chèque n° "+c.no+" encaissé",m:"−"+dh(8000)}); }
+    if(a==="imp"){ var all=ops.filter(function(o){return o.kind==="chq"&&o.state!=="imp";}); var c2=all[all.length-1];
+      solde+=8000; if(c2.state==="enc") inst+=8000; c2.state="imp";
+      ops.push({kind:"imp",t:"Impayé",c:COL.imp,date:day(),info:"Chèque n° "+c2.no+" revenu impayé",m:"+"+dh(8000)}); }
+    if(a==="esp"){ solde-=2000; inst-=2000; ops.push({kind:"esp",t:"Paiement",c:COL.pay,date:day(),info:"Espèce · Encaissé",m:"−"+dh(2000)}); }
+    $("#siHint").textContent=hints[a]; bump("#gSolde"); if(a!=="chq") bump("#gInst"); paint();
+  });
+  paint();
+})();
+
+/* ------------------------- Calculateur de temps ------------------------- */
+(function(){
+  function calc(){
+    var bl=+$("#rBL").value, ch=+$("#rCh").value, mn=+$("#rMin").value, inv=+$("#rInv").value;
+    $("#oBL").textContent=bl; $("#oCh").textContent=ch; $("#oMin").textContent=mn; $("#oInv").textContent=inv;
+    var min = (Math.max(0,mn-2)*bl + 3*ch)*4.3 + inv*60*0.5;
+    var h=Math.round(min/60);
+    $("#oHours").textContent=h+" h"; var j=Math.round(min/60/8*10)/10;
+    $("#oDays").textContent="soit "+String(j).replace(".",",")+" journée"+(j>=2?"s":"")+" de travail de 8 h";
+  }
+  ["#rBL","#rCh","#rMin","#rInv"].forEach(function(s){ $(s).addEventListener("input",calc); }); calc();
+})();
+
+/* ------------------------- Simulation réseau ------------------------- */
+var netTimer=null, netOn=true, q1=0, q2=0, blNo=1050;
+function nlog(msg,cls){ var l=$("#netLog"); if(!l) return; var t=new Date(), hh=("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2)+":"+("0"+t.getSeconds()).slice(-2);
+  var p=document.createElement("div"); if(cls) p.className=cls; p.textContent=hh+"  "+msg; l.appendChild(p); l.scrollTop=l.scrollHeight; while(l.children.length>40) l.removeChild(l.firstChild); }
+function packet(pathId, reverse, color, done){
+  var path=$("#"+pathId), len=path.getTotalLength(), c=document.createElementNS("http://www.w3.org/2000/svg","circle");
+  c.setAttribute("r",7); c.setAttribute("fill",color); $("#packets").appendChild(c);
+  var t0=null, dur=reduce?1:900;
+  function st(ts){ if(!t0) t0=ts; var p=Math.min(1,(ts-t0)/dur), k=reverse?1-p:p, pt=path.getPointAtLength(len*k); c.setAttribute("cx",pt.x); c.setAttribute("cy",pt.y);
+    if(p<1) requestAnimationFrame(st); else { c.remove(); if(done) done(); } }
+  requestAnimationFrame(st);
+}
+function netPaint(){
+  $("#mainDot").setAttribute("fill", netOn ? "#5fe3a0" : "#ff7d71");
+  [["#s1txt","#s1q",q1],["#s2txt","#s2q",q2]].forEach(function(s){
+    $(s[0]).textContent = netOn ? "En ligne" : "Hors ligne"; $(s[0]).setAttribute("fill", netOn ? "var(--ok)" : "var(--danger)");
+    $(s[1]).textContent = s[2]+" en attente"; });
+  ["#l1","#l2"].forEach(function(l){ $(l).setAttribute("stroke", netOn ? "var(--aqua)" : "var(--line)"); $(l).setAttribute("stroke-dasharray", netOn ? "" : "6 8"); });
+  $("#netCut span").textContent = netOn ? "Éteindre le poste principal" : "Rallumer le poste principal";
+}
+function netSave(who){
+  blNo++; var from= who===1 ? "l1" : "l2", to= who===1 ? "l2" : "l1", name= who===1 ? "Magasin" : "Bureau", other= who===1 ? "Bureau" : "Magasin";
+  if(!netOn){ if(who===1) q1++; else q2++; netPaint(); nlog(name+" · BL "+blNo+" enregistré hors ligne, gardé sur le poste.","w"); return; }
+  nlog(name+" · BL "+blNo+" enregistré, envoi au poste principal…");
+  packet(from,true,"#1fb5b8",function(){ nlog("Poste principal · BL "+blNo+" reçu, stock du dépôt mis à jour."); packet(to,false,"#f3c06b",function(){ nlog(other+" · BL "+blNo+" reçu, solde du client recalculé.","g"); }); });
+}
+function netStart(){
+  if(!$("#net") || netTimer) return; netPaint();
+  if(!$("#netLog").children.length) nlog("Synchronisation automatique active (toutes les 60 s).","g");
+  netTimer=setInterval(function(){ if(netOn && document.visibilityState==="visible"){ nlog("Synchro auto · 3 postes à jour.","g"); } }, 9000);
+}
+function netStop(){ clearInterval(netTimer); netTimer=null; }
+if($("#net")){
+  $("#netAdd1").addEventListener("click", function(){ netSave(1); });
+  $("#netAdd2").addEventListener("click", function(){ netSave(2); });
+  $("#netCut").addEventListener("click", function(){
+    netOn=!netOn; netPaint();
+    if(!netOn){ nlog("Poste principal éteint. Les postes secondaires passent en « Hors ligne ».","w"); return; }
+    nlog("Poste principal de retour. Reconnexion automatique des comptes…","g");
+    var n1=q1, n2=q2; q1=q2=0; netPaint();
+    for(var i=0;i<n1;i++) setTimeout(function(){ packet("l1",true,"#1fb5b8"); }, i*250);
+    for(var j=0;j<n2;j++) setTimeout(function(){ packet("l2",true,"#1fb5b8"); }, j*250);
+    setTimeout(function(){ nlog("Envoyé : "+(n1+n2)+" saisie(s) faite(s) hors ligne. Reçu : tout ce qui a changé ailleurs.","g"); }, 1000);
+  });
+}
+
+/* ------------------------- Contact ------------------------- */
+$$(".copy").forEach(function(b){ b.addEventListener("click", function(){
+  var v=b.getAttribute("data-copy");
+  var ok=function(){ toast("Copié : "+v); };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(v).then(ok, function(){ fallbackSel(b); }); } else fallbackSel(b);
+}); });
+function fallbackSel(b){ var el=b.closest(".ccard").querySelector(".val"); var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); toast("Sélectionné : faites Ctrl+C"); }
+$$(".wa-plan").forEach(function(a){ a.addEventListener("click", function(){ var p=a.getAttribute("data-plan"); var s=$("#cfSubject"); $$("option",s).forEach(function(o){ if(o.textContent===p) s.value=p; }); }); });
+var via="wa";
+$$("#cf button[type=submit]").forEach(function(b){ b.addEventListener("click", function(){ via=b.getAttribute("data-via"); }); });
+$("#cf").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f=function(id){ return ($(id).value||"").trim(); };
+  var lines=["Bonjour, je vous contacte depuis le site Digi.","","Objet : "+f("#cfSubject")];
+  if(f("#cfName")) lines.push("Nom : "+f("#cfName")); if(f("#cfCo")) lines.push("Entreprise : "+f("#cfCo")); if(f("#cfCity")) lines.push("Ville : "+f("#cfCity"));
+  lines.push("Nombre de postes : "+(f("#cfPosts")||"1")); if(f("#cfMsg")){ lines.push(""); lines.push(f("#cfMsg")); }
+  var txt=lines.join("\n");
+  if(via==="mail") openLink("mailto:"+MAIL+"?subject="+encodeURIComponent("Digi — "+f("#cfSubject"))+"&body="+encodeURIComponent(txt));
+  else openLink("https://wa.me/"+WA+"?text="+encodeURIComponent(txt));
+  toast(via==="mail" ? "Votre messagerie s'ouvre avec le message prêt." : "WhatsApp s'ouvre avec le message prêt.");
+});
+
+/* ------------------------- Démarrage ------------------------- */
+setShotTheme(shotTheme);
+route();
+})();
+</script>
+</body></html>
