@@ -1,0 +1,51 @@
+ASSISTANT IA DU SITE — MISE EN ROUTE (FACULTATIF)
+=================================================
+
+Sans rien faire, l'assistant du site fonctionne déjà : il répond à partir de la
+base de connaissances du site (astuces, fonctions). C'est gratuit et aucune
+question n'est envoyée nulle part.
+
+Pour une vraie IA (Claude) qui comprend les questions libres, il faut un petit
+« relais » gratuit chez Cloudflare et une clé API Anthropic (payée à l'usage).
+Votre clé reste secrète chez Cloudflare : elle n'est jamais dans le site.
+
+1. CLÉ API ANTHROPIC
+   - Créez un compte sur https://console.anthropic.com
+   - Ajoutez un peu de crédit (Billing) et fixez une limite de dépense mensuelle.
+   - API Keys > Create Key : copiez la clé (elle commence par sk-ant-...).
+
+2. RELAIS CLOUDFLARE (gratuit)
+   - Créez un compte sur https://dash.cloudflare.com
+   - Workers & Pages > Create > Create Worker > nommez-le « digi-assistant » > Deploy.
+   - « Edit code » : effacez tout, collez le contenu du fichier worker.js, puis Deploy.
+   - Settings > Variables and Secrets > Add : type « Secret »,
+     nom ANTHROPIC_API_KEY, valeur = votre clé sk-ant-... > Save / Deploy.
+   - Notez l'adresse du Worker, par exemple :
+     https://digi-assistant.votre-nom.workers.dev
+
+3. BRANCHER LE SITE
+   - Ouvrez index.html, cherchez :   window.DIGI_AI_ENDPOINT || ""
+   - Remplacez "" par l'adresse du Worker, entre guillemets :
+     window.DIGI_AI_ENDPOINT || "https://digi-assistant.votre-nom.workers.dev"
+   - Renvoyez index.html sur l'hébergement. Sous le titre de l'assistant
+     s'affiche alors « Assistant IA ».
+
+SÉCURITÉ ET LIMITES DÉJÀ EN PLACE
+ - L'IA ne répond qu'aux questions d'utilisation de Digi. Elle refuse : licence
+   (fonctionnement, contournement), fabrication du logiciel, technologies, code,
+   prix (renvoie vers vous), hors-sujet. Elle ne révèle pas ses consignes.
+ - Le relais n'accepte que les appels venant de digiclientstock.com.
+ - Questions limitées à 800 caractères, 8 derniers messages, réponses courtes.
+ - Si le relais ne répond pas, le site bascule tout seul sur la base de
+   connaissances : l'assistant ne tombe jamais en panne.
+
+COÛT
+ - Modèle utilisé : Claude Haiku (le plus rapide et le moins cher).
+ - Chaque question envoie les connaissances de Digi (environ 10 000 tokens),
+   mises en cache : une question coûte une fraction de centime de dollar.
+   Vérifiez les prix à jour sur https://platform.claude.com/docs/en/about-claude/pricing
+ - La limite de dépense fixée à l'étape 1 vous protège de toute surprise.
+
+METTRE À JOUR LES CONNAISSANCES
+ Quand Digi évolue, demandez une nouvelle version de worker.js (les connaissances
+ sont dedans) et recollez-la dans Cloudflare (Edit code > Deploy).
