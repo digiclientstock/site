@@ -585,6 +585,93 @@ table.g-cols tr:last-child td{border-bottom:0}
 table.bl.bc{min-width:560px}
 .bc-msg{font-size:15px;color:var(--ink-2)}
 
+
+/* ---------- Astuces 1.18.6 : cartes à retourner ---------- */
+.as-hero{background:radial-gradient(900px 380px at 80% 0%,color-mix(in srgb,var(--aqua) 18%,transparent),transparent 70%),var(--paper);padding-block:clamp(44px,6vw,80px) 30px;text-align:center}
+.as-hero .wrap{display:grid;justify-items:center;gap:14px}
+.as-hero h1{font-size:clamp(38px,5.4vw,66px);font-weight:800}
+.as-hero .lead{margin-inline:auto}
+.as-find{position:relative;width:min(720px,100%);margin-top:10px;text-align:left}
+.as-find > svg{position:absolute;left:18px;top:21px;width:22px;height:22px;color:var(--teal);z-index:2}
+.as-find .in{width:100%;padding:18px 18px 18px 52px;font-size:17.5px;border-radius:18px;background:var(--card);border:2px solid color-mix(in srgb,var(--aqua) 40%,var(--line));box-shadow:var(--shadow)}
+.as-find .in:focus{outline:none;border-color:var(--aqua)}
+.as-drop{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgba(4,22,28,.5);overflow:hidden;animation:aiIn .2s ease}
+.as-best{padding:16px 18px;display:grid;gap:8px}
+.as-best b{font-size:17px}
+.as-best ol{margin:0;padding-left:20px;display:grid;gap:4px;color:var(--ink-2)}
+.as-others{display:grid;border-top:1px solid var(--line)}
+.as-others button{all:unset;cursor:pointer;padding:11px 18px;font-size:14.5px;color:var(--ink-2);border-top:1px solid var(--line)}
+.as-others button:first-child{border-top:0}
+.as-others button:hover,.as-others button:focus-visible{background:color-mix(in srgb,var(--aqua) 10%,transparent);color:var(--ink)}
+.as-none{padding:16px 18px;color:var(--ink-2)}
+.as-try{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:760px}
+.as-wrap{display:grid;gap:28px;padding-bottom:80px}
+.as-progress{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;font-weight:600;color:var(--ink-2);max-width:760px;width:100%;justify-self:center}
+.as-progress b{color:var(--teal-strong);font-size:20px}
+.as-bar{height:10px;border-radius:6px;background:color-mix(in srgb,var(--ink) 9%,transparent);overflow:hidden}
+.as-bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--aqua),var(--saffron));transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.as-badge{font:800 12.5px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:8px 11px;border-radius:999px;background:var(--saffron);color:#231300}
+.as-badge.pop{animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+.as-hint{text-align:center;color:var(--ink-3);font-size:14px;margin-top:-14px}
+.as-swipe{display:none}
+@media (max-width:600px){.as-swipe{display:inline}}
+.flips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1000px){.flips{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.flips{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:80%;grid-template-rows:auto auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}.flip{scroll-snap-align:start}.flip-in{height:220px}}
+.flip{--c:var(--teal);display:grid;gap:8px;scroll-margin-top:110px}
+.flip.c1{--c:#0a8aa3}.flip.c2{--c:#1e8a4c}.flip.c3{--c:#7b4fc4}.flip.c4{--c:#c97c12}.flip.c5{--c:#b8456b}.flip.c6{--c:#3b6fd1}.flip.c7{--c:#0f9d8c}.flip.c8{--c:#6b7a86}
+.flip-in{all:unset;cursor:pointer;position:relative;display:block;height:220px;perspective:1100px;border-radius:18px}
+.flip-in:focus-visible{outline:3px solid var(--aqua);outline-offset:3px}
+.flip-f,.flip-b{position:absolute;inset:0;border-radius:18px;padding:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .6s cubic-bezier(.3,.7,.2,1);display:flex;flex-direction:column}
+.flip-f{background:var(--card);border:1px solid var(--line);gap:12px;justify-content:space-between}
+.flip-in:hover .flip-f{border-color:var(--c);box-shadow:0 14px 34px -18px var(--c);transform:translateY(-4px)}
+.flip-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--c)}
+.flip-ic svg{width:26px;height:26px}
+.flip-q{font:700 19px/1.25 var(--f-display);color:var(--ink);letter-spacing:-.01em}
+.flip-cat{font:700 11px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c)}
+.flip-seen{position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;display:none;place-items:center;background:var(--c);color:#fff}
+.flip-seen svg{width:14px;height:14px}
+.flip.seen .flip-seen{display:grid}
+.flip-b{background:linear-gradient(160deg,var(--c),color-mix(in srgb,var(--c) 60%,#04161c));color:#fff;transform:rotateY(180deg);gap:10px}
+.flip-bq{font:700 14px/1.3 var(--f-body);opacity:.85}
+.flip-b ol{margin:0;padding:0;list-style:none;counter-reset:fs;display:grid;gap:8px}
+.flip-b li{counter-increment:fs;display:grid;grid-template-columns:24px 1fr;gap:8px;font:600 14.5px/1.35 var(--f-body)}
+.flip-b li::before{content:counter(fs);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22);font:700 12px/1 var(--f-mono)}
+.flip.on .flip-f{transform:rotateY(-180deg)}
+.flip.on .flip-b{transform:rotateY(0)}
+.flip.flash .flip-in{animation:flash 1.6s ease}
+.flip-acts{display:flex;gap:8px;justify-content:center;min-height:30px;opacity:0;transform:translateY(-4px);transition:.25s;pointer-events:none}
+.flip.on .flip-acts{opacity:1;transform:none;pointer-events:auto}
+.flip-a{all:unset;cursor:pointer;font:600 13px/1 var(--f-body);padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink-2)}
+.flip-a:hover{border-color:var(--c);color:var(--ink)}
+.flip-a:focus-visible{outline:3px solid var(--aqua)}
+@media (prefers-reduced-motion:reduce){.flip-b{transform:none;opacity:0}.flip.on .flip-b{opacity:1}.flip.on .flip-f{transform:none;opacity:0}}
+.as-more{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;padding:24px 26px;border-radius:20px;background:var(--hero);color:var(--on-hero)}
+.as-more h3{font-size:24px}
+.as-more p{color:var(--on-hero-2);margin-top:6px}
+.as-modal{position:fixed;inset:0;z-index:110;background:rgba(3,15,19,.6);display:grid;place-items:center;padding:16px;animation:aiIn .2s ease}
+.as-modal[hidden]{display:none!important}
+.as-modal-box{outline:none;position:relative;width:min(640px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--card);border-radius:20px;padding:26px;display:grid;gap:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+.as-modal-box h3{font-size:24px;padding-right:40px}
+.as-modal-x{all:unset;cursor:pointer;position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--ink-2)}
+.as-modal-x:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.as-modal-x svg{width:20px;height:20px}
+.as-modal-x:focus-visible{outline:3px solid var(--aqua)}
+.as-thumb,.ai-shot{all:unset;cursor:zoom-in;position:relative;display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.as-thumb img,.ai-shot img{width:100%;max-height:260px;object-fit:cover;object-position:top left}
+.ai-shot img{max-height:150px}
+.as-thumb span,.ai-shot span{position:absolute;right:8px;bottom:8px;font:600 12px/1 var(--f-body);padding:6px 9px;border-radius:999px;background:rgba(6,35,44,.85);color:#fff}
+.as-thumb:focus-visible,.ai-shot:focus-visible{outline:3px solid var(--aqua)}
+.ai-fb{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--ink-3)}
+.ai-fb button{all:unset;cursor:pointer;padding:4px 10px;border-radius:999px;border:1px solid var(--line);font-weight:600;color:var(--ink-2)}
+.ai-fb button:hover{border-color:var(--aqua)}
+.ai-fb button:focus-visible{outline:3px solid var(--aqua)}
+.ai-alt{font-size:13.5px;color:var(--ink-2)}
+.ai-msg.rev{animation:msgIn .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}}
+@media (max-width:560px){.as-progress{grid-template-columns:1fr auto}.as-bar{grid-column:1/-1;grid-row:2}.flip-in{height:210px}}
+
 /* ---------- Assistant ---------- */
 .ai-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:90;display:inline-flex;align-items:center;gap:10px;padding:13px 18px 13px 14px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,var(--aqua),#0a7f99);color:#04161c;font:700 15px/1 var(--f-body);box-shadow:0 14px 34px -12px rgba(10,127,153,.85);transition:transform .2s,opacity .2s}
 .ai-fab:hover{transform:translateY(-3px)}
@@ -715,7 +802,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
     <canvas class="zellige" id="zellige" aria-hidden="true"></canvas>
     <div class="wrap">
       <div>
-        <span class="eyebrow"><i></i>Nouveau : devis, bons de commande, livraisons partielles</span>
+        <span class="eyebrow"><i></i>Nouveau : sauvegarde automatique sur Google Drive</span>
         <h1>Vos clients, vos chèques et votre stock. <span class="hl">Enfin au même endroit.</span></h1>
         <p class="lead">Digi réunit deux logiciels en un : <b>DigiClient</b> pour les livraisons, paiements, échéances et factures, et <b>DigiStock</b> pour vos dépôts et votre inventaire. Pensé pour les grossistes et négociants marocains, en dirhams, au mètre ou à la pièce.</p>
         <div class="ctas">
@@ -730,7 +817,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       </div>
       <div class="hero-stage" id="heroStage">
         <div class="win" id="heroWin">
-          <div class="win-bar"><span class="wmark" aria-hidden="true">D</span>Gestion Clients 1.18.0<div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
+          <div class="win-bar"><span class="wmark" aria-hidden="true">D</span>Gestion Clients 1.18.6<div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
           <img class="shot" data-shot="dc_fiche" src="img/dc_fiche.webp" alt="Fiche client de DigiClient : historique des livraisons et paiements, solde client et instance" width="1800" height="1075">
         </div>
         <div class="float f2"><span class="dot" style="background:rgba(95,227,160,.16);color:#5fe3a0"><svg><use href="#i-swap"/></svg></span><div><b>Synchronisé</b><small>3 postes · il y a 12 s</small></div></div>
@@ -743,10 +830,10 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="stats">
     <div class="wrap">
       <div class="stat"><b class="count" data-to="2">2</b><span>modules dans un seul programme</span></div>
-      <div class="stat"><b class="count" data-to="17">17</b><span>pages de travail</span></div>
+      <div class="stat"><b class="count" data-to="19">19</b><span>pages de travail</span></div>
       <div class="stat"><b class="count" data-to="6">6</b><span>modes de paiement suivis</span></div>
-      <div class="stat"><b><span class="count" data-to="60">60</span> s</b><span>entre deux synchronisations</span></div>
-      <div class="stat"><b class="count" data-to="896" data-sep="1">896</b><span>tests automatiques à chaque version</span></div>
+      <div class="stat"><b><span class="count" data-to="15">15</span> s</b><span>entre deux synchronisations</span></div>
+      <div class="stat"><b class="count" data-to="1002" data-sep="1">1 002</b><span>tests automatiques à chaque version</span></div>
       <div class="stat"><b>0 DH</b><span>de serveur cloud à payer</span></div>
     </div>
   </div>
@@ -755,31 +842,31 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <section class="sec" id="nouveautes">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="eyebrow">Nouveau dans Digi 1.18</span>
-        <h2>Du devis à la livraison, sans rien ressaisir.</h2>
-        <p class="lead">Nouveau design, devis et bons de commande, livraisons partielles, suivi complet des fournisseurs, codes-barres. Toutes les fonctions d'avant sont toujours là.</p>
+        <span class="eyebrow">Nouveau dans Digi 1.18.6</span>
+        <h2>Vos données à l'abri, vos articles au même endroit.</h2>
+        <p class="lead">Sauvegarde automatique sur Google Drive, une page Articles qui regroupe tout, synchronisation toutes les 15 secondes, passage instantané entre DigiClient et DigiStock. Et toujours les devis, bons de commande et livraisons partielles.</p>
       </div>
       <div class="news">
-        <a class="nw big rv" href="#astuces" data-astuce="as-partiel">
-          <img src="img/dlg_livrer_commandes.webp" alt="Choisir ce qui part pour chaque ligne de commande" loading="lazy" width="1800" height="1047">
-          <div><span class="nw-tag">Livraison partielle</span><h3>Un bon de commande livré en plusieurs fois</h3><p>Pour chaque ligne : commandé, déjà livré, reste, à livrer. La commande passe « Partiellement livrée » et le reste attend.</p></div>
+        <a class="nw big rv" href="#astuces" data-astuce="as-drive">
+          <img src="img/dlg_sauvegarde_drive.webp" alt="Réglage de la sauvegarde automatique sur Google Drive" loading="lazy" width="1800" height="1396">
+          <div><span class="nw-tag">Google Drive</span><h3>Une copie de vos données sur Internet, chaque jour</h3><p>Choisissez un dossier dans Google Drive : Digi y dépose une copie vérifiée, toute seule. Même si le PC tombe en panne, rien n'est perdu.</p></div>
         </a>
-        <a class="nw big rv" href="#astuces" data-astuce="as-regrouper">
-          <img src="img/dlg_bl_depuis_bc.webp" alt="Un BL qui regroupe deux bons de commande" loading="lazy" width="1800" height="788">
-          <div><span class="nw-tag">Regroupement</span><h3>Plusieurs bons de commande dans un seul BL</h3><p>Cochez les commandes d'un même client : toutes leurs lignes arrivent dans un seul bon de livraison.</p></div>
+        <a class="nw big rv" href="#astuces" data-astuce="as-articles">
+          <img src="img/dc_articles.webp" alt="Page Articles : stock, prix, catégorie, code-barres" loading="lazy" width="1800" height="1075">
+          <div><span class="nw-tag">Page Articles</span><h3>Tout sur un article, sur une seule ligne</h3><p>Catégorie, stock de chaque dépôt, prix de base, prix spéciaux, seuil, prix de revient, code-barres. On modifie ici, ça change partout.</p></div>
         </a>
-        <a class="nw rv" href="#astuces" data-astuce="as-devis"><svg><use href="#i-file"/></svg><h3>Devis et bons de commande</h3><p>Numérotés D-2026-0001 et BC-2026-0001. Ils ne changent ni le solde ni le stock tant que rien n'est livré.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-numero"><svg><use href="#i-list"/></svg><h3>N° de BL automatique</h3><p>26001, 26002… Le compteur repart à 27001 au 1<sup>er</sup> janvier. Toujours modifiable.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-four"><svg><use href="#i-users"/></svg><h3>Suivi fournisseurs</h3><p>Achats, règlements, solde dû, chèques pas encore débités, relevé et classement des fournisseurs.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-transfert"><svg><use href="#i-truck"/></svg><h3>Transferts entre dépôts</h3><p>Sortie d'un dépôt et entrée dans l'autre en une seule saisie, annulable d'un clic.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-douchette"><svg><use href="#i-tag"/></svg><h3>Codes-barres et douchette</h3><p>Scannez un article dans le BL, le devis, les achats… et imprimez vos étiquettes en planche A4.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-historique"><svg><use href="#i-history"/></svg><h3>Historique et prix moyen</h3><p>Tout ce qui est entré et sorti pour un article, et son prix moyen d'achat pondéré.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-annee"><svg><use href="#i-cal"/></svg><h3>Année de travail</h3><p>Chaque page affiche l'année choisie. Le solde du 31 décembre est reporté tout seul.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-retour"><svg><use href="#i-swap"/></svg><h3>Bon de retour</h3><p>Le client rend plusieurs articles : son solde baisse et la marchandise revient au dépôt.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-sauvegarde"><svg><use href="#i-save"/></svg><h3>Une seule sauvegarde</h3><p>DigiClient et DigiStock dans le même fichier, pris au même instant : tout reste cohérent.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-design"><svg><use href="#i-palette"/></svg><h3>Nouveau design</h3><p>Menu à gauche, une phrase d'aide par page, calendrier partout, actions qui apparaissent au clic.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-nouvel-article"><svg><use href="#i-plus"/></svg><h3>Un article créé partout</h3><p>Ajouté dans DigiClient, il est aussi créé dans DigiStock, directement dans les dépôts choisis.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-calendrier"><svg><use href="#i-cal"/></svg><h3>Calendrier partout</h3><p>Chaque date se choisit dans le même calendrier : clic, icône ou F4. Le clavier marche toujours.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-partiel"><svg><use href="#i-truck"/></svg><h3>Livraisons partielles</h3><p>Un bon de commande livré en plusieurs fois : le reste attend, le statut suit tout seul.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-regrouper"><svg><use href="#i-list"/></svg><h3>Plusieurs commandes, un seul BL</h3><p>Cochez les commandes d'un même client : un seul bon de livraison.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-instantane"><svg><use href="#i-bolt"/></svg><h3>Passage instantané</h3><p>DigiClient et DigiStock sont chargés une fois : on passe de l'un à l'autre sans attendre.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-postes"><svg><use href="#i-swap"/></svg><h3>Synchro toutes les 15 s</h3><p>Avec l'heure de la dernière mise à jour en bas de l'écran. Même stock sur tous les postes.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-note"><svg><use href="#i-chart"/></svg><h3>Meilleur client noté /100</h3><p>Montant encaissé, délai de paiement réel et impayés : une note claire pour chaque client.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-comptes"><svg><use href="#i-users"/></svg><h3>Droits modifiables</h3><p>Changez le rôle et les pages d'un employé à tout moment, sans recréer son compte.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-devis"><svg><use href="#i-file"/></svg><h3>Devis et bons de commande</h3><p>D-2026-0001, BC-2026-0001 : ni le solde ni le stock ne bougent tant que rien n'est livré.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-numero"><svg><use href="#i-tag"/></svg><h3>N° de BL automatique</h3><p>2600001, 2600002… puis 2700001 au 1<sup>er</sup> janvier. Toujours modifiable.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-four"><svg><use href="#i-users"/></svg><h3>Suivi fournisseurs</h3><p>Achats, règlements, solde dû, chèques à débiter, relevé et classement.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-douchette"><svg><use href="#i-search"/></svg><h3>Codes-barres</h3><p>Douchette dans le BL, le devis, les achats… et étiquettes en planche A4.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-transfert"><svg><use href="#i-truck"/></svg><h3>Transferts entre dépôts</h3><p>Sortie et entrée en une seule saisie, annulable d'un clic.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-restaurer-comptes"><svg><use href="#i-save"/></svg><h3>Restaurer sans perdre ses comptes</h3><p>Reprenez les données d'un autre PC en gardant vos utilisateurs et mots de passe.</p></a>
       </div>
     </div>
   </section>
@@ -807,7 +894,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
         <article class="pain rv">
           <span class="q"><svg><use href="#i-warn"/></svg>« Mon employé n'a pas les mêmes chiffres. »</span>
           <h3>Tous les postes à jour</h3>
-          <p>Le magasin et le bureau travaillent sur les mêmes données, synchronisées toutes les 60 secondes sur votre réseau local. Internet coupé ? On continue, tout repart au retour.</p>
+          <p>Le magasin et le bureau travaillent sur les mêmes données, synchronisées toutes les 15 secondes sur votre réseau local. Internet coupé ? On continue, tout repart au retour.</p>
           <span class="tag">Multi-postes · Hors ligne</span>
         </article>
       </div>
@@ -819,13 +906,13 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       <div class="sec-head rv">
         <span class="eyebrow">Visite guidée</span>
         <h2>Faites le tour du logiciel, écran par écran.</h2>
-        <p class="lead">Ce sont les vrais écrans de Digi 1.18, avec son nouveau design et une entreprise de démonstration.</p>
+        <p class="lead">Ce sont les vrais écrans de Digi 1.18.6, avec son nouveau design et une entreprise de démonstration.</p>
       </div>
       <div class="tour" id="tour">
         <div class="tour-list" role="tablist" aria-label="Écrans du logiciel" id="tourList"></div>
         <div class="tour-view">
           <div class="win" id="tourWin">
-            <div class="win-bar"><span class="wmark" aria-hidden="true">D</span><span id="tourTitle">Gestion Clients 1.18.0</span><div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
+            <div class="win-bar"><span class="wmark" aria-hidden="true">D</span><span id="tourTitle">Gestion Clients 1.18.6</span><div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
             <div class="tour-frame" id="tourFrame"><img class="shot zoomable" id="tourImg" src="img/dc_accueil.webp" alt="" width="1800" height="1075"></div>
           </div>
           <div class="tour-cap">
@@ -857,7 +944,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
             <li><svg><use href="#i-check"/></svg>Livraisons partielles, plusieurs commandes dans un seul BL</li>
             <li><svg><use href="#i-check"/></svg>Solde et instance de chaque client, ligne par ligne</li>
             <li><svg><use href="#i-check"/></svg>Échéancier, impayés, avoirs, encaissements</li>
-            <li><svg><use href="#i-check"/></svg>Chiffre d'affaires, statistiques, tarifs par client</li>
+            <li><svg><use href="#i-check"/></svg>Chiffre d'affaires, meilleur client noté /100, tarifs par client</li>
           </ul>
           <div class="thumb"><img src="img/dc_clients.webp" alt="Liste des clients dans DigiClient" width="1800" height="1075"></div>
           <a class="btn btn-ghost" href="#digiclient">Tout DigiClient <svg><use href="#i-right"/></svg></a>
@@ -921,7 +1008,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap page-hero">
     <span class="eyebrow">Module DigiClient</span>
     <h1>Chaque dirham suivi, de la livraison à l'encaissement.</h1>
-    <p class="lead">Neuf pages (Accueil, Clients, Fiche client, Opérations, Devis et commandes, Échéancier, Chiffre d'affaires, Statistiques, Tarifs) et tous les outils pour tenir les comptes de vos clients sans erreur.</p>
+    <p class="lead">Dix pages (Accueil, Clients, Fiche client, Opérations, Devis et commandes, Échéancier, Chiffre d'affaires, Statistiques, Articles, Tarifs) et tous les outils pour tenir les comptes de vos clients sans erreur.</p>
   </div>
   <div class="wrap">
     <div class="feat">
@@ -965,7 +1052,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
           <li><svg><use href="#i-check"/></svg><span>Remise en <b>prix au mètre négocié</b> ou en <b>montant</b> retiré du total</span></li>
           <li><svg><use href="#i-check"/></svg><span>Le stock disponible s'affiche ; le dépôt est débité à l'enregistrement</span></li>
           <li><svg><use href="#i-check"/></svg><span>Tout ou rien : en cas d'erreur, rien n'est enregistré à moitié</span></li>
-          <li><svg><use href="#i-check"/></svg><span><b>Numéro automatique</b> : 26001, 26002… et 27001 au 1<sup>er</sup> janvier</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Numéro automatique</b> : 2600001, 2600002… et 2700001 au 1<sup>er</sup> janvier</span></li>
           <li><svg><use href="#i-check"/></svg><span><b>Douchette</b> : scannez le code-barres, l'article se met tout seul</span></li>
           <li><svg><use href="#i-check"/></svg><span>« Modifier le BL complet » rouvre toutes les lignes</span></li>
         </ul>
@@ -1044,10 +1131,11 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       <div class="txt rv">
         <span class="eyebrow">Chiffre d'affaires &amp; statistiques</span>
         <h2>Qui achète, qui paie, et en combien de temps</h2>
-        <p>Le CA se ventile par client, ville, commercial, activité (Tissage, Broderie, Tissus importés…) et période. Les statistiques mesurent le délai moyen de paiement de chaque client.</p>
+        <p>Le CA se ventile par client, ville, commercial, activité (Tissage, Broderie, Tissus importés…) et période. Les statistiques mesurent le vrai délai de paiement : de la livraison à l'encaissement.</p>
         <ul class="checks">
           <li><svg><use href="#i-check"/></svg><span>Sélection libre de clients, CA cumulé de la sélection</span></li>
-          <li><svg><use href="#i-check"/></svg><span><b>Meilleur client</b> et <b>meilleur commercial</b> de la période</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Note /100</b> pour chaque client : montant encaissé, délai de paiement et impayés, à parts égales</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Meilleur client</b> (la meilleure note) et <b>meilleur commercial</b> de la période</span></li>
           <li><svg><use href="#i-check"/></svg><span>Nombre d'encaissements et d'impayés par client</span></li>
           <li><svg><use href="#i-check"/></svg><span>Impression et export CSV vers Excel</span></li>
         </ul>
@@ -1073,6 +1161,25 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
     </div>
 
     <div class="feat flip">
+      <div class="txt rv">
+        <span class="eyebrow">Nouveau · Page Articles</span>
+        <h2>Tous vos articles au même endroit</h2>
+        <p>Une ligne par article : catégorie, unité, stock total et stock de chaque dépôt, prix de base, nombre de prix spéciaux, seuil, prix de revient, code-barres. La même page existe dans DigiClient et dans DigiStock.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>Tri par colonne et filtres : catégorie, dépôt, <b>en rupture</b> (rouge), <b>sous le seuil</b> (orange), sans source, archivés</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Un changement s'applique partout</b> : renommer un article le renomme dans les opérations, les tarifs et le stock</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Le stock de chaque dépôt se corrige dans la fiche ; chaque changement devient un ajustement visible dans Mouvements</span></li>
+          <li><svg><use href="#i-check"/></svg><span>« Archiver » le fait disparaître partout sans rien perdre ; « Réactiver » le remet</span></li>
+        </ul>
+        <a class="btn btn-solid btn-sm" href="#astuces" data-astuce="as-articles" style="justify-self:start">Voir comment <svg><use href="#i-right"/></svg></a>
+      </div>
+      <div class="shot-stack rv">
+        <div class="win"><img class="shot zoomable" data-shot="dc_articles" src="img/dc_articles.webp" alt="Page Articles de DigiClient" loading="lazy" width="1800" height="1075"></div>
+        <div class="win"><img class="shot zoomable" data-shot="dlg_fiche_article" src="img/dlg_fiche_article.webp" alt="Fiche d'un article : prix, seuil, stock par dépôt" loading="lazy" width="1800" height="1368"></div>
+      </div>
+    </div>
+
+    <div class="feat">
       <div class="txt rv">
         <span class="eyebrow">Saisie rapide</span>
         <h2>La page Opérations pour les journées chargées</h2>
@@ -1126,7 +1233,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap page-hero">
     <span class="eyebrow" style="color:var(--saffron)">Module DigiStock</span>
     <h1>Votre stock, dépôt par dépôt, au mètre près.</h1>
-    <p class="lead">Huit pages (Stock, Mouvements, Transferts, Historique article, Réapprovisionnement, Inventaire, Comptage, Fournisseurs) pour savoir ce que vous avez, où il se trouve, et combien il vaut.</p>
+    <p class="lead">Neuf pages (Stock, Articles, Mouvements, Transferts, Historique article, Réapprovisionnement, Inventaire, Comptage, Fournisseurs) pour savoir ce que vous avez, où il se trouve, et combien il vaut.</p>
   </div>
   <div class="wrap">
     <div class="feat">
@@ -1146,7 +1253,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       <div class="txt rv">
         <span class="eyebrow">Mouvements</span>
         <h2>Entrées, sorties, casse : chaque mètre a une trace</h2>
-        <p>Filtrez par article, dépôt et période, avec le total des entrées et des sorties. Les sorties liées à une livraison DigiClient apparaissent avec le client et le N° BL, et se corrigent depuis la livraison.</p>
+        <p>Filtrez par type (entrées, sorties, casse, ajustements), article, dépôt et période, avec le total des entrées et des sorties. La date se tape au clavier ou se choisit dans le calendrier. Les sorties liées à une livraison DigiClient apparaissent avec le client et le N° BL, et se corrigent depuis la livraison.</p>
         <ul class="checks">
           <li><svg><use href="#i-check"/></svg><span>Type <b>Casse/Perte</b> avec motif obligatoire : Cassé, Abîmé, Périmé, Volé, Autre</span></li>
           <li><svg><use href="#i-check"/></svg><span>Suppression d'un mouvement manuel : son effet sur le stock est annulé</span></li>
@@ -1259,7 +1366,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap page-hero">
     <span class="eyebrow">Réseau, comptes &amp; sauvegardes</span>
     <h1>Plusieurs postes, un seul jeu de données. Chez vous.</h1>
-    <p class="lead">Le poste principal héberge les données sur votre réseau local. Les autres postes s'y connectent et se synchronisent toutes les 60 secondes. Pas d'abonnement cloud, pas de serveur à louer.</p>
+    <p class="lead">Le poste principal héberge les données sur votre réseau local. Les autres postes s'y connectent et se synchronisent toutes les 15 secondes. Pas d'abonnement cloud, pas de serveur à louer.</p>
   </div>
   <div class="wrap">
     <div class="sim rv" style="margin-bottom:40px">
@@ -1309,7 +1416,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
 
     <div class="grid-tools">
       <div class="tool rv"><h4><svg><use href="#i-net"/></svg>Poste principal / secondaire</h4><p>Au premier lancement, une seule question : ce poste garde les données, ou se connecte à un poste déjà installé ?</p></div>
-      <div class="tool rv"><h4><svg><use href="#i-swap"/></svg>Synchronisation automatique</h4><p>Toutes les 60 secondes : clients, opérations, tarifs, stock, mouvements, comptages, achats. Suppressions comprises.</p></div>
+      <div class="tool rv"><h4><svg><use href="#i-swap"/></svg>Synchronisation automatique</h4><p>Toutes les 15 secondes, avec l'heure de la dernière mise à jour en bas de l'écran : clients, opérations, tarifs, stock, mouvements, comptages, achats. Suppressions comprises.</p></div>
       <div class="tool rv"><h4><svg><use href="#i-wifi-off"/></svg>Mode hors ligne</h4><p>Poste principal éteint ? Les postes secondaires s'ouvrent quand même et gardent les saisies. Tout repart au retour.</p></div>
       <div class="tool rv"><h4><svg><use href="#i-shield"/></svg>La version la plus récente gagne</h4><p>Une même fiche modifiée sur deux postes : la modification la plus récente est gardée, et le conflit est inscrit au journal.</p></div>
       <div class="tool rv"><h4><svg><use href="#i-lock"/></svg>Poste principal protégé</h4><p>Un poste ne mélange jamais ses données avec celles d'un autre principal. Passer un principal en secondaire demande une confirmation et fait une sauvegarde avant.</p></div>
@@ -1326,10 +1433,11 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
         <div class="txt rv">
           <span class="eyebrow">Comptes &amp; permissions</span>
           <h2>Chacun voit ce qu'il doit voir</h2>
-          <p>L'administrateur crée les comptes de ses employés avec un mot de passe provisoire, et coche les modules et les onglets autorisés.</p>
+          <p>L'administrateur crée les comptes de ses employés avec un mot de passe provisoire, et coche les pages autorisées. Il peut changer le rôle et les accès à tout moment (« Modifier les accès… »).</p>
           <ul class="checks">
             <li><svg><use href="#i-check"/></svg><span>Trois rôles : <b>Administrateur</b>, <b>Employé</b>, <b>Lecture seule</b></span></li>
-            <li><svg><use href="#i-check"/></svg><span>Accès onglet par onglet, DigiClient et DigiStock séparés</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Accès page par page, DigiClient et DigiStock séparés, plus la page commune « Articles »</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Les nouveaux droits s'appliquent dès la synchronisation suivante ; il reste toujours au moins un administrateur</span></li>
             <li><svg><use href="#i-check"/></svg><span>Compte supprimé ou mot de passe changé : l'employé est déconnecté dans la minute</span></li>
             <li><svg><use href="#i-check"/></svg><span>5 essais ratés bloquent les tentatives pendant 5 minutes</span></li>
             <li><svg><use href="#i-check"/></svg><span>Mots de passe et numéro de secours stockés chiffrés, jamais en clair</span></li>
@@ -1345,16 +1453,18 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
         <div class="txt rv">
           <span class="eyebrow">Sauvegardes</span>
           <h2>Vos données ne se perdent pas</h2>
+          <p>Trois copies de sécurité, sans y penser : sur l'ordinateur, sur une clé USB et sur Google Drive.</p>
           <ul class="checks">
             <li><svg><use href="#i-check"/></svg><span><b>Une seule sauvegarde pour les deux modules</b> : DigiClient et DigiStock dans le même fichier, pris au même instant</span></li>
             <li><svg><use href="#i-check"/></svg><span><b>Sauvegarde automatique</b> chaque matin (30 jours conservés) et à la fermeture</span></li>
-            <li><svg><use href="#i-check"/></svg><span><b>Copie sur clé USB</b> : la clé est reconnue quelle que soit sa lettre, la copie est vérifiée, un rappel s'affiche si elle tarde</span></li>
-            <li><svg><use href="#i-check"/></svg><span>Ctrl+S, « Sauvegarder vers… ». La restauration remet les deux modules à la même date, sur le poste principal ; les autres postes reprennent ensuite les données</span></li>
+            <li><svg><use href="#i-check"/></svg><span><b>Copie sur clé USB</b> automatique dès qu'elle est branchée (vérifié chaque minute), quelle que soit sa lettre ; rappel si elle tarde</span></li>
+            <li><svg><use href="#i-check"/></svg><span><b>Copie sur Google Drive</b> chaque jour, en arrière-plan : vos données sont aussi sur Internet</span></li>
+            <li><svg><use href="#i-check"/></svg><span>Ctrl+S, « Sauvegarder vers… ». La restauration remet les deux modules à la même date, sur le poste principal, <b>en gardant les comptes de ce poste</b> si vous le souhaitez</span></li>
             <li><svg><use href="#i-check"/></svg><span>Copie de sécurité avant chaque mise à jour de la base</span></li>
             <li><svg><use href="#i-check"/></svg><span>Une mise à jour ou une désinstallation ne touche jamais aux données</span></li>
           </ul>
         </div>
-        <div class="win rv"><img class="shot zoomable" data-shot="dlg_parametres" src="img/dlg_parametres.webp" alt="Paramètres : entreprise, listes, affichage, réseau, sauvegarde" loading="lazy" width="1800" height="1280"></div>
+        <div class="win rv"><img class="shot zoomable" data-shot="dlg_sauvegarde_drive" src="img/dlg_sauvegarde_drive.webp" alt="Paramètres › Sauvegarde : clé USB et Google Drive" loading="lazy" width="1800" height="1396"></div>
       </div>
       <div class="feat" style="margin-top:40px">
         <div class="txt rv">
@@ -1674,20 +1784,31 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
 
 <!-- =============================== ASTUCES =============================== -->
 <section class="page" id="p-astuces" data-page="astuces">
-  <div class="wrap page-hero">
-    <span class="eyebrow">Astuces &amp; mode d'emploi</span>
-    <h1>Ce que Digi sait faire, même quand ça ne se voit pas.</h1>
-    <p class="lead">Livrer une commande en plusieurs fois, regrouper des commandes dans un seul BL, encaisser un chèque, reporter les soldes au 1<sup>er</sup> janvier… Chaque astuce dit où cliquer, étape par étape.</p>
-    <div class="as-ask">
-      <button class="btn btn-primary" type="button" data-open-assistant><svg><use href="#i-bolt"/></svg>Poser une question à l'assistant</button>
-      <span>ou cherchez ci-dessous</span>
+  <div class="as-hero">
+    <div class="wrap">
+      <span class="eyebrow">Astuces</span>
+      <h1>Comment je fais pour… ?</h1>
+      <p class="lead">Tapez ce que vous voulez faire. La réponse arrive tout de suite, en 3 étapes.</p>
+      <div class="as-find">
+        <svg><use href="#i-search"/></svg>
+        <input class="in" id="asQ" type="search" placeholder="livrer une commande en 2 fois, encaisser un chèque, Google Drive…" aria-label="Que voulez-vous faire ?" autocomplete="off">
+        <div class="as-drop" id="asDrop" role="listbox" hidden></div>
+      </div>
+      <div class="as-try" id="asTry" aria-label="Exemples"></div>
     </div>
   </div>
 
-  <div class="wrap" style="display:grid;gap:34px;padding-bottom:80px">
+  <div class="wrap as-wrap">
+    <div class="as-progress" aria-live="polite">
+      <div><b id="asCount">0</b> / <span id="asTotal">20</span> astuces découvertes</div>
+      <div class="as-bar"><i id="asBar"></i></div>
+      <span class="as-badge" id="asBadge" hidden>Expert Digi</span>
+    </div>
+    <p class="as-hint">Cliquez sur une carte pour la retourner.<span class="as-swipe"> Faites glisser pour voir les autres.</span></p>
+    <div class="flips" id="asCards"></div>
 
     <div class="sim rv" id="simBC">
-      <div class="sim-head"><h3>Essayez : un bon de commande livré en plusieurs fois</h3><span class="badge">Même logique que le logiciel</span></div>
+      <div class="sim-head"><h3>Mini-jeu : livrez cette commande en plusieurs fois</h3><span class="badge">Même logique que le logiciel</span></div>
       <div class="sim-body">
         <div class="bc-top">
           <div><span class="bc-num mono">BC-2026-0001</span> · Boutique El Amal</div>
@@ -1714,15 +1835,20 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       </div>
     </div>
 
-    <div class="as-tools">
-      <div class="as-search">
-        <svg><use href="#i-search"/></svg>
-        <input class="in" id="asQ" type="search" placeholder="Ex. livraison partielle, encaisser un chèque, douchette…" aria-label="Chercher une astuce" autocomplete="off">
+    <div class="as-more">
+      <div>
+        <h3>Votre question n'est pas là ?</h3>
+        <p>L'assistant connaît plus de 50 situations : fournisseurs, inventaire, comptes, sauvegardes, imports…</p>
       </div>
-      <div class="filters" id="asCats" role="group" aria-label="Catégories"></div>
+      <button class="btn btn-primary" type="button" data-open-assistant><svg><use href="#i-bolt"/></svg>Demander à l'assistant</button>
     </div>
-    <div class="as-list" id="asList"></div>
-    <p class="as-empty" id="asEmpty" hidden>Aucune astuce ne correspond. Essayez un autre mot, ou <button type="button" class="linklike" data-open-assistant>posez la question à l'assistant</button>.</p>
+  </div>
+
+  <div class="as-modal" id="asModal" role="dialog" aria-modal="true" aria-labelledby="asmT" hidden>
+    <div class="as-modal-box" tabindex="-1">
+      <button class="as-modal-x" type="button" id="asModalX" aria-label="Fermer"><svg><use href="#i-x"/></svg></button>
+      <div id="asModalBody"></div>
+    </div>
   </div>
 </section>
 
@@ -1822,7 +1948,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap page-hero">
     <span class="eyebrow">Captures d'écran</span>
     <h1>Tous les écrans, sans retouche.</h1>
-    <p class="lead">Captures réelles de Digi 1.18 avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs). Cliquez pour agrandir, flèches du clavier pour naviguer.</p>
+    <p class="lead">Captures réelles de Digi 1.18.6 avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs). Cliquez pour agrandir, flèches du clavier pour naviguer.</p>
   </div>
   <div class="wrap" style="padding-bottom:80px">
     <div class="filters" role="group" aria-label="Filtrer les captures">
@@ -1979,7 +2105,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap">
     <div>
       <a class="brand" href="#accueil" style="padding:0"><span class="mark" aria-hidden="true">D</span><span>Digi<small>Client · Stock</small></span></a>
-      <p style="margin-top:12px;max-width:36ch">Gestion clients, paiements, échéances et stock pour grossistes et négociants. Version 1.18.</p>
+      <p style="margin-top:12px;max-width:36ch">Gestion clients, paiements, échéances et stock pour grossistes et négociants. Version 1.18.6.</p>
     </div>
     <div><h5>Le logiciel</h5><a href="#digiclient">DigiClient</a><a href="#digistock">DigiStock</a><a href="#multiposte">Réseau &amp; sécurité</a><a href="#captures">Captures</a></div>
     <div><h5>Essayer</h5><a href="#simulateurs">Simulateurs</a><a href="#astuces">Astuces</a><a href="#guide">Guide des imports</a><a href="#tarifs">Licences</a><a class="dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener">Télécharger pour Windows</a></div>
@@ -2016,290 +2142,544 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
 </section>
 
 <script>
-/* Base de connaissances Digi 1.18 : sert à l'onglet Astuces ET à l'assistant.
-   Chaque fiche : id, cat (catégorie), t (titre), k (mots-clés de recherche),
-   a (réponse courte), s (étapes), p (où le trouver), img (capture), n (bon à savoir). */
+/* Base de connaissances Digi 1.18.6 : sert à l'onglet Astuces ET à l'assistant.
+   id, cat, t (titre), k (mots-clés), a (réponse), s (étapes), p (où), img (capture), n (bon à savoir),
+   q / ic / b : carte ludique (question courte, icône, 3 étapes courtes). */
 window.DIGI_KB = [
-/* ---------------- Commandes & livraisons ---------------- */
-{id:"as-devis", cat:"Commandes & livraisons", t:"Faire un devis, puis le transformer en bon de commande",
+{id:"as-devis",
+ cat:"Commandes & livraisons",
+ t:"Faire un devis, puis le transformer en bon de commande",
  k:"devis proforma offre prix proposition bon de commande commande accepte accepter transformer client numero D-2026",
  a:"Un devis (D-2026-0001) se prépare comme un BL, mais il ne change ni le solde du client ni le stock. Quand le client accepte, un clic le transforme en bon de commande (BC-2026-0001).",
  s:["Fiche du client › bouton « Devis / commande » › « Nouveau devis… » (ou page « Devis et commandes » › « Nouveau devis »).","Ajoutez les articles : le prix spécial du client est proposé tout seul. Indiquez la date de validité et des notes si besoin.","Enregistrez, ou « Enregistrer et imprimer » pour l'envoyer au client.","Le client accepte : dans « Devis et commandes », sélectionnez le devis › « Devis accepté → bon de commande »."],
- p:"DigiClient › Devis et commandes", img:"dlg_devis",
- n:"Changez le statut (En attente, Accepté, Refusé…) avec « Changer le statut ». Rien n'est jamais compté dans le chiffre d'affaires tant qu'aucun BL n'est enregistré."},
-{id:"as-partiel", cat:"Commandes & livraisons", t:"Livrer un bon de commande en partie (livraison partielle)",
+ p:"DigiClient › Devis et commandes",
+ img:"dlg_devis",
+ n:"Changez le statut (En attente, Accepté, Refusé…) avec « Changer le statut ». Rien n'est jamais compté dans le chiffre d'affaires tant qu'aucun BL n'est enregistré.",
+ q:"Faire un devis ?",
+ ic:"i-file",
+ b:["Fiche client › « Devis / commande »","Ajoutez les articles, enregistrez","Accepté ? « Devis accepté → bon de commande »"]},
+{id:"as-partiel",
+ cat:"Commandes & livraisons",
+ t:"Livrer un bon de commande en partie (livraison partielle)",
  k:"partiel partielle partiellement livrer une partie seulement pas tout reste a livrer bon de commande transformer en bl bl en deux fois quantite moins livraison incomplete",
  a:"Au moment de transformer un bon de commande en BL, Digi vous demande ce qui part ligne par ligne. Baissez la quantité « À livrer » : le BL ne contient que ça, et le reste attend sur la commande.",
  s:["Page « Devis et commandes » : sélectionnez le bon de commande › « Transformer en bon de livraison ».","Une fenêtre affiche pour chaque ligne : Commandé, Déjà livré, Reste, À livrer. Tapez la quantité qui part maintenant (ex. 150 au lieu de 250). Mettez 0 pour une ligne qui ne part pas.","« Préparer le bon de livraison » : le BL s'ouvre déjà rempli, avec son numéro automatique. Choisissez la source (dépôt) puis « Enregistrer le BL ».","La commande passe « Partiellement livrée », la colonne « Reste à livrer » affiche ce qui manque et « BL lié » garde le numéro du BL. Recommencez plus tard pour le reste : elle passera « Livrée »."],
- p:"DigiClient › Devis et commandes › Transformer en bon de livraison", img:"dlg_livrer_commandes",
- n:"Si vous supprimez entièrement un BL qui livrait une commande, ce qu'il livrait redevient « à livrer » sur la commande. Ça marche aussi pour un devis (statut « Partiellement livré »)."},
-{id:"as-regrouper", cat:"Commandes & livraisons", t:"Livrer plusieurs bons de commande dans un seul bon de livraison",
+ p:"DigiClient › Devis et commandes › Transformer en bon de livraison",
+ img:"dlg_livrer_commandes",
+ n:"Si vous supprimez entièrement un BL qui livrait une commande, ce qu'il livrait redevient « à livrer » sur la commande. Ça marche aussi pour un devis (statut « Partiellement livré »).",
+ q:"Livrer une commande en 2 fois ?",
+ ic:"i-truck",
+ b:["Devis et commandes › « Transformer en BL »","Baissez la quantité « À livrer »","Le reste attend : statut « Partiellement livrée »"]},
+{id:"as-regrouper",
+ cat:"Commandes & livraisons",
+ t:"Livrer plusieurs bons de commande dans un seul bon de livraison",
  k:"plusieurs bons de commande un seul bl regrouper fusionner grouper rassembler commandes combiner deux commandes meme bl",
  a:"Cochez plusieurs bons de commande du même client : toutes leurs lignes arrivent dans un seul BL. Vous pouvez en plus livrer chaque ligne en partie.",
  s:["Page « Devis et commandes » : sélectionnez les bons de commande du client en maintenant la touche Ctrl, puis « Transformer en bon de livraison ». Ou depuis la fiche du client : « Plus » › « Livrer des bons de commande… ».","Dans la fenêtre, cochez les documents à livrer. Leurs lignes s'affichent avec ce qui reste.","Ajustez « À livrer » si une ligne ne part pas en entier, puis « Préparer le bon de livraison ».","Le BL indique en haut « Ce bon livre : BC-2026-0005, BC-2026-0004 ». Enregistrez : chaque commande est mise à jour."],
- p:"DigiClient › Devis et commandes (Ctrl + clic)", img:"dlg_bl_depuis_bc",
- n:"Un BL est toujours pour UN seul client : des commandes de clients différents ne peuvent pas être regroupées."},
-{id:"as-numero", cat:"Commandes & livraisons", t:"Numéro de BL automatique (26001, 26002…)",
- k:"numero bl automatique compteur numerotation 26001 27001 changer numero modifier numero annee",
- a:"Chaque nouveau BL reçoit tout seul un numéro : l'année sur deux chiffres puis un compteur. 26001, 26002… et 27001 au 1er janvier.",
- s:["Ouvrez un nouveau bon de livraison : le champ « N° BL » est déjà rempli.","Vous pouvez le changer à la main. Le compteur suit ensuite le plus grand numéro de cette forme (si vous tapez 26015, le suivant sera 26016).","Si un autre poste a pris le même numéro entre-temps, le numéro suivant est pris automatiquement à l'enregistrement."],
- p:"Fenêtre « Nouveau bon de livraison »", img:"dlg_bl_nouveau",
- n:"Un BL daté d'une autre année prend le compteur de cette année-là. Au-delà de 999 BL dans l'année : 261000. Les bons de retour ont leur propre numéro (R-2026-0001)."},
-{id:"as-bl", cat:"Commandes & livraisons", t:"Saisir un bon de livraison de plusieurs articles",
+ p:"DigiClient › Devis et commandes (Ctrl + clic)",
+ img:"dlg_bl_depuis_bc",
+ n:"Un BL est toujours pour UN seul client : des commandes de clients différents ne peuvent pas être regroupées.",
+ q:"3 commandes, 1 seul BL ?",
+ ic:"i-list",
+ b:["Sélectionnez-les avec Ctrl + clic","« Transformer en bon de livraison »","Toutes les lignes arrivent dans un BL"]},
+{id:"as-numero",
+ cat:"Commandes & livraisons",
+ t:"Numéro de BL automatique (2600001, 2600002…)",
+ k:"numero bl automatique compteur numerotation 2600001 2700001 changer numero modifier numero annee",
+ a:"Chaque nouveau BL reçoit tout seul un numéro : l'année sur deux chiffres puis un compteur sur 5 chiffres. 2600001, 2600002… et 2700001 au 1er janvier.",
+ s:["Ouvrez un nouveau bon de livraison : le champ « N° BL » est déjà rempli.","Vous pouvez le changer à la main ; le compteur suit ensuite le plus grand numéro.","Si un autre poste a pris le même numéro entre-temps, le suivant est pris automatiquement à l'enregistrement."],
+ p:"Fenêtre « Nouveau bon de livraison »",
+ img:"dlg_bl_nouveau",
+ n:"Les BL déjà faits gardent leur ancien numéro, le compteur continue après eux. Les bons de retour ont leur propre numéro (R-2026-0001).",
+ q:"D'où vient le n° de BL ?",
+ ic:"i-tag",
+ b:["Il se met tout seul : 2600001, 2600002…","Vous pouvez le changer à la main","Il repart à 2700001 au 1er janvier"]},
+{id:"as-bl",
+ cat:"Commandes & livraisons",
+ t:"Saisir un bon de livraison de plusieurs articles",
  k:"bon de livraison bl nouveau saisir plusieurs articles lignes metrage prix source depot enregistrer",
  a:"Un BL se saisit en une fois : l'en-tête (client, date, N° BL, type de livraison, dépôt source) puis une ligne par article. Un seul « Enregistrer ».",
  s:["Fiche du client (ou page Opérations) › « Nouveau bon de livraison ».","Choisissez le type de livraison et la « Source par défaut » (le dépôt d'où part la marchandise).","Une ligne par article : le prix spécial du client est proposé, le stock disponible s'affiche à droite.","« Enregistrer le BL » : le solde du client augmente et le stock du dépôt baisse."],
- p:"DigiClient › Fiche client › Nouveau bon de livraison", img:"dlg_bon_livraison",
+ p:"DigiClient › Fiche client › Nouveau bon de livraison",
+ img:"dlg_bon_livraison",
  n:"Tout ou rien : s'il y a une erreur sur une ligne, rien n'est enregistré. « Modifier le BL complet » rouvre toutes les lignes d'un BL déjà saisi."},
-{id:"as-remise", cat:"Commandes & livraisons", t:"Faire une remise sur une ligne",
+{id:"as-remise",
+ cat:"Commandes & livraisons",
+ t:"Faire une remise sur une ligne",
  k:"remise reduction rabais prix negocie prix/m montant remise ristourne",
  a:"Dans le BL, chaque ligne a un « Type de remise » : « Prix/m » remplace le prix unitaire par un prix négocié, « Montant » retire une somme du total de la ligne.",
  s:["Dans la ligne, choisissez « Prix/m » ou « Montant » dans « Type de remise ».","Tapez la valeur dans « Remise » : par exemple 18 (prix au mètre négocié) ou 40 (dirhams retirés).","Le montant de la ligne se recalcule tout de suite."],
  p:"Bon de livraison › colonnes Type de remise / Remise",
  n:"La remise n'est jamais affichée sur la facture ni sur le BL imprimés : le prix unitaire imprimé est celui qui retombe juste sur le montant."},
-{id:"as-retour", cat:"Commandes & livraisons", t:"Le client rend de la marchandise (bon de retour)",
+{id:"as-retour",
+ cat:"Commandes & livraisons",
+ t:"Le client rend de la marchandise (bon de retour)",
  k:"retour client rend rendu marchandise avoir marchandise bon de retour retourner remettre en stock R-2026",
  a:"Le bon de retour fonctionne comme un BL à l'envers : plusieurs articles d'un coup, le solde du client baisse et la marchandise revient dans le dépôt choisi.",
  s:["Fiche du client › « Plus » › « Nouveau bon de retour ».","Choisissez « Retour vers » (le dépôt où la marchandise revient), puis une ligne par article rendu.","« Enregistrer le bon de retour ». Il est numéroté R-2026-0001 et s'imprime comme « Bon de retour »."],
- p:"DigiClient › Fiche client › Plus › Nouveau bon de retour", img:"dlg_bon_retour",
- n:"Sans « Retour vers », le solde baisse mais rien ne revient en stock."},
-{id:"as-imprimer", cat:"Commandes & livraisons", t:"Imprimer un BL, une facture ou un relevé",
+ p:"DigiClient › Fiche client › Plus › Nouveau bon de retour",
+ img:"dlg_bon_retour",
+ n:"Sans « Retour vers », le solde baisse mais rien ne revient en stock.",
+ q:"Le client rend de la marchandise ?",
+ ic:"i-swap",
+ b:["Fiche client › Plus › « Nouveau bon de retour »","Choisissez « Retour vers » (le dépôt)","Solde baisse, stock remonte"]},
+{id:"as-imprimer",
+ cat:"Commandes & livraisons",
+ t:"Imprimer un BL, une facture ou un relevé",
  k:"imprimer impression pdf facture bl relevé document enregistrer en pdf imprimante logo",
  a:"Cliquez sur une ligne de livraison dans la fiche client : les boutons « Imprimer le BL » et « Imprimer la facture » apparaissent. Le relevé de compte est dans « Plus ».",
  s:["Fiche du client : cliquez sur une ligne du BL.","« Imprimer le BL » ou « Imprimer la facture » : un aperçu s'ouvre.","« Enregistrer en PDF » pour l'envoyer par WhatsApp ou e-mail, ou « Imprimer »."],
- p:"DigiClient › Fiche client", img:"dc_fiche",
+ p:"DigiClient › Fiche client",
+ img:"dc_fiche",
  n:"Votre logo s'imprime en haut des documents : Paramètres › Entreprise › « Logo de l'entreprise ». Le pied de page (RC, IF, ICE, adresse) se règle au même endroit."},
-{id:"as-types-livraison", cat:"Commandes & livraisons", t:"Ajouter un type de livraison (CTM, Retrait sur place…)",
+{id:"as-types-livraison",
+ cat:"Commandes & livraisons",
+ t:"Ajouter un type de livraison (CTM, Retrait sur place…)",
  k:"type de livraison camion maroc express ctm retrait transport transporteur liste ajouter",
  a:"Les types de livraison sont votre propre liste : Paramètres › Listes › « Types de livraison », un par ligne.",
  s:["Outils › Paramètres… › onglet Listes.","Dans « Types de livraison », écrivez un type par ligne (Camion, Maroc Express, CTM, Retrait sur place…).","Enregistrez : ils sont proposés dans chaque BL."],
  p:"Outils › Paramètres › Listes",
  n:"Un type retiré reste affiché sur les anciennes opérations."},
-
-/* ---------------- Paiements & chèques ---------------- */
-{id:"as-paiements", cat:"Paiements & chèques", t:"Enregistrer plusieurs chèques d'un client en une fois",
+{id:"as-paiements",
+ cat:"Paiements & chèques",
+ t:"Enregistrer plusieurs chèques d'un client en une fois",
  k:"plusieurs cheques paiements en une fois nouveaux paiements reglement client remet cheques effets",
  a:"« Nouveaux paiements » ouvre une grille : une ligne par chèque, effet, espèce ou virement, avec le total en bas.",
  s:["Fiche du client (ou page Opérations) › « Nouveaux paiements ».","Une ligne par paiement : mode, N° du chèque, échéance, montant, statut.","« Enregistrer les paiements »."],
- p:"DigiClient › Fiche client › Nouveaux paiements", img:"dlg_reglements",
- n:"Un chèque à échéance ou un effet est enregistré « En attente » : il apparaît dans l'Échéancier jusqu'à son encaissement."},
-{id:"as-encaisser", cat:"Paiements & chèques", t:"Encaisser un chèque qui était « En attente »",
+ p:"DigiClient › Fiche client › Nouveaux paiements",
+ img:"dlg_reglements",
+ n:"Un chèque à échéance ou un effet est enregistré « En attente » : il apparaît dans l'Échéancier jusqu'à son encaissement.",
+ q:"5 chèques d'un coup ?",
+ ic:"i-list",
+ b:["Fiche client › « Nouveaux paiements »","Une ligne par chèque","Un seul « Enregistrer »"]},
+{id:"as-encaisser",
+ cat:"Paiements & chèques",
+ t:"Encaisser un chèque qui était « En attente »",
  k:"encaisser encaissement cheque en attente echeance banque passer depot cheque encaisse",
  a:"Créez une opération « Encaissement » : vous choisissez le chèque dans la liste des chèques en attente du client, tout se remplit seul, vous indiquez juste la date.",
  s:["Fiche du client › « Nouvelle opération ».","Type : « Encaissement ». Choisissez le chèque ou l'effet dans la liste.","Indiquez la date d'encaissement et enregistrez."],
  p:"DigiClient › Fiche client › Nouvelle opération › Encaissement",
- n:"La ligne d'origine reste visible, grisée en italique avec « ✓ encaissé le … ». Un même chèque ne peut pas être encaissé deux fois."},
-{id:"as-solde-instance", cat:"Paiements & chèques", t:"Différence entre Solde client et Instance",
+ n:"La ligne d'origine reste visible, grisée en italique avec « ✓ encaissé le … ». Un même chèque ne peut pas être encaissé deux fois.",
+ q:"Le chèque est passé à la banque ?",
+ ic:"i-check",
+ b:["Nouvelle opération › type « Encaissement »","Choisissez le chèque dans la liste","Indiquez la date : c'est fait"]},
+{id:"as-solde-instance",
+ cat:"Paiements & chèques",
+ t:"Différence entre Solde client et Instance",
  k:"solde instance difference dette client doit cheque en attente securise encaisse",
  a:"Le Solde, c'est ce que le client vous doit une fois ses chèques remis déduits. L'Instance, c'est ce qui n'est pas encore réellement encaissé. Un chèque « En attente » baisse le Solde tout de suite, et l'Instance seulement à l'encaissement.",
  s:["Une livraison augmente les deux.","Un chèque à échéance reçu baisse le Solde, pas l'Instance.","À l'encaissement, l'Instance baisse à son tour.","Un paiement en espèces ou un virement baisse les deux à la fois."],
  p:"DigiClient › Fiche client (en haut à droite)",
  n:"Essayez le simulateur « Solde et Instance » sur ce site pour le voir en direct."},
-{id:"as-impaye", cat:"Paiements & chèques", t:"Un chèque revient impayé",
+{id:"as-impaye",
+ cat:"Paiements & chèques",
+ t:"Un chèque revient impayé",
  k:"impaye cheque impaye rejete refuse sans provision retour banque represente",
  a:"Enregistrez une opération « Impayé » avec le numéro du chèque : son effet est annulé et le solde du client remonte.",
  s:["Fiche du client › « Nouvelle opération » › type « Impayé ».","Indiquez le mode, le numéro du chèque, le montant et la date de l'impayé.","Enregistrez : le chèque ne compte plus."],
  p:"DigiClient › Fiche client › Nouvelle opération › Impayé",
- n:"Le client règle l'impayé autrement (espèces…) ? Cliquez sur la ligne de l'impayé › « Marquer réglé ». Un chèque représenté plus tard peut, lui, être encaissé normalement."},
-{id:"as-echeancier", cat:"Paiements & chèques", t:"Voir les chèques en retard",
+ n:"Le client règle l'impayé autrement (espèces…) ? Cliquez sur la ligne de l'impayé › « Marquer réglé ». Un chèque représenté plus tard peut, lui, être encaissé normalement.",
+ q:"Chèque revenu impayé ?",
+ ic:"i-warn",
+ b:["Nouvelle opération › type « Impayé »","Numéro du chèque et montant","Le solde du client remonte"]},
+{id:"as-echeancier",
+ cat:"Paiements & chèques",
+ t:"Voir les chèques en retard",
  k:"cheques en retard retard echeancier echeance alerte effets a encaisser cette semaine",
  a:"La page « Échéancier » liste tous les chèques et effets en attente. Les retards sont en rouge, ceux des 7 prochains jours en orange. L'alerte en bas de l'écran y mène en un clic.",
  s:["Cliquez sur « ⚠ N chèque(s) en retard » en bas à droite : l'Échéancier s'ouvre avec les filtres remis à zéro.","Ou ouvrez la page « Échéancier » dans le menu de gauche.","Cliquez sur une ligne puis « Ouvrir la fiche du client » pour agir."],
- p:"DigiClient › Échéancier", img:"dc_echeancier"},
-{id:"as-avoir", cat:"Paiements & chèques", t:"Faire un geste commercial (avoir financier)",
+ p:"DigiClient › Échéancier",
+ img:"dc_echeancier"},
+{id:"as-avoir",
+ cat:"Paiements & chèques",
+ t:"Faire un geste commercial (avoir financier)",
  k:"avoir financier geste commercial reduction apres coup baisser solde credit client",
  a:"Une opération « Avoir financier » baisse le solde du client sans toucher au stock.",
  s:["Fiche du client › « Nouvelle opération » › type « Avoir financier ».","Montant et note (ex. « Geste commercial »), puis enregistrez."],
  p:"DigiClient › Fiche client › Nouvelle opération"},
-{id:"as-releve-tri", cat:"Paiements & chèques", t:"Trier la fiche client par échéance",
+{id:"as-releve-tri",
+ cat:"Paiements & chèques",
+ t:"Trier la fiche client par échéance",
  k:"trier tri echeance plus proche plus ancienne ordre fiche client",
  a:"En haut de la fiche client, « Trier par » : date de l'opération, échéance la plus proche ou la plus ancienne d'abord.",
  s:["Fiche du client › liste « Trier par » en haut à droite du tableau."],
  p:"DigiClient › Fiche client › Trier par"},
-
-/* ---------------- Clients & soldes ---------------- */
-{id:"as-annee", cat:"Clients & soldes", t:"Année de travail et report du solde au 1er janvier",
+{id:"as-annee",
+ cat:"Clients & soldes",
+ t:"Année de travail et report du solde au 1er janvier",
  k:"annee de travail report 1er janvier changer annee annee precedente 2025 2027 solde reporte nouvelle annee",
  a:"En bas du menu de gauche, choisissez l'année : la fiche client, le chiffre d'affaires, les statistiques, les devis, les mouvements et les achats n'affichent qu'elle. Ce que le client doit au 31 décembre est reporté tout seul.",
  s:["Menu de gauche › en bas, « Année de travail » : choisissez l'année.","La fiche commence par « Report au 01/01/… : solde …, instance … ».","Les chèques pas encore encaissés restent dans l'Échéancier, quelle que soit leur année."],
  p:"Menu de gauche › Année de travail",
- n:"Par défaut, c'est l'année en cours, qui change seule au 1er janvier. Rien n'est jamais effacé : c'est un simple filtre."},
-{id:"as-plusieurs-annees", cat:"Clients & soldes", t:"Voir plusieurs années ensemble",
+ n:"Par défaut, c'est l'année en cours, qui change seule au 1er janvier. Rien n'est jamais effacé : c'est un simple filtre.",
+ q:"Nouvelle année, et les soldes ?",
+ ic:"i-cal",
+ b:["Rien à faire : report automatique","Choisissez l'année en bas du menu","« Toutes les années » pour tout voir"]},
+{id:"as-plusieurs-annees",
+ cat:"Clients & soldes",
+ t:"Voir plusieurs années ensemble",
  k:"plusieurs annees ensemble toutes les annees periode filtrer par periode historique complet",
  a:"Cochez « Filtrer par période » et choisissez vos dates (ex. du 01/01/2025 au 31/12/2026), ou choisissez « Toutes les années » dans l'année de travail.",
  s:["Dans la page (fiche client, chiffre d'affaires…), cochez « Filtrer par période ».","Choisissez « Du » et « Au » avec le calendrier."],
  p:"Case « Filtrer par période »"},
-{id:"as-import-clients", cat:"Clients & soldes", t:"Reprendre mes clients et leurs soldes depuis Excel",
+{id:"as-import-clients",
+ cat:"Clients & soldes",
+ t:"Reprendre mes clients et leurs soldes depuis Excel",
  k:"importer clients excel fichier solde de depart reprise ancien logiciel cahier import",
  a:"Fichier › « Importer des clients… » : une colonne Nom (obligatoire) et, si vous voulez, Ville, Commercial, Téléphone, Solde initial, Instance initiale.",
  s:["Préparez le fichier (le modèle et toutes les règles sont dans l'onglet « Imports » de ce site).","Fichier › « Importer des clients… » › choisissez le fichier : un aperçu montre chaque ligne.","Cliquez « Importer »."],
  p:"DigiClient › Fichier › Importer des clients…",
  n:"Un client déjà présent est proposé en « Ignorer » ou « Mettre à jour » : la mise à jour ne touche jamais au solde ni à l'historique."},
-{id:"as-commercial", cat:"Clients & soldes", t:"Suivre les ventes par commercial",
+{id:"as-commercial",
+ cat:"Clients & soldes",
+ t:"Suivre les ventes par commercial",
  k:"commercial vendeur representant ventes par commercial ca commercial filtre",
  a:"Rattachez chaque client à un commercial (fiche client › Modifier). Le chiffre d'affaires, les soldes et les statistiques se filtrent ensuite par commercial.",
  s:["Paramètres › Listes : ajoutez vos commerciaux.","Clients › sélectionnez un client › « Modifier » › Commercial.","Chiffre d'affaires › filtre « Commercial », ou cochez « Détail » pour le détail par commercial."],
- p:"DigiClient › Chiffre d'affaires", img:"dc_ca"},
-{id:"as-archiver", cat:"Clients & soldes", t:"Archiver un client qui n'achète plus",
+ p:"DigiClient › Chiffre d'affaires",
+ img:"dc_ca"},
+{id:"as-note",
+ cat:"Clients & soldes",
+ t:"Qui sont mes meilleurs clients ? (note /100)",
+ k:"meilleur client note 100 classement bon payeur mauvais payeur delai de paiement encaisse impayes statistiques",
+ a:"La page « Statistiques » donne à chaque client une note /100 : montant encaissé, délai de paiement réel (de la livraison à l'encaissement) et part d'impayés, à parts égales. Le meilleur client est la meilleure note.",
+ s:["Menu de gauche › « Statistiques ».","Filtrez par ville, commercial ou période ; triez sur « Note /100 » ou « Délai de paiement ».","En bas : meilleur client, meilleur commercial et délai moyen."],
+ p:"DigiClient › Statistiques",
+ img:"dc_statistiques",
+ n:"Un délai négatif veut dire que le client a payé avant la livraison.",
+ q:"Mon meilleur client ?",
+ ic:"i-chart",
+ b:["Page « Statistiques »","Note /100 : encaissé, délai, impayés","Le meilleur est en bas de la page"]},
+{id:"as-archiver",
+ cat:"Clients & soldes",
+ t:"Archiver un client qui n'achète plus",
  k:"archiver client inactif cacher supprimer client reactiver",
  a:"Clients › sélectionnez-le › « Archiver ». Il disparaît des listes mais tout son historique est gardé. Cochez « Afficher les archivés » pour le revoir.",
  s:["Page Clients › cliquez sur le client › « Archiver »."],
  p:"DigiClient › Clients",
  n:"Un client sans aucune opération peut être supprimé ; un client avec un historique s'archive."},
-
-/* ---------------- Stock & dépôts ---------------- */
-{id:"as-nouvel-article", cat:"Stock & articles", t:"Créer un article (il apparaît aussi dans DigiStock)",
+{id:"as-nouvel-article",
+ cat:"Stock & articles",
+ t:"Créer un article (il apparaît partout)",
  k:"nouvel article creer article ajouter article produit nouveau produit source depot digistock",
- a:"Paramètres › Listes › Articles › « Ajouter… » : nom, activité, unité, prix de vente et surtout « Où mettre cet article ? » (un dépôt, plusieurs, ou tous). L'article est créé dans les deux modules.",
- s:["Outils › Paramètres… › Listes › Articles › « Ajouter… ».","Nom, activité, unité (au mètre ou à l'unité), prix de vente (facultatif).","Cochez les sources (dépôts). « Nouvelle source… » si le dépôt n'existe pas encore.","La quantité de départ est facultative : laissez 0 et saisissez-la plus tard dans DigiStock (Comptage, Mouvements ou Achats)."],
- p:"DigiClient › Outils › Paramètres › Listes", img:"dlg_nouvel_article"},
-{id:"as-transfert", cat:"Stock & articles", t:"Déplacer de la marchandise d'un dépôt à un autre",
+ a:"Page « Articles » › « Nouvel article… » : nom, catégorie, unité, prix de base, seuil, prix de revient, code-barres, et les dépôts où il est stocké avec leur quantité. Il est créé dans DigiClient et DigiStock en même temps.",
+ s:["Menu de gauche › « Articles » › « Nouvel article… ».","Nom, catégorie, unité (au mètre / à l'unité), prix de base.","Cochez les dépôts (« Nouvelle source… » s'il manque) et la quantité de départ, ou laissez 0.","« Créer l'article »."],
+ p:"DigiClient ou DigiStock › Articles",
+ img:"dlg_fiche_article"},
+{id:"as-articles",
+ cat:"Stock & articles",
+ t:"La page Articles : tout sur un article au même endroit",
+ k:"page articles liste articles catalogue categorie stock par depot prix spéciaux seuil prix de revient code barre rupture sous le seuil filtre archiver",
+ a:"La page « Articles » (dans DigiClient et DigiStock) montre une ligne par article : catégorie, unité, stock total et de chaque dépôt, prix de base, prix spéciaux, seuil, prix de revient, code-barres. Ce que vous y changez s'applique partout.",
+ s:["Menu de gauche › « Articles ». Triez en cliquant sur une colonne.","Filtrez : catégorie, dépôt, « Afficher » en rupture (rouge), sous le seuil (orange), archivés.","Double-clic sur un prix de base pour le changer ; double-clic sur un article pour tout modifier (nom, stock par dépôt…)."],
+ p:"DigiClient ou DigiStock › Articles",
+ img:"dc_articles",
+ n:"Changer une quantité dans la fiche crée un « Ajustement inventaire » daté, visible dans Mouvements et envoyé aux autres postes.",
+ q:"Tout voir sur un article ?",
+ ic:"i-box",
+ b:["Menu de gauche › « Articles »","Stock par dépôt, prix, seuil, code-barres","Double-clic pour tout modifier"]},
+{id:"as-archiver-article",
+ cat:"Stock & articles",
+ t:"Ne plus voir un article qu'on ne vend plus",
+ k:"archiver article supprimer article ne plus vendre cacher article reactiver",
+ a:"Page « Articles » › « Archiver » : l'article disparaît partout (liste, tarifs, DigiStock), mais son stock et son historique sont gardés. « Afficher : Archivés » puis « Réactiver » le remet.",
+ s:["Page « Articles » › sélectionnez l'article › « Archiver »."],
+ p:"Articles",
+ n:"« Supprimer… » n'efface définitivement qu'un article sans aucun historique ; sinon Digi propose de l'archiver."},
+{id:"as-transfert",
+ cat:"Stock & articles",
+ t:"Déplacer de la marchandise d'un dépôt à un autre",
  k:"transfert transferer deplacer depot magasin entrepot envoyer marchandise reassort",
  a:"DigiStock › « Transferts » : article, dépôt de départ, dépôt d'arrivée, quantité. La sortie et l'entrée sont faites en une fois, avec un numéro T-…",
  s:["DigiStock › page « Transferts ».","Choisissez (ou scannez) l'article, « Depuis le dépôt » et « Vers le dépôt ».","Quantité, date, notes (camion, chauffeur…) › « Enregistrer le transfert »."],
- p:"DigiStock › Transferts", img:"ds_transferts",
- n:"« Supprimer le transfert » remet les deux dépôts comme avant."},
-{id:"as-historique", cat:"Stock & articles", t:"Historique d'un article et prix moyen d'achat",
+ p:"DigiStock › Transferts",
+ img:"ds_transferts",
+ n:"« Supprimer le transfert » remet les deux dépôts comme avant.",
+ q:"Envoyer du stock à l'autre dépôt ?",
+ ic:"i-truck",
+ b:["DigiStock › « Transferts »","Article, depuis, vers, quantité","Une saisie : sortie + entrée"]},
+{id:"as-mouvement-date",
+ cat:"Stock & articles",
+ t:"Saisir un mouvement à une date passée et filtrer par type",
+ k:"mouvement date passee ancienne date filtre type entrees sorties casse ajustements mouvements hier",
+ a:"Dans Mouvements, la date se tape au clavier (JJ/MM/AAAA, 5/3/25 marche) ou se choisit au calendrier, et reste après l'enregistrement pour saisir plusieurs mouvements du même jour. Le filtre « Type » montre seulement les entrées, sorties, casses ou ajustements.",
+ s:["DigiStock › Mouvements › champ Date : tapez la date ou F4. Le lien « Aujourd'hui » la remet à aujourd'hui.","Au-dessus de la liste : « Type » (Tous, Entrées, Sorties, Casse/Perte, Ajustements inventaire), avec Article, Dépôt et la période."],
+ p:"DigiStock › Mouvements",
+ img:"ds_mouvements"},
+{id:"as-absents",
+ cat:"Stock & articles",
+ t:"Des articles de DigiClient n'apparaissent pas dans le stock",
+ k:"articles absents du stock manquent digistock pas dans le stock mettre en stock source depot",
+ a:"À l'ouverture de DigiStock, la fenêtre « Articles absents du stock » liste les articles qui ne sont dans aucun dépôt. Cochez leurs dépôts (ou « Cocher pour tous les articles ») puis « Mettre en stock ».",
+ s:["Ouvrez DigiStock (compte administrateur) : la fenêtre s'ouvre seule. Sinon : Outils › « Articles de la liste absents du stock… ».","Cochez une source par article, ou choisissez une source › « Cocher pour tous les articles ».","« Mettre en stock » : ils apparaissent à 0 ; saisissez les quantités dans Comptage, Mouvements ou Achats."],
+ p:"DigiStock › Outils",
+ img:"dlg_articles_sans_stock"},
+{id:"as-historique",
+ cat:"Stock & articles",
+ t:"Historique d'un article et prix moyen d'achat",
  k:"historique article prix moyen achat cout moyen pondere entrees sorties prix de revient",
  a:"DigiStock › « Historique article » : stock au début, entrées, sorties, stock à la fin, le détail ligne par ligne et le prix moyen d'achat (pondéré par les quantités).",
  s:["DigiStock › « Historique article » : choisissez l'article (et un dépôt, ou tous).","Choisissez la période, ou « Tout l'historique ».","À droite, « Prix d'achat » : prix moyen, premier, dernier, plus bas, plus haut. « Utiliser comme prix de revient » le reprend dans l'inventaire."],
- p:"DigiStock › Historique article", img:"ds_historique"},
-{id:"as-casse", cat:"Stock & articles", t:"Déclarer de la casse ou une perte",
+ p:"DigiStock › Historique article",
+ img:"ds_historique"},
+{id:"as-casse",
+ cat:"Stock & articles",
+ t:"Déclarer de la casse ou une perte",
  k:"casse perte abime perime vole declarer perte stock bilan des pertes comptable",
  a:"Mouvements › type « Casse/Perte » avec un motif obligatoire (Cassé, Abîmé, Périmé, Volé, Autre). Outils › « Bilan des pertes » donne la liste valorisée pour le comptable.",
  s:["DigiStock › Mouvements › type « Casse/Perte », choisissez le motif.","Outils › « Bilan des pertes (Casse/Perte)… » : période, valeur au prix de revient, aperçu et PDF."],
- p:"DigiStock › Mouvements", img:"dlg_pertes"},
-{id:"as-comptage", cat:"Stock & articles", t:"Corriger le stock après un comptage",
+ p:"DigiStock › Mouvements",
+ img:"dlg_pertes"},
+{id:"as-comptage",
+ cat:"Stock & articles",
+ t:"Corriger le stock après un comptage",
  k:"comptage inventaire physique compter rayon ecart corriger stock ajustement",
  a:"DigiStock › « Comptage » : tapez la quantité réellement comptée. L'écart est calculé et le stock corrigé.",
  s:["DigiStock › Comptage : article et dépôt.","« Quantité comptée » : l'écart avec le stock théorique s'affiche.","« Enregistrer l'inventaire »."],
- p:"DigiStock › Comptage", img:"ds_comptage"},
-{id:"as-inventaire", cat:"Stock & articles", t:"Valeur du stock et inventaire par période",
+ p:"DigiStock › Comptage",
+ img:"ds_comptage"},
+{id:"as-inventaire",
+ cat:"Stock & articles",
+ t:"Valeur du stock et inventaire par période",
  k:"inventaire valorise valeur du stock periode stock debut fin comptable bilan prix de revient",
  a:"DigiStock › « Inventaire » : quantité × prix de revient, dépôt par dépôt ou tous ensemble. Cochez « Par période » pour le stock au début, les entrées, les sorties et le stock à la fin.",
  s:["DigiStock › Inventaire : choisissez la source (un dépôt ou tous).","Double-cliquez sur un prix de revient pour le corriger.","« Aperçu / Imprimer » pour le PDF."],
- p:"DigiStock › Inventaire", img:"ds_inventaire",
+ p:"DigiStock › Inventaire",
+ img:"ds_inventaire",
  n:"Un article sans prix de revient est marqué « — » et signalé sous le total, jamais compté à zéro par erreur."},
-{id:"as-reappro", cat:"Stock & articles", t:"Savoir quoi recommander",
+{id:"as-reappro",
+ cat:"Stock & articles",
+ t:"Savoir quoi recommander",
  k:"reapprovisionnement recommander seuil manque rupture commande fournisseur alerte stock bas",
  a:"DigiStock › « Réapprovisionnement » : les articles passés sous leur seuil, dépôt par dépôt, avec la quantité manquante.",
- s:["Fixez le seuil de chaque article : Outils › « Gérer les articles… ».","Ouvrez la page « Réapprovisionnement »."],
- p:"DigiStock › Réapprovisionnement", img:"ds_reappro"},
-{id:"as-douchette", cat:"Stock & articles", t:"Utiliser une douchette (lecteur de codes-barres)",
+ s:["Fixez le seuil de chaque article dans la page « Articles » (colonne Seuil réappro).","Ouvrez la page « Réapprovisionnement », ou filtrez « Articles » sur « Sous le seuil »."],
+ p:"DigiStock › Réapprovisionnement",
+ img:"ds_reappro"},
+{id:"as-douchette",
+ cat:"Stock & articles",
+ t:"Utiliser une douchette (lecteur de codes-barres)",
  k:"douchette code barre code-barres scanner lecteur ean scan article",
- a:"Donnez un code-barres à chaque article (Outils › Gérer les articles : scannez celui du fournisseur ou « Créer un code »). Ensuite, scanner dans un champ « Article » met directement le bon article.",
- s:["DigiStock › Outils › « Gérer les articles… » › Modifier : scannez le code du fournisseur (EAN-13, EAN-8, UPC…) ou cliquez « Créer un code ».","Dans le BL, le bon de retour, le devis, les mouvements, les achats, les transferts, l'historique ou la recherche du stock : cliquez dans le champ Article et scannez."],
- p:"DigiStock › Outils › Gérer les articles", img:"dlg_articles",
- n:"La touche Entrée envoyée par la douchette ne valide pas la fenêtre."},
-{id:"as-etiquettes", cat:"Stock & articles", t:"Imprimer des étiquettes code-barres",
+ a:"Donnez un code-barres à chaque article dans sa fiche (page « Articles » › « Modifier… » › Code-barres : scannez celui du fournisseur). Ensuite, scanner dans un champ « Article » met directement le bon article.",
+ s:["Page « Articles » › double-clic sur l'article › champ « Code-barres » : scannez le code (EAN-13, EAN-8, UPC…).","Dans le BL, le bon de retour, le devis, les mouvements, les achats, les transferts ou la recherche : cliquez dans « Article » et scannez."],
+ p:"Articles › fiche article",
+ img:"dc_articles",
+ n:"Un article sans code ? En imprimant ses étiquettes, Digi lui en crée un. La touche Entrée de la douchette ne valide pas la fenêtre.",
+ q:"Utiliser une douchette ?",
+ ic:"i-search",
+ b:["Articles › fiche › scannez le code-barres","Dans le BL, cliquez dans « Article »","Scannez : l'article se met tout seul"]},
+{id:"as-etiquettes",
+ cat:"Stock & articles",
+ t:"Imprimer des étiquettes code-barres",
  k:"etiquettes imprimer etiquette code barre planche a4 autocollante prix",
  a:"DigiStock › Outils › « Imprimer des étiquettes code-barres… » : cochez les articles, le nombre d'étiquettes de chacun, avec ou sans prix. Un PDF A4 de 24 étiquettes (3 × 8, 70 × 37 mm) est créé.",
  s:["Outils › « Imprimer des étiquettes code-barres… ».","Cochez les articles et indiquez le nombre.","« Créer le PDF et l'ouvrir », puis imprimez sur une planche autocollante."],
- p:"DigiStock › Outils", img:"dlg_etiquettes"},
-{id:"as-fusion", cat:"Stock & articles", t:"Corriger un article mal écrit ou fusionner deux doublons",
+ p:"DigiStock › Outils",
+ img:"dlg_etiquettes",
+ q:"Imprimer des étiquettes ?",
+ ic:"i-tag",
+ b:["DigiStock › Outils › Étiquettes code-barres","Cochez les articles et le nombre","PDF A4 de 24 étiquettes"]},
+{id:"as-fusion",
+ cat:"Stock & articles",
+ t:"Corriger un article mal écrit ou fusionner deux doublons",
  k:"renommer fusionner article doublon mal ecrit faute corriger nom article double",
- a:"Outils › « Renommer / fusionner un article… » corrige le nom partout (opérations, BL, tarifs, stock). Si le nouveau nom existe déjà, les deux articles sont fusionnés et leurs stocks additionnés.",
- s:["Outils › « Renommer / fusionner un article… » (dans DigiClient ou DigiStock).","Choisissez l'article et tapez le bon nom.","Validez."],
- p:"Outils › Renommer / fusionner un article",
- n:"La fusion est refusée si les unités diffèrent (mètre / unité)."},
-{id:"as-unite", cat:"Stock & articles", t:"Vendre au mètre ou à la pièce",
+ a:"Dans la page « Articles », modifiez le nom : il change partout (opérations, BL, tarifs, stock). Si le nouveau nom existe déjà, Digi propose de fusionner les deux articles, stocks additionnés.",
+ s:["Page « Articles » › double-clic sur l'article (ou « Modifier… »).","Tapez le bon nom › « Enregistrer ».","Nom déjà pris : acceptez la fusion proposée. (Aussi : Outils › « Renommer / fusionner un article… »)."],
+ p:"Articles › Modifier…",
+ n:"La fusion est refusée si les unités diffèrent (mètre / unité). Pratique pour les doublons « CHENILLE-NEW » / « CHENILLE NEW »."},
+{id:"as-unite",
+ cat:"Stock & articles",
+ t:"Vendre au mètre ou à la pièce",
  k:"metre metrage quantite piece unite djellaba vendre a la piece au metre",
  a:"Chaque article a son unité (au mètre ou à l'unité). Dans le BL, la case affiche « m » ou « u. » et la colonne s'appelle Métrage ou Quantité selon l'article.",
- s:["DigiStock › Outils › Gérer les articles › Unité.","Pour changer le mot partout dans DigiClient : Paramètres › Affichage › Unité de travail."],
- p:"DigiStock › Gérer les articles"},
-
-/* ---------------- Fournisseurs ---------------- */
-{id:"as-four", cat:"Fournisseurs", t:"Suivre ce que je dois à un fournisseur",
+ s:["Page « Articles » › fiche de l'article › Unité (modifiable tant que l'article n'a aucun mouvement).","Pour changer le mot partout dans DigiClient : Paramètres › Affichage › Unité de travail."],
+ p:"Articles › fiche article"},
+{id:"as-four",
+ cat:"Fournisseurs",
+ t:"Suivre ce que je dois à un fournisseur",
  k:"fournisseur dette dois solde fournisseur ce que je dois paye regle relevé fournisseur",
  a:"DigiStock › « Fournisseurs » : pour la période choisie, chaque fournisseur avec ses achats, ses règlements, ce que vous lui devez et ses chèques pas encore débités.",
  s:["DigiStock › Fournisseurs : réglez la période en haut.","Onglet « Fournisseurs » : la situation de tous ; « Fiche fournisseur » : le relevé ligne par ligne et ce que vous lui achetez.","« Imprimer le relevé » depuis la fiche."],
- p:"DigiStock › Fournisseurs", img:"ds_fournisseurs",
- n:"Vous lui deviez déjà de l'argent avant Digi ? Fiche › « Modifier le fournisseur… » › Solde de départ."},
-{id:"as-facture-four", cat:"Fournisseurs", t:"Saisir une facture fournisseur de plusieurs articles",
+ p:"DigiStock › Fournisseurs",
+ img:"ds_fournisseurs",
+ n:"Vous lui deviez déjà de l'argent avant Digi ? Fiche › « Modifier le fournisseur… » › Solde de départ.",
+ q:"Combien je dois à un fournisseur ?",
+ ic:"i-users",
+ b:["DigiStock › « Fournisseurs »","Colonne « Solde dû » de chaque fournisseur","« Fiche fournisseur » : le relevé ligne par ligne"]},
+{id:"as-facture-four",
+ cat:"Fournisseurs",
+ t:"Saisir une facture fournisseur de plusieurs articles",
  k:"facture fournisseur achat plusieurs articles reception marchandise achat stock entree",
  a:"Fournisseurs › Achats › « Achat de plusieurs articles (facture) » : toute la facture en une fois, avec le dernier prix d'achat proposé, et le règlement du jour si vous payez tout de suite.",
  s:["DigiStock › Fournisseurs › onglet Achats › « Achat de plusieurs articles (facture) ».","Fournisseur, date, référence de la facture, dépôt par défaut.","Une ligne par article. « Payé maintenant » et le mode si vous réglez sur place.","« Enregistrer l'achat » : le stock augmente."],
- p:"DigiStock › Fournisseurs › Achats", img:"dlg_achat_multiple"},
-{id:"as-reglement-four", cat:"Fournisseurs", t:"Payer un fournisseur par chèque et suivre son débit",
+ p:"DigiStock › Fournisseurs › Achats",
+ img:"dlg_achat_multiple"},
+{id:"as-reglement-four",
+ cat:"Fournisseurs",
+ t:"Payer un fournisseur par chèque et suivre son débit",
  k:"payer fournisseur reglement cheque effet virement debite marquer debite sortie compte",
  a:"Fournisseurs › « Règlements » : espèces, chèque, effet ou virement. Un chèque ou un effet reste « à débiter » jusqu'à ce que vous cliquiez « Marquer débité ».",
  s:["DigiStock › Fournisseurs › Règlements : fournisseur, date, montant, mode, N° du chèque, échéance.","« Enregistrer le règlement ».","Quand le chèque est passé à la banque : sélectionnez-le › « Marquer débité / non débité »."],
- p:"DigiStock › Fournisseurs › Règlements", img:"ds_four_reglements",
- n:"« Chèques / effets pas encore débités » montre ce qui va encore sortir du compte, l'échéance dépassée en orange."},
-{id:"as-four-ca", cat:"Fournisseurs", t:"Savoir chez qui j'achète le plus",
+ p:"DigiStock › Fournisseurs › Règlements",
+ img:"ds_four_reglements",
+ n:"« Chèques / effets pas encore débités » montre ce qui va encore sortir du compte, l'échéance dépassée en orange.",
+ q:"Payer un fournisseur par chèque ?",
+ ic:"i-users",
+ b:["Fournisseurs › « Règlements »","Montant, chèque, échéance","Passé à la banque ? « Marquer débité »"]},
+{id:"as-four-ca",
+ cat:"Fournisseurs",
+ t:"Savoir chez qui j'achète le plus",
  k:"achats par fournisseur classement plus gros fournisseur part mois chiffre affaires fournisseur",
  a:"Fournisseurs › « Chiffre d'affaires » : achats par fournisseur et par mois, total et part de chacun, du plus gros au plus petit.",
  s:["DigiStock › Fournisseurs › onglet « Chiffre d'affaires ». Imprimable."],
- p:"DigiStock › Fournisseurs", img:"ds_four_ca"},
-
-/* ---------------- Réseau & comptes ---------------- */
-{id:"as-postes", cat:"Réseau & comptes", t:"Installer Digi sur plusieurs ordinateurs",
+ p:"DigiStock › Fournisseurs",
+ img:"ds_four_ca"},
+{id:"as-postes",
+ cat:"Réseau & comptes",
+ t:"Installer Digi sur plusieurs ordinateurs",
  k:"plusieurs postes ordinateurs reseau poste principal secondaire installer deuxieme pc magasin bureau synchronisation adresse",
- a:"Le premier ordinateur garde les données (poste principal). Sur les autres, choisissez « Ce poste se connecte à un poste déjà installé » et tapez l'adresse du principal. Ils se synchronisent toutes les 60 secondes.",
+ a:"Le premier ordinateur garde les données (poste principal). Sur les autres, choisissez « Ce poste se connecte à un poste déjà installé » et tapez l'adresse du principal. Ils se synchronisent toutes les 15 secondes.",
  s:["Installez Digi sur le poste principal en premier. Son adresse s'affiche dans Paramètres › Réseau.","Sur chaque autre PC : installez, puis à la première question choisissez « se connecte à un poste déjà installé ».","Tapez l'adresse du poste PRINCIPAL et testez la connexion."],
- p:"Première installation / Paramètres › Réseau", img:"dlg_choix_poste",
- n:"Mettez tous les postes à la même version, le principal d'abord. Deux agences éloignées peuvent être reliées par un VPN privé (Tailscale)."},
-{id:"as-horsligne", cat:"Réseau & comptes", t:"Le poste principal est éteint",
+ p:"Première installation / Paramètres › Réseau",
+ img:"dlg_choix_poste",
+ n:"En bas de la fenêtre : « ● Connecté au poste principal — à jour (11:42:05) ». Installez toujours la nouvelle version sur le principal d'abord. Deux agences éloignées peuvent être reliées par un VPN privé (Tailscale)."},
+{id:"as-horsligne",
+ cat:"Réseau & comptes",
+ t:"Le poste principal est éteint",
  k:"hors ligne poste principal eteint coupure reseau internet travailler quand meme synchroniser plus tard",
  a:"Un poste secondaire s'ouvre quand même (pour un compte déjà connecté sur ce poste dans les 30 derniers jours). La barre du bas affiche « Hors ligne » ; tout reste sur le poste et part tout seul au retour du principal.",
  s:["Travaillez normalement : « Hors ligne » s'affiche en rouge en bas.","Dès que le principal répond, la synchronisation envoie et reçoit tout. Rien à faire."],
- p:"Barre du bas"},
-{id:"as-comptes", cat:"Réseau & comptes", t:"Créer un compte pour un employé",
- k:"compte employe utilisateur droits acces role lecture seule admin mot de passe provisoire permissions",
- a:"Outils › « Gestion des comptes… » (administrateur) : nom, mot de passe provisoire, rôle (Administrateur, Employé, Lecture seule) et les pages autorisées, DigiClient et DigiStock séparés.",
- s:["Outils › « Gestion des comptes… » › Nouveau compte.","Choisissez le rôle et cochez les pages autorisées.","Donnez le mot de passe provisoire à l'employé : il en choisira un nouveau à la première connexion."],
- p:"Outils › Gestion des comptes (administrateur)", img:"dlg_nouveau_compte"},
-{id:"as-mdp", cat:"Réseau & comptes", t:"Mot de passe oublié",
+ p:"Barre du bas",
+ q:"Le PC principal est éteint ?",
+ ic:"i-wifi-off",
+ b:["Les autres postes s'ouvrent quand même","Tout reste sur le poste (« Hors ligne »)","Tout part seul au retour du principal"]},
+{id:"as-stock-postes",
+ cat:"Réseau & comptes",
+ t:"Le stock n'est pas le même sur tous les postes",
+ k:"stock different postes pc ordinateurs pas pareil negatif ecart deux pc synchronisation stock faux",
+ a:"Depuis la 1.18.5, Digi remet le même stock sur tous les postes tout seul : chaque livraison a exactement une sortie de stock, et le stock initial du poste principal est envoyé aux autres. Il suffit d'installer la dernière version, sur le poste principal d'abord.",
+ s:["Installez la dernière version sur le poste principal et ouvrez-le.","Installez-la ensuite sur les autres postes.","Fusionnez les articles en double (avec tiret / avec espace) dans la page « Articles » : le stock était sur l'un, les livraisons sur l'autre."],
+ p:"Tous les postes",
+ n:"Le bas de la fenêtre affiche l'heure de la dernière synchronisation : « ● Connecté au poste principal — à jour (11:42:05) »."},
+{id:"as-comptes",
+ cat:"Réseau & comptes",
+ t:"Créer un compte employé ou changer ses droits",
+ k:"compte employe utilisateur droits acces role lecture seule admin mot de passe provisoire permissions modifier acces cacher page chiffre affaires",
+ a:"Outils › « Gestion des comptes… » (administrateur) : rôle (Administrateur, Employé, Lecture seule) et pages autorisées, DigiClient et DigiStock séparés. « Modifier les accès… » les change à tout moment.",
+ s:["Outils › « Gestion des comptes… » › Nouveau compte : nom, mot de passe provisoire, rôle, pages cochées.","Pour changer plus tard : double-clic sur le compte (« Modifier les accès… »).","Les nouveaux droits s'appliquent dès la synchronisation suivante."],
+ p:"Outils › Gestion des comptes (administrateur)",
+ img:"dlg_nouveau_compte",
+ n:"On ne peut pas retirer son propre rôle d'administrateur, et il reste toujours au moins un administrateur.",
+ q:"Cacher le CA à un employé ?",
+ ic:"i-lock",
+ b:["Outils › « Gestion des comptes… »","Double-clic sur son compte","Décochez « Chiffre d'affaires »"]},
+{id:"as-mdp",
+ cat:"Réseau & comptes",
+ t:"Mot de passe oublié",
  k:"mot de passe oublie perdu reinitialiser numero de secours bloque connexion",
  a:"Employé : l'administrateur ouvre Gestion des comptes › « Réinitialiser le mot de passe ». Administrateur : écran de connexion › « Mot de passe oublié ? » avec votre numéro de secours, sur le poste principal.",
  s:["Écran de connexion › « Mot de passe oublié ? ».","Tapez le numéro de secours choisi à la création du compte.","Choisissez un nouveau mot de passe."],
  p:"Écran de connexion",
  n:"Numéro de secours perdu aussi : contactez l'assistance au 06 78 65 13 59 depuis le poste principal."},
-
-/* ---------------- Sauvegardes ---------------- */
-{id:"as-sauvegarde", cat:"Sauvegardes", t:"Sauvegarder et restaurer mes données",
+{id:"as-pas-ouvre",
+ cat:"Réseau & comptes",
+ t:"Digi ne s'ouvre pas ou ne trouve pas le poste principal",
+ k:"ne s ouvre pas demarre pas plante bloque ecran blanc ouvre pas lancer erreur connexion poste principal introuvable ne repond pas",
+ a:"Vérifiez d'abord que le poste principal est allumé avec Digi ouvert, et que les deux PC sont sur le même réseau. L'écran de connexion d'un poste secondaire a un bouton « Adresse du poste principal… » pour corriger l'adresse et tester la connexion.",
+ s:["Sur le poste principal : Digi doit être ouvert. Son adresse est dans Paramètres › Réseau.","Sur le poste secondaire : écran de connexion › « Adresse du poste principal… » › « Tester la connexion ».","Toujours bloqué ? Contactez l'assistance au 06 78 65 13 59 (WhatsApp)."],
+ p:"Écran de connexion",
+ n:"Un poste secondaire s'ouvre quand même hors ligne pour un compte déjà connecté sur ce poste dans les 30 derniers jours."},
+{id:"as-sauvegarde",
+ cat:"Sauvegardes",
+ t:"Sauvegarder et restaurer mes données",
  k:"sauvegarde sauvegarder restaurer restauration copie securite cle usb perte donnees ctrl+s zip",
- a:"Digi sauvegarde tout seul chaque matin et à la fermeture, DigiClient et DigiStock dans le même fichier. Ctrl+S en fait une à la demande. Restaurer remet les deux modules à la même date, sur le poste principal.",
- s:["Fichier › « Sauvegarder la base » (Ctrl+S) ou « Sauvegarder vers… ».","Copie sur clé USB : Paramètres › Sauvegarde, choisissez une fois un dossier sur la clé ; la copie se fait ensuite toute seule quand elle est branchée.","Pour revenir en arrière : Fichier › « Restaurer une sauvegarde… » sur le poste principal."],
+ a:"Digi sauvegarde tout seul chaque matin et à la fermeture, DigiClient et DigiStock dans le même fichier. En plus : copie automatique sur clé USB et sur Google Drive. Restaurer remet les deux modules à la même date, sur le poste principal.",
+ s:["Fichier › « Sauvegarder la base » (Ctrl+S) ou « Sauvegarder vers… ».","Paramètres › Sauvegarde : choisissez une fois le dossier sur la clé USB et/ou dans Google Drive ; les copies se font ensuite toutes seules.","Pour revenir en arrière : Fichier › « Restaurer une sauvegarde… » sur le poste principal."],
  p:"Fichier › Sauvegarder / Restaurer",
  n:"Avant de restaurer, Digi garde une copie complète de l'état actuel. Les postes secondaires proposent ensuite de reprendre les données restaurées."},
-{id:"as-export", cat:"Sauvegardes", t:"Récupérer toutes mes données dans Excel",
+{id:"as-drive",
+ cat:"Sauvegardes",
+ t:"Sauvegarde automatique sur Google Drive",
+ k:"google drive cloud internet sauvegarde en ligne copie drive panne ordinateur vol perte pc gmail",
+ a:"Avec l'application gratuite « Google Drive pour ordinateur », Digi dépose chaque jour une copie vérifiée de vos données dans un dossier de votre Drive. Si le PC tombe en panne ou est volé, rien n'est perdu.",
+ s:["Installez « Google Drive pour ordinateur » et connectez votre compte Google (un lecteur G:\\Mon Drive apparaît).","Outils › Paramètres › Sauvegarde › « Choisir le dossier dans Google Drive… » (ex. G:\\Mon Drive\\Sauvegardes Digi).","Cochez la copie automatique, réglez « Copier tous les » (1 jour) et « Copies conservées » (30), puis Enregistrer."],
+ p:"Outils › Paramètres › Sauvegarde",
+ img:"dlg_sauvegarde_drive",
+ n:"Copie immédiate : Fichier › « Copier maintenant sur Google Drive ». À activer sur le poste principal. Seuls les fichiers « digi_drive_… » sont touchés, jamais vos autres fichiers.",
+ q:"Mes données sur Google Drive ?",
+ ic:"i-save",
+ b:["Installez « Google Drive pour ordinateur »","Paramètres › Sauvegarde › Google Drive","Choisissez un dossier : c'est automatique"]},
+{id:"as-restaurer-comptes",
+ cat:"Sauvegardes",
+ t:"Restaurer les données d'un autre PC sans perdre mes comptes",
+ k:"restaurer restauration autre ordinateur nouveau pc changer pc garder comptes mots de passe utilisateurs",
+ a:"Dans « Restaurer une sauvegarde », la case « Garder les comptes de ce poste » (cochée par défaut) reprend clients, opérations, tarifs et stock d'une sauvegarde, sans prendre ses noms d'utilisateur et mots de passe.",
+ s:["Sur le poste principal : Fichier › « Restaurer une sauvegarde… ».","Choisissez le fichier de sauvegarde (.zip).","Laissez « Garder les comptes de ce poste » cochée, puis confirmez."],
+ p:"Fichier › Restaurer une sauvegarde",
+ n:"Avant de restaurer, Digi garde une copie complète de l'état actuel. Décochez la case pour reprendre aussi les comptes de la sauvegarde."},
+{id:"as-export",
+ cat:"Sauvegardes",
+ t:"Récupérer toutes mes données dans Excel",
  k:"export exporter excel toutes les donnees recuperer comptable fichier",
  a:"Fichier › « Exporter toutes les données… » : clients, opérations, échéancier, tarifs dans un seul fichier Excel lisible sans le logiciel.",
  s:["Fichier › « Exporter toutes les données… » › choisissez où l'enregistrer."],
  p:"DigiClient › Fichier"},
-{id:"as-journal", cat:"Sauvegardes", t:"Savoir qui a modifié ou supprimé une opération",
+{id:"as-journal",
+ cat:"Sauvegardes",
+ t:"Savoir qui a modifié ou supprimé une opération",
  k:"journal modifications qui a modifie supprime historique trace erreur",
  a:"Outils › « Journal des modifications… » : chaque création, modification et suppression, avec la date et le détail. Le contenu d'une opération supprimée reste lisible.",
  s:["Outils › « Journal des modifications… ».","Filtrez par client, action ou contenu."],
- p:"DigiClient › Outils", img:"dlg_journal"},
-
-/* ---------------- Confort & affichage ---------------- */
-{id:"as-design", cat:"Confort & affichage", t:"Où sont passés les boutons ? (nouveau design)",
+ p:"DigiClient › Outils",
+ img:"dlg_journal"},
+{id:"as-design",
+ cat:"Confort & affichage",
+ t:"Où sont passés les boutons ? (nouveau design)",
  k:"bouton disparu ou est modifier supprimer plus menu actions ligne nouveau design interface",
  a:"Seules les actions de tous les jours restent visibles. Les actions sur une ligne (Modifier, Imprimer le BL, Supprimer…) apparaissent quand vous cliquez sur la ligne. Le reste est dans le bouton « Plus ».",
  s:["Cliquez sur une ligne du tableau : ses boutons apparaissent en bas.","Bouton « Plus » : bon de retour, devis, relevé, historique, livrer des bons de commande…","Les menus Fichier, Outils et Aide sont toujours en haut."],
- p:"Bas de chaque page", img:"dc_fiche"},
-{id:"as-menu", cat:"Confort & affichage", t:"Avoir plus de place pour les tableaux",
+ p:"Bas de chaque page",
+ img:"dc_fiche",
+ q:"Où est le bouton Supprimer ?",
+ ic:"i-search",
+ b:["Cliquez d'abord sur la ligne","Ses boutons apparaissent en bas","Le reste est dans « Plus »"]},
+{id:"as-instantane",
+ cat:"Confort & affichage",
+ t:"Passer de DigiClient à DigiStock sans attendre",
+ k:"lent lenteur attendre chargement passer digistock digiclient rapide accueil instantane",
+ a:"Depuis la 1.18.5, après le mot de passe, « Chargement de Digi… » s'affiche quelques secondes : les deux modules sont chargés une fois pour toutes. Ensuite, passer de l'un à l'autre par l'accueil est immédiat.",
+ s:["Connectez-vous : patientez pendant « Chargement de Digi… ».","« Retour à l'accueil » (Ctrl+R) puis l'autre module : il s'ouvre tout de suite."],
+ p:"Écran d'accueil"},
+{id:"as-menu",
+ cat:"Confort & affichage",
+ t:"Avoir plus de place pour les tableaux",
  k:"menu gauche ranger cacher place ecran petit portable icones ☰ plein ecran f11",
  a:"Le bouton ☰ en haut à gauche range le menu : il ne reste qu'une colonne d'icônes. F11 passe en plein écran. Les deux choix sont retenus.",
  s:["Cliquez sur ☰ à côté du titre de la page.","F11 pour le plein écran."],
- p:"En haut à gauche de chaque page"},
-{id:"as-calendrier", cat:"Confort & affichage", t:"Saisir une date plus vite",
+ p:"En haut à gauche de chaque page",
+ n:"Depuis la 1.18.5, DigiClient et DigiStock sont chargés une fois après le mot de passe : passer de l'un à l'autre est immédiat."},
+{id:"as-calendrier",
+ cat:"Confort & affichage",
+ t:"Saisir une date plus vite",
  k:"date calendrier f4 saisir date clavier",
  a:"Chaque champ de date ouvre le calendrier : clic dans le champ, sur l'icône, ou F4. Vous pouvez aussi taper la date au clavier.",
  s:["Cliquez dans le champ ou appuyez sur F4.","Ou tapez directement 09/10/2026."],
  p:"Tous les champs de date"},
-{id:"as-theme", cat:"Confort & affichage", t:"Thème sombre, logo et fond d'écran",
+{id:"as-theme",
+ cat:"Confort & affichage",
+ t:"Thème sombre, logo et fond d'écran",
  k:"theme sombre clair couleur logo fond ecran accueil personnaliser",
  a:"Paramètres › Affichage : thème clair, sombre ou celui de Windows, fond d'écran et logo de l'écran d'accueil. Le même logo peut s'imprimer sur les documents (Paramètres › Entreprise).",
  s:["Outils › Paramètres… › Affichage."],
- p:"Outils › Paramètres", img:"bienvenue"},
-{id:"as-licence", cat:"Confort & affichage", t:"Obtenir ou renouveler ma licence",
+ p:"Outils › Paramètres",
+ img:"bienvenue"},
+{id:"as-licence",
+ cat:"Confort & affichage",
+ t:"Obtenir ou renouveler ma licence",
  k:"licence obtenir renouveler expiration expire essai acheter abonnement code machine",
  a:"Au premier lancement, Digi affiche un code machine. Envoyez-le par WhatsApp au 06 78 65 13 59 ou à digiclientstock@gmail.com : vous recevez un fichier de licence à charger. La date d'expiration s'affiche en haut à droite du logiciel.",
  s:["Copiez le code machine (« Copier le code machine »).","Envoyez-le avec la formule souhaitée (essai, mensuelle, 3 mois, annuelle, permanente).","« Charger le fichier de licence (.lic)… »."],
- p:"Fenêtre de licence", img:"dlg_licence",
+ p:"Fenêtre de licence",
+ img:"dlg_licence",
  n:"Vos données ne sont jamais touchées par une licence expirée ou renouvelée."}
 ];
 </script>
@@ -2568,7 +2948,7 @@ if(inp){
 <script>
 /* ====== Réglage de l'assistant IA ======
    Vide : l'assistant répond avec la base de connaissances du site (gratuit, aucune donnée envoyée).
-   Rempli avec l'adresse de votre Worker Cloudflare (voir dossier « assistant-ia ») : vraie IA,
+   Rempli avec l'adresse de votre Worker Cloudflare (dossier « assistant-ia ») : vraie IA,
    avec repli automatique sur la base de connaissances si le service ne répond pas. */
 window.DIGI_AI_ENDPOINT = window.DIGI_AI_ENDPOINT || "";
 
@@ -2579,47 +2959,111 @@ var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySel
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
 var KB = window.DIGI_KB || [];
 var byId = {}; KB.forEach(function(x){ byId[x.id]=x; });
+var ORDER=["as-partiel","as-regrouper","as-drive","as-articles","as-devis","as-encaisser","as-impaye","as-paiements","as-retour","as-transfert","as-douchette","as-etiquettes","as-note","as-annee","as-comptes","as-horsligne","as-four","as-reglement-four","as-numero","as-design"];
+var CARDS = KB.filter(function(x){ return x.q; }).sort(function(a,b){ var i=ORDER.indexOf(a.id), j=ORDER.indexOf(b.id); return (i<0?99:i)-(j<0?99:j); });
 var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* ---------------- Liste des astuces ---------------- */
-var list=$("#asList"), cats=$("#asCats"), q=$("#asQ"), cur="Toutes";
-function card(x){
-  var d=document.createElement("details"); d.className="as-card"; d.id=x.id; d.dataset.cat=x.cat;
-  var h='<summary><span class="as-cat">'+esc(x.cat)+'</span><span class="as-t">'+esc(x.t)+'</span></summary><div class="as-body"><p class="as-a">'+esc(x.a)+'</p>';
-  if(x.s && x.s.length){ h+='<ol class="as-steps">'+x.s.map(function(st){ return '<li>'+esc(st)+'</li>'; }).join("")+'</ol>'; }
-  h+='<div class="as-foot">';
-  if(x.p) h+='<span class="as-path"><svg><use href="#i-right"/></svg>'+esc(x.p)+'</span>';
-  if(x.img) h+='<button type="button" class="btn btn-ghost btn-sm as-img" data-img="'+x.img+'" data-t="'+esc(x.t)+'"><svg><use href="#i-search"/></svg>Voir l\'écran</button>';
-  h+='</div>';
-  if(x.n) h+='<p class="as-n"><b>Bon à savoir :</b> '+esc(x.n)+'</p>';
-  h+='</div>'; d.innerHTML=h; return d;
-}
-if(list){
-  var catList=["Toutes"]; KB.forEach(function(x){ if(catList.indexOf(x.cat)<0) catList.push(x.cat); });
-  catList.forEach(function(c){ var b=document.createElement("button"); b.type="button"; b.className="fbtn"; b.textContent=c; b.setAttribute("aria-pressed", c===cur?"true":"false");
-    b.addEventListener("click", function(){ cur=c; $$(".fbtn",cats).forEach(function(x){ x.setAttribute("aria-pressed", x===b?"true":"false"); }); filter(); }); cats.appendChild(b); });
-  KB.forEach(function(x){ list.appendChild(card(x)); });
-  q.addEventListener("input", filter);
-  list.addEventListener("click", function(e){
-    var b=e.target.closest(".as-img"); if(!b) return;
-    var img=document.createElement("img"); img.className="zoomable"; img.src=shot(b.dataset.img); img.alt=b.dataset.t; img.style.display="none";
-    b.parentNode.appendChild(img); img.click(); setTimeout(function(){ img.remove(); },50);
-  });
-}
+var CAT_COL = {"Commandes & livraisons":"c1","Paiements & chèques":"c2","Clients & soldes":"c3","Stock & articles":"c4","Fournisseurs":"c5","Réseau & comptes":"c6","Sauvegardes":"c7","Confort & affichage":"c8"};
 function shot(name){ var dark=document.querySelector('[data-shot-theme="dark"][aria-pressed="true"]'); return "img/"+name+(dark && name.indexOf("doc_")!==0 ? "_dark":"")+".webp"; }
-function filter(){
-  var words=norm(q.value).split(" ").filter(function(w){ return w.length>1 && STOP.indexOf(w)<0; }), n=0;
-  $$(".as-card",list).forEach(function(d){
-    var x=byId[d.id], hay=norm(x.t+" "+x.k+" "+x.a+" "+(x.s||[]).join(" ")+" "+x.cat);
-    var ok=(cur==="Toutes"||x.cat===cur) && words.every(function(w){ return hay.indexOf(w)>=0 || hay.indexOf(stem(w))>=0; });
-    d.hidden=!ok; if(ok) n++;
-  });
-  $("#asEmpty").hidden = n>0;
+function zoom(name, title){ var img=document.createElement("img"); img.className="zoomable"; img.src=shot(name); img.alt=title||""; img.style.display="none"; var host=$("#p-astuces"); host.appendChild(img); img.click(); setTimeout(function(){ img.remove(); },50); }
+
+/* ================= Moteur de recherche (cartes + assistant) ================= */
+var STOP="le la les un une des de du d l a au aux et ou en dans sur pour par avec sans ce cet cette ces mon ma mes ton ta tes son sa ses notre nos votre vos je tu il elle on nous vous ils elles me te se y est sont suis etre ai as avez peux peut puis faire fait comment quoi quel quelle quels quelles qui que qu est-ce estce svp stp merci bonjour salut digi logiciel si ne pas plus tres bien veux voudrais faut dois kifach kifash kif bghit bgheet wach wash chno chnou chi dial dyal li fin ana nta nti howa hiya o w".split(" ");
+var SYN={bl:"bon livraison",bls:"bon livraison",bc:"bon commande",bcs:"bon commande",commandes:"commande",cmd:"commande",cheques:"cheque",chq:"cheque",chek:"cheque",chik:"cheque",traite:"effet",traites:"effet",lcn:"effet",partiellement:"partiel",partielle:"partiel",partie:"partiel",parties:"partiel",seulement:"partiel",moitie:"partiel",morceau:"partiel",nos:"partiel",regrouper:"plusieurs",grouper:"plusieurs",combiner:"plusieurs",rassembler:"plusieurs",payer:"paiement",paye:"paiement",flous:"paiement",reglement:"paiement",encaisser:"encaissement",khlass:"paiement",depots:"depot",magasin:"depot",entrepot:"depot",makhzen:"depot",produit:"article",produits:"article",articles:"article",sel3a:"article",selaa:"article",marchandise:"article",scanner:"douchette",scan:"douchette",lecteur:"douchette",fournisseurs:"fournisseur",pc:"poste",ordinateur:"poste",ordinateurs:"poste",postes:"poste",employe:"compte",employes:"compte",utilisateur:"compte",backup:"sauvegarde",cloud:"drive",google:"drive",gdrive:"drive",internet:"drive",perdu:"oublie",retourner:"retour",rend:"retour",rendu:"retour",rja3:"retour",exercice:"annee",janvier:"annee",imprimante:"imprimer",pdf:"imprimer",reduction:"remise",rabais:"remise",lent:"instantane",lente:"instantane",rapide:"instantane",client:"client",clients:"client",meilleur:"note",classement:"note",dette:"dois",cacher:"acces",droit:"acces",droits:"acces"};
+var BLOCK=/(crack|pirat|contourn|keygen|generer (une |la |des )?licence|fabriquer (une |la )?licence|cle privee|signature (de |d )?(la )?licence|decompil|desassembl|reverse|code source|source code|sources? du logiciel|python|pyside|nuitka|sqlite|programmation|langage|fait en quoi|en quel langage|technologie|code du logiciel|algorithm|comment (tu|vous) (l )?(as|avez) (fait|cree|code|programme)|comment (il|le logiciel|digi) (a ete|est) (fait|cree|code|programme)|qui (a|l a) (fait|cree|code|developpe)|developpeur|hack|bypass|debrid|licence (gratuite|illimitee|a vie gratuite)|prompt|ignore (les|tes) (regles|consignes))/;
+function norm(s){ return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[’']/g," ").replace(/[^a-z0-9\-+ ]/g," ").replace(/\s+/g," ").trim(); }
+function stem(w){ return w.length>5 ? w.replace(/(ements|ement|ations|ation|ees|ee|es|s|er|e)$/,"") : w; }
+function tokens(s){ var out=[]; norm(s).split(" ").forEach(function(w){ if(!w||STOP.indexOf(w)>=0) return; var r=SYN[w]||w; r.split(" ").forEach(function(x){ if(x.length>1) out.push(stem(x)); }); }); return out; }
+function lev(a,b){ if(Math.abs(a.length-b.length)>2) return 9; var d=[],i,j; for(i=0;i<=a.length;i++){ d[i]=[i]; } for(j=0;j<=b.length;j++) d[0][j]=j;
+  for(i=1;i<=a.length;i++) for(j=1;j<=b.length;j++) d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1)); return d[a.length][b.length]; }
+function hit(w,list){ if(list.indexOf(w)>=0) return 1; if(w.length<4) return 0;
+  for(var i=0;i<list.length;i++){ var k=list[i]; if(k.length>3 && (k.indexOf(w)===0||w.indexOf(k)===0)) return .6; if(w.length>=5 && k.length>=5 && lev(w,k)<=(w.length>=8?2:1)) return .8; } return 0; }
+var IDX=KB.map(function(x){ return {x:x, t:tokens(x.t+" "+(x.q||"")), k:tokens(x.k), b:tokens(x.a+" "+(x.s||[]).join(" "))}; });
+function search(text){
+  var qt=tokens(text); if(!qt.length) return [];
+  return IDX.map(function(e){ var sc=0; qt.forEach(function(w){ sc+=3*hit(w,e.t)+2.2*hit(w,e.k)+.5*hit(w,e.b); });
+    return {x:e.x, sc:sc/Math.sqrt(qt.length+1)}; }).filter(function(r){ return r.sc>0.9; }).sort(function(a,b){ return b.sc-a.sc; });
 }
+window.digiSearch=search;
+
+/* ================= Cartes à retourner ================= */
+var seen={}; try{ seen=JSON.parse(localStorage.getItem("digi-astuces")||"{}")||{}; }catch(e){ seen={}; }
+function saveSeen(){ try{ localStorage.setItem("digi-astuces", JSON.stringify(seen)); }catch(e){} }
+function progress(){
+  var n=CARDS.filter(function(x){ return seen[x.id]; }).length;
+  $("#asCount").textContent=n; $("#asTotal").textContent=CARDS.length; $("#asBar").style.width=(n/CARDS.length*100)+"%";
+  var b=$("#asBadge"); var was=!b.hidden; b.hidden = n<CARDS.length; if(!b.hidden && !was && n===CARDS.length && !reduce){ b.classList.add("pop"); }
+}
+var cards=$("#asCards");
+if(cards){
+  CARDS.forEach(function(x){
+    var c=document.createElement("div"); c.className="flip "+(CAT_COL[x.cat]||"c1"); c.id="card-"+x.id; c.dataset.id=x.id;
+    c.innerHTML='<button type="button" class="flip-in" aria-expanded="false">'+
+      '<span class="flip-f"><span class="flip-ic"><svg><use href="#'+x.ic+'"/></svg></span><span class="flip-q">'+esc(x.q)+'</span><span class="flip-cat">'+esc(x.cat)+'</span><span class="flip-seen" aria-hidden="true"><svg><use href="#i-check"/></svg></span></span>'+
+      '<span class="flip-b"><span class="flip-bq">'+esc(x.q)+'</span><ol>'+x.b.map(function(s){ return '<li>'+esc(s)+'</li>'; }).join("")+'</ol></span>'+
+      '</button><div class="flip-acts">'+(x.img?'<button type="button" class="flip-a" data-zoom="'+x.img+'">Voir l\'écran</button>':'')+'<button type="button" class="flip-a" data-more="'+x.id+'">Plus de détails</button></div>';
+    cards.appendChild(c);
+  });
+  cards.addEventListener("click", function(e){
+    var z=e.target.closest("[data-zoom]"); if(z){ zoom(z.dataset.zoom, byId[z.closest(".flip").dataset.id].t); return; }
+    var m=e.target.closest("[data-more]"); if(m){ openFiche(m.dataset.more); return; }
+    var b=e.target.closest(".flip-in"); if(!b) return;
+    var c=b.parentNode, on=c.classList.toggle("on"); b.setAttribute("aria-expanded", on?"true":"false");
+    if(on && !seen[c.dataset.id]){ seen[c.dataset.id]=1; saveSeen(); c.classList.add("seen"); progress(); }
+  });
+  CARDS.forEach(function(x){ if(seen[x.id]){ var c=$("#card-"+x.id); if(c) c.classList.add("seen"); } });
+  progress();
+}
+
+/* ================= Fiche complète (fenêtre) ================= */
+var modal=$("#asModal"), lastFocus=null;
+function ficheHTML(x){
+  var h='<span class="as-cat">'+esc(x.cat)+'</span><h3 id="asmT">'+esc(x.t)+'</h3><p class="as-a">'+esc(x.a)+'</p>';
+  if(x.s&&x.s.length) h+='<ol class="as-steps">'+x.s.map(function(s){ return '<li>'+esc(s)+'</li>'; }).join("")+'</ol>';
+  if(x.p) h+='<p class="as-path"><svg><use href="#i-right"/></svg>'+esc(x.p)+'</p>';
+  if(x.n) h+='<p class="as-n"><b>Bon à savoir :</b> '+esc(x.n)+'</p>';
+  if(x.img) h+='<button type="button" class="as-thumb" data-zoom="'+x.img+'"><img src="'+shot(x.img)+'" alt="Écran : '+esc(x.t)+'" loading="lazy"><span>Agrandir l\'écran</span></button>';
+  return h;
+}
+function openFiche(id){
+  var x=byId[id]; if(!x||!modal) return;
+  lastFocus=document.activeElement; $("#asModalBody").innerHTML=ficheHTML(x); modal.hidden=false; document.body.style.overflow="hidden"; $(".as-modal-box").focus();
+}
+function closeFiche(){ if(!modal||modal.hidden) return; modal.hidden=true; document.body.style.overflow=""; if(lastFocus) lastFocus.focus(); }
+if(modal){
+  $("#asModalX").addEventListener("click", closeFiche);
+  modal.addEventListener("click", function(e){ if(e.target===modal) closeFiche(); var z=e.target.closest("[data-zoom]"); if(z){ closeFiche(); zoom(z.dataset.zoom, ""); } });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape" && !modal.hidden && !$("#lb").classList.contains("open")) closeFiche(); });
+}
+
+/* ================= Recherche instantanée ================= */
+var q=$("#asQ"), drop=$("#asDrop");
+var TRY=["livrer une commande en 2 fois","sauvegarde Google Drive","chèque impayé","mettre 3 commandes dans un BL","cacher le CA à un employé"];
+if(q){
+  TRY.forEach(function(t){ var b=document.createElement("button"); b.type="button"; b.className="ai-chip"; b.textContent=t; b.addEventListener("click", function(){ q.value=t; showDrop(); q.focus(); }); $("#asTry").appendChild(b); });
+  function showDrop(){
+    var v=q.value.trim(); if(v.length<2){ drop.hidden=true; return; }
+    var r=search(v).slice(0,5);
+    if(!r.length){ drop.innerHTML='<div class="as-none">Pas trouvé. <button type="button" class="linklike" data-ask="'+esc(v)+'">Demander à l\'assistant →</button></div>'; drop.hidden=false; return; }
+    var top=r[0].x;
+    drop.innerHTML='<div class="as-best"><span class="as-cat">'+esc(top.cat)+'</span><b>'+esc(top.t)+'</b><ol>'+(top.b||top.s.slice(0,3)).map(function(s){ return '<li>'+esc(s)+'</li>'; }).join("")+'</ol><button type="button" class="linklike" data-more="'+top.id+'">Voir la fiche complète →</button></div>'+
+      (r.length>1?'<div class="as-others">'+r.slice(1).map(function(o){ return '<button type="button" role="option" data-more="'+o.x.id+'">'+esc(o.x.t)+'</button>'; }).join("")+'</div>':'');
+    drop.hidden=false;
+  }
+  q.addEventListener("input", showDrop);
+  q.addEventListener("focus", showDrop);
+  drop.addEventListener("click", function(e){ var m=e.target.closest("[data-more]"); if(m){ openFiche(m.dataset.more); return; } var a=e.target.closest("[data-ask]"); if(a){ openAI(); ask(a.dataset.ask); } });
+  document.addEventListener("click", function(e){ if(!e.target.closest(".as-find")) drop.hidden=true; });
+  q.addEventListener("keydown", function(e){ if(e.key==="Escape"){ drop.hidden=true; } if(e.key==="Enter"){ e.preventDefault(); var r=search(q.value); if(r.length){ drop.hidden=true; openFiche(r[0].x.id); } } });
+}
+
+/* ================= Liens « astuce » depuis tout le site ================= */
 function openAstuce(id){
-  var go=function(){ var d=document.getElementById(id); if(!d) return; if(q){ q.value=""; cur="Toutes"; $$(".fbtn",cats).forEach(function(x){ x.setAttribute("aria-pressed", x.textContent==="Toutes"?"true":"false"); }); filter(); }
-    d.open=true; d.scrollIntoView({behavior: reduce?"auto":"smooth", block:"start"}); d.classList.add("flash"); setTimeout(function(){ d.classList.remove("flash"); },1600); };
-  if(location.hash!=="#astuces"){ location.hash="astuces"; setTimeout(go,120); } else go();
+  var card=document.getElementById("card-"+id);
+  var go=function(){
+    if(card){ card.scrollIntoView({behavior: reduce?"auto":"smooth", block:"center"}); setTimeout(function(){ if(!card.classList.contains("on")) $(".flip-in",card).click(); card.classList.add("flash"); setTimeout(function(){ card.classList.remove("flash"); },1600); }, reduce?0:450); }
+    else openFiche(id);
+  };
+  if(location.hash!=="#astuces"){ location.hash="astuces"; setTimeout(go,150); } else go();
 }
 window.digiOpenAstuce=openAstuce;
 document.addEventListener("click", function(e){
@@ -2628,16 +3072,16 @@ document.addEventListener("click", function(e){
   if(e.target.closest("[data-open-assistant]")){ e.preventDefault(); openAI(); }
 });
 
-/* ---------------- Simulateur : bon de commande livré en plusieurs fois ---------------- */
+/* ================= Mini-jeu : bon de commande livré en plusieurs fois ================= */
 (function(){
   if(!$("#simBC")) return;
   var base=[["Jacquard Royal",300,"m"],["Satin Duchesse",200,"m"],["Djellaba Brodée",12,"u."]], L, bls, no;
-  function reset(){ L=base.map(function(b){ return {a:b[0],q:b[1],u:b[2],l:0,x:b[1]}; }); bls=[]; no=26104; paint(); $("#bcMsg").textContent="Baissez une quantité « À livrer » pour faire une livraison partielle, puis enregistrez le BL."; }
+  function reset(){ L=base.map(function(b){ return {a:b[0],q:b[1],u:b[2],l:0,x:b[1]}; }); bls=[]; no=2600104; paint(); $("#bcMsg").textContent="Baissez une quantité « À livrer » pour faire une livraison partielle, puis enregistrez le BL."; }
   function f(n){ return (Math.round(n*100)/100).toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2}); }
   function statut(){ var reste=L.reduce(function(s,x){ return s+(x.q-x.l); },0), livre=L.reduce(function(s,x){ return s+x.l; },0); return reste<=0?"Livrée":(livre>0?"Partiellement livrée":"En cours"); }
   function paint(){
     var tb=$("#bcBody"); tb.innerHTML="";
-    L.forEach(function(x,i){ var r=x.q-x.l, tr=document.createElement("tr");
+    L.forEach(function(x){ var r=x.q-x.l, tr=document.createElement("tr");
       tr.innerHTML='<td>'+x.a+'</td><td class="num">'+f(x.q)+'</td><td class="num">'+f(x.l)+'</td><td class="num"><b>'+f(r)+'</b></td><td class="num"><input class="in n" type="number" min="0" max="'+r+'" step="1" value="'+Math.min(x.x,r)+'" aria-label="À livrer : '+x.a+'" '+(r<=0?'disabled':'')+'> <span style="color:var(--ink-3);font-size:12px">'+x.u+'</span></td>';
       $("input",tr).addEventListener("input", function(){ var v=parseFloat(this.value.replace(",","."))||0; x.x=Math.max(0,Math.min(r,v)); });
       tb.appendChild(tr); });
@@ -2654,66 +3098,74 @@ document.addEventListener("click", function(e){
     no++; var num=String(no);
     L.forEach(function(x){ var v=Math.min(x.x,x.q-x.l); x.l+=v; x.x=x.q-x.l; }); bls.push(num); paint();
     var st=statut();
-    $("#bcMsg").textContent = st==="Livrée" ? "BL "+num+" enregistré : tout est parti, la commande passe « Livrée »." : "BL "+num+" enregistré. La commande passe « Partiellement livrée » ; le reste attend. Enregistrez un autre BL pour la suite.";
+    $("#bcMsg").textContent = st==="Livrée" ? "Bravo ! BL "+num+" enregistré : tout est parti, la commande passe « Livrée »." : "BL "+num+" enregistré. La commande passe « Partiellement livrée » ; le reste attend. Enregistrez un autre BL pour la suite.";
   });
   reset();
 })();
 
-/* ---------------- Assistant ---------------- */
-var STOP="le la les un une des de du d l a au aux et ou en dans sur pour par avec sans ce cet cette ces mon ma mes ton ta tes son sa ses notre nos votre vos je tu il elle on nous vous ils elles me te se y est sont suis etre ai as avez peux peut puis faire fait comment quoi quel quelle quels quelles ou qui que qu est-ce estce svp stp merci bonjour salut digi logiciel si ne pas plus moins tres bien veux voudrais faut dois".split(" ");
-var SYN={bl:"bon livraison",bls:"bon livraison",bc:"bon commande",bcs:"bon commande",commandes:"commande",cmd:"commande",cheques:"cheque",chq:"cheque",traite:"effet",traites:"effet",lcn:"effet",partiellement:"partiel",partie:"partiel",parties:"partiel",seulement:"partiel",morceau:"partiel",partielle:"partiel",moitie:"partiel",reste:"partiel",regrouper:"plusieurs",grouper:"plusieurs",fusionner:"fusion",combiner:"plusieurs",rassembler:"plusieurs",payer:"paiement",paye:"paiement",reglement:"paiement",encaisser:"encaissement",depot:"depot",depots:"depot",magasin:"depot",entrepot:"depot",produit:"article",produits:"article",articles:"article",scanner:"douchette",scan:"douchette",codebarre:"code barre",fournisseurs:"fournisseur",pc:"poste",ordinateur:"poste",ordinateurs:"poste",postes:"poste",employe:"compte",employes:"compte",utilisateur:"compte",backup:"sauvegarde",perdu:"oublie",retourner:"retour",rend:"retour",rendu:"retour",annee:"annee",exercice:"annee",janvier:"annee",imprimante:"imprimer",pdf:"imprimer",reduction:"remise",rabais:"remise"};
-var BLOCK=/(crack|pirat|contourn|keygen|generer (une |la |des )?licence|fabriquer (une |la )?licence|cle privee|signature (de |d )?(la )?licence|decompil|desassembl|reverse|code source|source code|sources? du logiciel|python|pyside|nuitka|sqlite|programmation|langage|algorithm|comment (tu|vous) (l )?(as|avez) (fait|cree|code|programme)|comment (il|le logiciel|digi) (a ete|est) (fait|cree|code|programme)|qui (a|l a) (fait|cree|code|developpe)|developpeur|hack|bypass|debrid|licence (gratuite|illimitee|a vie gratuite)|prompt|ignore (les|tes) (regles|consignes))/;
-function norm(s){ return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[’']/g," ").replace(/[^a-z0-9\-+ ]/g," ").replace(/\s+/g," ").trim(); }
-function stem(w){ return w.length>5 ? w.replace(/(ements|ement|ations|ation|ees|ee|es|s|er|e)$/,"") : w; }
-function tokens(s){ var out=[]; norm(s).split(" ").forEach(function(w){ if(!w||STOP.indexOf(w)>=0) return; var r=SYN[w]||w; r.split(" ").forEach(function(x){ if(x.length>1) out.push(stem(x)); }); }); return out; }
-var IDX=KB.map(function(x){ return {x:x, t:tokens(x.t), k:tokens(x.k), b:tokens(x.a+" "+(x.s||[]).join(" "))}; });
-function search(text){
-  var qt=tokens(text); if(!qt.length) return [];
-  return IDX.map(function(e){ var sc=0; qt.forEach(function(w){
-      if(e.t.indexOf(w)>=0) sc+=3; if(e.k.indexOf(w)>=0) sc+=2.2; else if(e.k.some(function(k){ return k.length>3 && w.length>3 && (k.indexOf(w)===0||w.indexOf(k)===0); })) sc+=1.2;
-      if(e.b.indexOf(w)>=0) sc+=0.6; });
-    return {x:e.x, sc:sc/Math.sqrt(qt.length+1)}; }).filter(function(r){ return r.sc>0.9; }).sort(function(a,b){ return b.sc-a.sc; });
-}
-var panel=$("#aiPanel"), log=$("#aiLog"), fab=$("#aiFab"), history=[];
+/* ================= Assistant ================= */
+var panel=$("#aiPanel"), log=$("#aiLog"), fab=$("#aiFab"), history=[], lastTopic=null, lastQ="";
 function add(who, html){ var d=document.createElement("div"); d.className="ai-msg "+who; d.innerHTML=html; log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
+var CONTACT_HTML='<b>06 78 65 13 59</b> (téléphone ou WhatsApp) · <b>digiclientstock@gmail.com</b>';
 function answerHTML(x){
   var h='<p class="ai-t">'+esc(x.t)+'</p><p>'+esc(x.a)+'</p>';
   if(x.s&&x.s.length) h+='<ol>'+x.s.map(function(st){ return '<li>'+esc(st)+'</li>'; }).join("")+'</ol>';
   if(x.n) h+='<p class="ai-n">'+esc(x.n)+'</p>';
-  h+='<button type="button" class="linklike" data-astuce="'+x.id+'">Ouvrir l\'astuce'+(x.img?' avec la capture':'')+' →</button>';
+  if(x.img) h+='<button type="button" class="ai-shot" data-zoom="'+x.img+'"><img src="'+shot(x.img)+'" alt="Écran : '+esc(x.t)+'" loading="lazy"><span>Voir l\'écran</span></button>';
+  h+='<div class="ai-fb" data-id="'+x.id+'"><span>Ça vous aide ?</span><button type="button" data-fb="1">Oui</button><button type="button" data-fb="0">Non</button></div>';
   return h;
 }
-var REFUS="Je ne peux répondre qu'aux questions sur l'utilisation de Digi (livraisons, paiements, stock, fournisseurs, réglages…). Pour tout le reste, contactez directement l'éditeur au <b>06 78 65 13 59</b> ou à <b>digiclientstock@gmail.com</b>.";
-var CONTACT="Je n'ai pas trouvé de réponse sûre. Reformulez avec d'autres mots, ou contactez l'assistance : <b>06 78 65 13 59</b> (WhatsApp) ou <b>digiclientstock@gmail.com</b>.";
-function suggest(ids){ var z=$("#aiSugg"); z.innerHTML=""; ids.forEach(function(id){ var x=byId[id]; if(!x) return; var b=document.createElement("button"); b.type="button"; b.className="ai-chip"; b.textContent=x.t; b.addEventListener("click", function(){ ask(x.t); }); z.appendChild(b); }); }
-function localAnswer(text){
-  var n=norm(text);
+var REFUS="Je ne peux répondre qu'aux questions sur l'utilisation de Digi (livraisons, paiements, stock, fournisseurs, réglages…). Pour tout le reste, contactez directement l'éditeur : "+CONTACT_HTML+".";
+var CONTACT="Je n'ai pas trouvé de réponse sûre. Essayez avec d'autres mots (par exemple « encaisser un chèque »), ou contactez l'assistance : "+CONTACT_HTML+".";
+var DL='https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe';
+function suggest(ids){ var z=$("#aiSugg"); z.innerHTML=""; ids.forEach(function(id){ var x=byId[id]; if(!x) return; var b=document.createElement("button"); b.type="button"; b.className="ai-chip"; b.textContent=x.q||x.t; b.addEventListener("click", function(){ ask(x.q||x.t, id); }); z.appendChild(b); }); }
+function intents(n){
   if(BLOCK.test(n)) return REFUS;
-  if(/^(bonjour|salut|salam|bonsoir|hello|cc|coucou)\b/.test(n) && n.split(" ").length<4) return "Bonjour ! Posez-moi une question sur Digi : par exemple « comment livrer une commande en partie ? » ou « comment encaisser un chèque ? ».";
-  if(/\b(prix|tarif|combien|cout)\b/.test(n) && /\b(licence|abonnement|logiciel|digi|coute|mois|an)\b/.test(n)) return "Les licences existent en essai gratuit 7 jours, mensuelle, 3 mois, annuelle et permanente. Pour le tarif, contactez l'éditeur au <b>06 78 65 13 59</b> ou à <b>digiclientstock@gmail.com</b>. <button type=\"button\" class=\"linklike\" data-goto-page=\"tarifs\">Voir les licences →</button>";
-  var r=search(text);
-  if(!r.length) { suggest(["as-partiel","as-regrouper","as-encaisser"]); return CONTACT; }
-  var others=r.slice(1,4).map(function(o){ return o.x.id; }); suggest(others);
-  return answerHTML(r[0].x);
+  var words=n.split(" ");
+  if(/^(bonjour|salut|salam|slm|bonsoir|hello|coucou|cc|labas|sbah lkhir|msa lkhir)\b/.test(n) && words.length<5) return "Bonjour ! Dites-moi ce que vous voulez faire dans Digi, par exemple « livrer une commande en 2 fois » ou « activer la sauvegarde Google Drive ».";
+  if(/^(merci|mrc|chokran|choukran|shukran|top|super|parfait|ok merci)\b/.test(n)) return "Avec plaisir ! Une autre question ?";
+  if(/\b(prix|tarif|combien|cout|coute|abonnement)\b/.test(n) && !/\b(prix de base|prix special|prix de revient|prix moyen|prix d achat|tarifs? client)\b/.test(n) && /\b(licence|abonnement|logiciel|digi|coute|mois|an|annee|acheter)\b/.test(n)) return "Licences : essai gratuit 7 jours, mensuelle, 3 mois, annuelle et permanente. Pour le tarif, contactez l'éditeur : "+CONTACT_HTML+". <button type=\"button\" class=\"linklike\" data-goto-page=\"tarifs\">Voir les licences →</button>";
+  if(/\b(telecharger|telechargement|installer|installation|installateur|download)\b/.test(n) && !/\b(poste|deuxieme|plusieurs|autre pc|secondaire|google)\b/.test(n)) return "Téléchargez l'installateur ici : <a href=\""+DL+"\" target=\"_blank\" rel=\"noopener\">Télécharger Digi pour Windows</a>. Double-clic, Suivant, Terminer. Au premier lancement, envoyez le code machine affiché à l'éditeur ("+CONTACT_HTML+") pour recevoir votre licence.";
+  if(/\b(nouveau|nouveaute|nouveautes|quoi de neuf|derniere version|mise a jour)\b/.test(n) && !/\b(client|article|bon|devis|compte|paiement|operation)\b/.test(n)) return "Nouveau dans Digi 1.18.6 : sauvegarde automatique sur Google Drive, page Articles (tout sur un article au même endroit), synchronisation toutes les 15 secondes, passage instantané entre DigiClient et DigiStock, meilleur client noté /100, droits des employés modifiables, devis, bons de commande et livraisons partielles. Mise à jour : relancez simplement le nouvel installateur, sur le poste principal d'abord.";
+  if(/\b(parler|appeler|contacter|joindre|humain|quelqu un|whatsapp|telephone|numero|email|mail)\b/.test(n) && !/\b(numero (de )?(bl|cheque|secours|machine))\b/.test(n)) return "Vous pouvez joindre l'éditeur directement : "+CONTACT_HTML+".";
+  return null;
 }
+function localAnswer(text, forcedId){
+  if(forcedId && byId[forcedId]){ lastTopic=forcedId; suggest(relatedTo(forcedId)); return answerHTML(byId[forcedId]); }
+  var n=norm(text), it=intents(n); if(it) return it;
+  var r=search(text);
+  /* question de suite courte (« et pour un devis ? ») : on garde le sujet précédent en appui */
+  if(lastQ && n.split(" ").length<=5 && /^(et|mais|aussi|pour|si|ou|w|o)\b/.test(n) && (!r.length || r[0].sc<1.6)){ var r2=search(lastQ+" "+text); if(r2.length) r=r2; }
+  if(!r.length){ suggest(["as-partiel","as-drive","as-encaisser","as-articles"]); return CONTACT; }
+  lastTopic=r[0].x.id; lastQ=text;
+  suggest(r.slice(1,4).map(function(o){ return o.x.id; }));
+  var h=answerHTML(r[0].x);
+  if(r.length>1 && r[1].sc>r[0].sc*0.85) h+='<p class="ai-alt">Vous cherchiez peut-être : <button type="button" class="linklike" data-ask-id="'+r[1].x.id+'">'+esc(r[1].x.t)+'</button></p>';
+  return h;
+}
+function relatedTo(id){ var x=byId[id]; return KB.filter(function(y){ return y.cat===x.cat && y.id!==id; }).slice(0,3).map(function(y){ return y.id; }); }
 function typing(){ return add("bot", '<span class="ai-typing"><i></i><i></i><i></i></span>'); }
-function ask(text){
+function reveal(el, html){ el.innerHTML=html; if(reduce) return; el.classList.add("rev"); setTimeout(function(){ el.classList.remove("rev"); }, 600); log.scrollTop=log.scrollHeight; }
+function ask(text, forcedId){
   text=String(text||"").trim(); if(!text) return;
   add("me", esc(text)); $("#aiIn").value="";
   var t=typing();
-  if(window.DIGI_AI_ENDPOINT && !BLOCK.test(norm(text))){
+  if(window.DIGI_AI_ENDPOINT && !forcedId && !BLOCK.test(norm(text))){
     history.push({role:"user", content:text}); history=history.slice(-8);
     var ctl=("AbortController" in window)?new AbortController():null; var to=setTimeout(function(){ if(ctl) ctl.abort(); }, 20000);
     fetch(window.DIGI_AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history}),signal:ctl?ctl.signal:undefined})
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
       .then(function(j){ clearTimeout(to); var rep=String(j.reply||"").trim(); if(!rep) throw new Error("vide");
-        history.push({role:"assistant", content:rep}); t.innerHTML=fmt(rep); var r=search(text); suggest(r.slice(0,3).map(function(o){ return o.x.id; })); log.scrollTop=log.scrollHeight; })
-      .catch(function(){ clearTimeout(to); t.innerHTML=localAnswer(text); log.scrollTop=log.scrollHeight; });
+        history.push({role:"assistant", content:rep}); var r=search(text); var extra="";
+        if(r.length && r[0].x.img) extra='<button type="button" class="ai-shot" data-zoom="'+r[0].x.img+'"><img src="'+shot(r[0].x.img)+'" alt="" loading="lazy"><span>Voir l\'écran</span></button>';
+        reveal(t, fmt(rep)+extra); suggest(r.slice(0,3).map(function(o){ return o.x.id; })); })
+      .catch(function(){ clearTimeout(to); reveal(t, localAnswer(text)); });
     return;
   }
-  setTimeout(function(){ t.innerHTML=localAnswer(text); log.scrollTop=log.scrollHeight; }, reduce?0:450);
+  setTimeout(function(){ reveal(t, localAnswer(text, forcedId)); }, reduce?0:420);
 }
-function fmt(s){ /* texte simple de l'IA -> HTML sûr : paragraphes, listes, gras */
+window.digiAsk=function(t){ openAI(); ask(t); };
+function fmt(s){
   var lines=esc(s).split(/\n/), h="", inL=false, inO=false;
   lines.forEach(function(l){ var m;
     if((m=l.match(/^\s*\d+[\.\)]\s+(.*)/))){ if(!inO){ if(inL){h+="</ul>";inL=false;} h+="<ol>"; inO=true; } h+="<li>"+m[1]+"</li>"; return; }
@@ -2725,7 +3177,7 @@ function fmt(s){ /* texte simple de l'IA -> HTML sûr : paragraphes, listes, gra
 }
 function openAI(){
   panel.hidden=false; fab.setAttribute("aria-expanded","true"); fab.classList.add("hide");
-  if(!log.children.length){ add("bot","Bonjour ! Je connais Digi dans le détail. Posez votre question, par exemple : <i>« Comment livrer seulement une partie d'un bon de commande ? »</i>"); suggest(["as-partiel","as-regrouper","as-encaisser","as-annee"]); }
+  if(!log.children.length){ add("bot","Bonjour ! Je connais Digi dans les moindres détails. Que voulez-vous faire ? Écrivez comme vous parlez, par exemple : <i>« je veux livrer la moitié de la commande »</i>."); suggest(["as-partiel","as-drive","as-regrouper","as-articles"]); }
   setTimeout(function(){ $("#aiIn").focus(); },50);
 }
 function closeAI(){ panel.hidden=true; fab.setAttribute("aria-expanded","false"); fab.classList.remove("hide"); fab.focus(); }
@@ -2733,7 +3185,16 @@ if(fab){
   fab.addEventListener("click", openAI); $("#aiClose").addEventListener("click", closeAI);
   $("#aiForm").addEventListener("submit", function(e){ e.preventDefault(); ask($("#aiIn").value); });
   panel.addEventListener("keydown", function(e){ if(e.key==="Escape") closeAI(); });
-  log.addEventListener("click", function(e){ var g=e.target.closest("[data-goto-page]"); if(g){ location.hash=g.getAttribute("data-goto-page"); } });
+  log.addEventListener("click", function(e){
+    var g=e.target.closest("[data-goto-page]"); if(g){ location.hash=g.getAttribute("data-goto-page"); return; }
+    var z=e.target.closest("[data-zoom]"); if(z){ var img=document.createElement("img"); img.className="zoomable"; img.src=shot(z.dataset.zoom); img.style.display="none"; var pg=document.querySelector(".page.active")||document.body; pg.appendChild(img); img.click(); setTimeout(function(){ img.remove(); },50); return; }
+    var a=e.target.closest("[data-ask-id]"); if(a){ var x=byId[a.dataset.askId]; ask(x.q||x.t, x.id); return; }
+    var fb=e.target.closest("[data-fb]"); if(fb){ var box=fb.parentNode;
+      if(fb.dataset.fb==="1"){ box.innerHTML="<span>Merci !</span>"; }
+      else { var id=box.dataset.id, alts=search(lastQ||byId[id].t).filter(function(o){ return o.x.id!==id; }).slice(0,3);
+        box.innerHTML="<span>Désolé.</span>"; add("bot", (alts.length?"Peut-être une de ces réponses ? "+alts.map(function(o){ return '<button type="button" class="linklike" data-ask-id="'+o.x.id+'">'+esc(o.x.t)+'</button>'; }).join(" · ")+"<br>":"")+"Sinon, l'éditeur répond directement : "+CONTACT_HTML+"."); }
+    }
+  });
   if(window.DIGI_AI_ENDPOINT) $("#aiMode").textContent="Assistant IA · répond sur l'utilisation du logiciel";
 }
 })();
@@ -2868,10 +3329,12 @@ var TOUR = [
   {id:"dc_documents", ic:"i-list", t:"Devis et commandes", p:"Devis et bons de commande, avec leur statut, ce qui reste à livrer et les BL liés. Un clic sur « Transformer en bon de livraison » prépare le BL."},
   {id:"dc_echeancier", ic:"i-cal", t:"Échéancier", p:"Chaque chèque et effet en attente, tous clients confondus. Les retards en rouge, les échéances proches en orange."},
   {id:"dc_ca", ic:"i-chart", t:"Chiffre d'affaires", p:"Un chiffre en grand, celui des filtres choisis : client, ville, commercial, activité, période. Le détail par commercial et par activité en un clic."},
-  {id:"dc_statistiques", ic:"i-chart", t:"Statistiques", p:"Délai moyen de paiement de chaque client, encaissements et impayés, meilleur client et meilleur commercial."},
+  {id:"dc_statistiques", ic:"i-chart", t:"Statistiques", p:"Délai réel de paiement (de la livraison à l'encaissement), montant encaissé, impayés et une note /100 par client. Meilleur client et meilleur commercial."},
+  {id:"dc_articles", ic:"i-box", t:"Articles", p:"Tous vos articles sur une ligne : catégorie, stock de chaque dépôt, prix de base, prix spéciaux, seuil, prix de revient, code-barres. Ruptures en rouge, sous le seuil en orange."},
   {id:"dc_tarifs", ic:"i-tag", t:"Tarifs", p:"Prix de base de chaque article et prix spécial par client, proposés automatiquement dans les bons de livraison et les devis."},
   {mod:"DigiStock"},
   {id:"ds_stock", ic:"i-box", t:"Stock", p:"Quantité de chaque article dans chaque dépôt. Scannez un code-barres dans la recherche pour trouver l'article."},
+  {id:"ds_articles", ic:"i-list", t:"Articles", p:"La même page Articles que dans DigiClient : stock par dépôt, seuil, prix de revient, code-barres. On modifie ici, ça change partout."},
   {id:"ds_mouvements", ic:"i-swap", t:"Mouvements", p:"Entrées, sorties, casse et pertes, avec filtres article, dépôt et période. Les sorties des livraisons arrivent seules."},
   {id:"ds_transferts", ic:"i-truck", t:"Transferts", p:"Déplacer de la marchandise d'un dépôt à un autre en une seule saisie, avec un numéro T-…"},
   {id:"ds_historique", ic:"i-history", t:"Historique article", p:"Stock au début, entrées, sorties, stock à la fin, le détail ligne par ligne et le prix moyen d'achat."},
@@ -2895,7 +3358,7 @@ var TOUR = [
     setTimeout(function(){
       img.setAttribute("data-shot", s.id); img.src=shotSrc(s.id); img.alt="Écran « "+s.t+" » de Digi";
       img.setAttribute("height", 1075);
-      $("#tourTitle").textContent = (s.id.indexOf("ds_")===0 ? "DigiStock" : "Gestion Clients")+" 1.18.0 — "+s.t;
+      $("#tourTitle").textContent = (s.id.indexOf("ds_")===0 ? "DigiStock" : "Gestion Clients")+" 1.18.6 — "+s.t;
       $("#tourH").textContent=s.t; $("#tourP").textContent=s.p;
       frame.classList.remove("swap");
     }, cur && user ? 180 : 0);
@@ -2915,6 +3378,8 @@ var GAL = [
   ["dc_ca","dc","Chiffre d'affaires","Un chiffre clair selon les filtres choisis."],
   ["dc_statistiques","dc","Statistiques","Délai moyen de paiement, meilleur client, meilleur commercial."],
   ["dc_tarifs","dc","Tarifs","Prix de base et prix spéciaux par client."],
+  ["dc_articles","dc","Articles","Catégorie, stock par dépôt, prix, seuil, code-barres : tout au même endroit."],
+  ["dlg_fiche_article","dc","Fiche article","Tout se modifie ici et s'applique partout, stock de chaque dépôt compris."],
   ["dlg_bon_livraison","dc","Bon de livraison","Plusieurs articles, N° automatique, stock disponible affiché."],
   ["dlg_bl_depuis_bc","dc","BL préparé depuis des commandes","Deux bons de commande livrés dans un seul BL, une ligne en partiel."],
   ["dlg_livrer_commandes","dc","Livrer des bons de commande","Commandé, déjà livré, reste, à livrer : vous choisissez ce qui part."],
@@ -2923,6 +3388,8 @@ var GAL = [
   ["dlg_bon_retour","dc","Bon de retour","La marchandise rendue revient dans le dépôt choisi."],
   ["dlg_reglements","dc","Nouveaux paiements","Plusieurs chèques d'un client enregistrés en une fois."],
   ["dlg_nouvel_article","dc","Nouvel article","Créé dans DigiClient, placé directement dans les dépôts DigiStock."],
+  ["ds_articles","ds","Articles (DigiStock)","La même page, côté stock."],
+  ["dlg_articles_sans_stock","ds","Articles absents du stock","Choisir d'un clic dans quels dépôts mettre les articles."],
   ["ds_stock","ds","Stock","Quantité par article et par dépôt, seuils de réapprovisionnement."],
   ["ds_mouvements","ds","Mouvements","Filtres article, dépôt, période et totaux."],
   ["ds_transferts","ds","Transferts","D'un dépôt à l'autre en une saisie."],
@@ -2939,6 +3406,7 @@ var GAL = [
   ["dlg_etiquettes","ds","Étiquettes code-barres","Choisissez les articles et le nombre d'étiquettes."],
   ["dlg_pertes","ds","Bilan des pertes","Casse et pertes valorisées, pour le comptable."],
   ["dlg_articles","ds","Articles","Unité, seuil, code-barres, archivage."],
+  ["dlg_sauvegarde_drive","dlg","Sauvegarde sur Google Drive","Clé USB et Google Drive : copies automatiques et vérifiées."],
   ["dlg_parametres","dlg","Paramètres","Entreprise, logo, Listes, Affichage, Réseau, Sauvegarde."],
   ["dlg_journal","dlg","Journal des modifications","Qui a fait quoi, et quand."],
   ["dlg_controle","dlg","Contrôle des données","Les incohérences repérées avant qu'elles coûtent cher."],
@@ -3171,7 +3639,7 @@ function netSave(who){
 }
 function netStart(){
   if(!$("#net") || netTimer) return; netPaint();
-  if(!$("#netLog").children.length) nlog("Synchronisation automatique active (toutes les 60 s).","g");
+  if(!$("#netLog").children.length) nlog("Synchronisation automatique active (toutes les 15 s).","g");
   netTimer=setInterval(function(){ if(netOn && document.visibilityState==="visible"){ nlog("Synchro auto · 3 postes à jour.","g"); } }, 9000);
 }
 function netStop(){ clearInterval(netTimer); netTimer=null; }
