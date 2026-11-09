@@ -1,5 +1,5 @@
 {
-  "version": "1.21.0",
-  "message": "Nouvelle version de DigiGestion disponible : clôture par mois, message de mise à jour, et améliorations.",
+  "version": "1.22.0",
+  "message": "Nouvelle version de DigiGestion disponible : saisie directe des montants, annulation d'un BL, liste des devis et commandes en attente.",
   "lien": "https://digiclientstock.com"
 }
