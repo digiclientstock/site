@@ -1,5 +1,5 @@
 {
-  "version": "1.22.3",
-  "message": "Nouvelle version de DigiGestion disponible : saisie directe des montants, total impayé et représentation des chèques impayés, annulation d'un BL, liste des devis et commandes en attente.",
+  "version": "1.22.5",
+  "message": "Nouvelle version de DigiGestion disponible : affichage corrigé (plein écran et retour de veille), réunion sans perte d'un poste secondaire passé principal par erreur, plus le total impayé, la représentation des chèques impayés et l'annulation d'un BL.",
   "lien": "https://digiclientstock.com"
 }
