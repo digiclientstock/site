@@ -1,5 +1,5 @@
 {
-  "version": "1.22.6",
-  "message": "Nouvelle version de DigiGestion disponible : affichage corrigé, plus aucune fenêtre ne dépasse l'écran (boutons du bas toujours visibles, plein écran et retour de veille), réunion sans perte d'un poste secondaire passé principal par erreur.",
+  "version": "1.23.2",
+  "message": "Nouvelle version de DigiGestion disponible : scannez vos chèques, effets et bons de livraison avec votre téléphone, la lecture est automatique. L'activité des BL scannés se remplit toute seule et la fiche du client s'ouvre dès la validation pour tout vérifier.",
   "lien": "https://digiclientstock.com"
 }
