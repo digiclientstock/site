@@ -1,7 +1,7 @@
 {
-  "version": "1.25.0",
-  "message": "Nouvelle version de DigiGestion : le coût de chaque scan s'affiche (Outils › Scan par téléphone), avec un plafond mensuel si vous voulez.",
+  "version": "1.25.1",
+  "message": "Nouvelle version de DigiGestion : le coût de chaque scan s'affiche (Outils › Scan par téléphone) et cette fenêtre défile maintenant jusqu'en bas.",
   "lien": "https://digiclientstock.com",
   "installateur": "https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe",
-  "sha256": "995045495c83db2312f2b385e1f4276955248d8145b1a36c75b9d8c3a99a839c"
+  "sha256": "1dbfd72813940f979ed04cf265ff2db1cbd34133e6c57aac7210ed184c2761f2"
 }
