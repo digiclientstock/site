@@ -1,5 +1,7 @@
 {
-  "version": "1.23.2",
-  "message": "Nouvelle version de DigiGestion disponible : scannez vos chèques, effets et bons de livraison avec votre téléphone, la lecture est automatique. L'activité des BL scannés se remplit toute seule et la fiche du client s'ouvre dès la validation pour tout vérifier.",
-  "lien": "https://digiclientstock.com"
+  "version": "1.25.0",
+  "message": "Nouvelle version de DigiGestion : le coût de chaque scan s'affiche (Outils › Scan par téléphone), avec un plafond mensuel si vous voulez.",
+  "lien": "https://digiclientstock.com",
+  "installateur": "https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe",
+  "sha256": "995045495c83db2312f2b385e1f4276955248d8145b1a36c75b9d8c3a99a839c"
 }
