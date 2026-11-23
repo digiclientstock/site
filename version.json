@@ -1,7 +1,7 @@
 {
-  "version": "1.25.2",
-  "message": "Nouvelle version de DigiGestion : dans l'onglet Opérations, le « Total payé » ne compte plus les impayés (ils sont affichés à part).",
+  "version": "1.25.3",
+  "message": "Nouvelle version de DigiGestion : les « / » se mettent tout seuls quand on tape une date, et l'onglet Opérations affiche un total par type (livré, payé, encaissé…).",
   "lien": "https://digiclientstock.com",
   "installateur": "https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe",
-  "sha256": "8283146263e25b4c472cd9362ede49cc8f66588fb8e7bc094beba63899571f19"
+  "sha256": "dba5f3e544a4ef0d3f5622168c8f977207c22bcd65eb977c221d484c7fb688bc"
 }
