@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://digiclientstock.com/img/og.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
- {"@type":"SoftwareApplication","name":"DigiGestion","alternateName":["Digi","DigiClient","DigiStock"],"applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11","softwareVersion":"1.24.0","inLanguage":"fr","url":"https://digiclientstock.com/","downloadUrl":"https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe","image":"https://digiclientstock.com/img/og.jpg","description":"Gestion des clients, bons de livraison, chèques, effets, échéancier, factures et stock par dépôt pour grossistes et négociants au Maroc. Scan des chèques par téléphone, multi-postes, fonctionne sans internet.","offers":{"@type":"Offer","price":"0","priceCurrency":"MAD","description":"Essai gratuit 7 jours"},"areaServed":"MA"},
+ {"@type":"SoftwareApplication","name":"DigiGestion","alternateName":["Digi","DigiClient","DigiStock"],"applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11","softwareVersion":"1.25.3","inLanguage":"fr","url":"https://digiclientstock.com/","downloadUrl":"https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe","image":"https://digiclientstock.com/img/og.jpg","description":"Gestion des clients, bons de livraison, chèques, effets, échéancier, factures et stock par dépôt pour grossistes et négociants au Maroc. Scan des chèques par téléphone, multi-postes, fonctionne sans internet.","offers":[{"@type":"Offer","price":"0","priceCurrency":"MAD","description":"Essai gratuit 7 jours"},{"@type":"Offer","price":"150","priceCurrency":"MAD","description":"Licence mensuelle"},{"@type":"Offer","price":"400","priceCurrency":"MAD","description":"Licence 3 mois"},{"@type":"Offer","price":"1500","priceCurrency":"MAD","description":"Licence annuelle"},{"@type":"Offer","price":"5500","priceCurrency":"MAD","description":"Licence permanente"}],"areaServed":"MA"},
  {"@type":"Organization","name":"DigiGestion","url":"https://digiclientstock.com/","email":"digiclientstock@gmail.com","telephone":"+212678651359"}
 ]}
 </script>
@@ -106,7 +106,7 @@ button{font:inherit;color:inherit}
 .icon-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;flex:none;color:var(--ink)}
 .icon-btn svg{width:19px;height:19px}
 .burger{display:none}
-@media (max-width:1420px){
+@media (max-width:1180px){
   .tabs{position:fixed;inset:68px 0 auto 0;flex-direction:column;align-items:stretch;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px 18px;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.2s}
   .tabs.open{transform:none;opacity:1;pointer-events:auto}
   .tabs a{padding:12px 14px;font-size:17px}
@@ -412,13 +412,14 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 
 /* ---------- Tarifs ---------- */
 .plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px;grid-template-rows:auto auto auto 1fr auto;position:relative;transition:transform .25s,box-shadow .25s}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;position:relative;transition:transform .25s,box-shadow .25s}
 .plan:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .plan h3{font-size:22px}
 .plan .dur{font:700 30px/1 var(--f-display);color:var(--teal-strong);letter-spacing:-.02em}
 .plan .dur small{font:500 14px var(--f-body);color:var(--ink-3);letter-spacing:0}
 .plan p{color:var(--ink-2);font-size:15px}
-.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px;align-content:start}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14.5px;align-content:start;flex:1}
+.plan .btn{justify-content:center}
 .plan li{display:grid;grid-template-columns:18px 1fr;gap:8px}
 .plan li svg{width:17px;height:17px;color:var(--ok);margin-top:3px}
 .plan.best{border:2px solid var(--aqua);background:linear-gradient(180deg,color-mix(in srgb,var(--aqua) 10%,var(--card)),var(--card) 40%)}
@@ -755,7 +756,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
 .chips li{display:flex;gap:8px;align-items:center;font-size:14.5px;padding:9px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink-2)}
 .chips svg{width:17px;height:17px;color:var(--teal);flex:none}
 .tool-new{position:relative}
-.tool-new::after{content:"1.24";position:absolute;top:14px;right:14px;font:700 10.5px/1 var(--f-body);letter-spacing:.06em;padding:4px 6px;border-radius:6px;background:color-mix(in srgb,var(--saffron) 18%,transparent);color:color-mix(in srgb,var(--saffron) 70%,var(--ink))}
+.tool-new::after{content:"Nouveau";position:absolute;top:14px;right:14px;font:700 10.5px/1 var(--f-body);letter-spacing:.06em;padding:4px 6px;border-radius:6px;background:color-mix(in srgb,var(--saffron) 18%,transparent);color:color-mix(in srgb,var(--saffron) 70%,var(--ink))}
 .seg-sub{justify-self:start;flex-wrap:wrap}
 
 /* ---------- Page Scan ---------- */
@@ -835,6 +836,31 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
 .scan-small{font-size:14px!important}
 @media (max-width:1000px){.scan-hero .wrap{grid-template-columns:1fr}.scan-grid{grid-template-columns:1fr}}
 @media (max-width:620px){.scan-stage{grid-template-columns:1fr;justify-items:center;gap:14px}.phone{width:150px}.scan-flow{transform:rotate(90deg)}#scanFields{grid-template-columns:1fr}}
+/* ---------- Prospects : CTA mobile, preuve ---------- */
+.only-mob{display:none!important}
+@media (max-width:760px){.only-desk{display:none!important}.only-mob{display:inline-flex!important}p.only-mob{display:block!important}}
+.hero-note{margin-top:14px;font-size:13.5px;color:var(--on-hero-2);max-width:46ch}
+.proof{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(22px,4vw,48px);align-items:center;padding:clamp(24px,4vw,44px);border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.proof-main{display:grid;gap:14px}
+.proof-story{font:600 clamp(21px,2.3vw,28px)/1.3 var(--f-display);letter-spacing:-.015em}
+.proof-story b{color:var(--teal-strong)}
+.proof-sub{color:var(--ink-2)}
+.proof-list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.proof-list li{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start}
+.proof-list svg{width:38px;height:38px;padding:9px;border-radius:11px;background:color-mix(in srgb,var(--aqua) 14%,transparent);color:var(--teal)}
+.proof-list b{display:block;font-weight:700}
+.proof-list span{color:var(--ink-2);font-size:15px}
+.proof-list span b{color:var(--ink)}
+@media (max-width:860px){.proof{grid-template-columns:1fr}}
+.plan .per{font-size:13.5px;color:var(--ink-3);margin-top:-6px}
+.help-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px}
+.help-links a{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:14.5px;text-decoration:none!important}
+.help-links a:hover{border-color:var(--aqua)}
+.help-links svg{width:17px;height:17px;color:var(--teal)}
+.ai-wa{display:inline-flex;align-items:center;gap:8px;margin:8px 0 4px;padding:9px 14px;border-radius:999px;background:#1fa855;color:#fff!important;font-weight:700;font-size:14px;text-decoration:none!important}
+.ai-wa:hover{filter:brightness(1.08)}
+.ai-wa svg{width:17px;height:17px}
+.plan .save{align-self:flex-start;font:700 12px/1 var(--f-body);padding:6px 9px;border-radius:999px;background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
 </style>
 </head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -900,12 +926,9 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       <a href="#digiclient">DigiClient</a>
       <a href="#digistock">DigiStock</a>
       <a href="#scan" class="tab-new">Scan</a>
-      <a href="#multiposte">Réseau</a>
-      <a href="#simulateurs">Simulateurs</a>
       <a href="#captures">Captures</a>
-      <a href="#astuces">Astuces</a>
-      <a href="#guide">Imports</a>
       <a href="#tarifs">Tarifs</a>
+      <a href="#astuces" data-also="guide simulateurs multiposte">Aide</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="icon-btn" id="themeBtn" type="button" aria-label="Changer de thème"><svg><use href="#i-moon"/></svg></button>
@@ -925,19 +948,22 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
         <h1>Vos clients, vos chèques et votre stock. <span class="hl">Enfin au même endroit.</span></h1>
         <p class="lead">DigiGestion réunit deux logiciels en un : <b>DigiClient</b> pour les livraisons, paiements, échéances et factures, et <b>DigiStock</b> pour vos dépôts et votre inventaire. Pensé pour les grossistes, négociants et fabricants marocains, en dirhams, au mètre ou à la pièce.</p>
         <div class="ctas">
-          <a class="btn btn-primary dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-win"/></svg>Télécharger DigiGestion</a>
-          <a class="btn btn-ghost" href="#accueil" data-goto="nouveautes"><svg><use href="#i-play"/></svg>Voir les nouveautés 1.24</a>
+          <a class="btn btn-primary dl-link only-desk" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-win"/></svg>Essai gratuit 7 jours</a>
+          <a class="btn btn-primary only-mob wa-demo" href="https://wa.me/212678651359?text=Bonjour%2C%20je%20voudrais%20essayer%20DigiGestion%20%28essai%20gratuit%207%20jours%29.%20Mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Essai gratuit sur WhatsApp</a>
+          <a class="btn btn-ghost only-desk wa-demo" href="https://wa.me/212678651359?text=Bonjour%2C%20je%20voudrais%20essayer%20DigiGestion%20%28essai%20gratuit%207%20jours%29.%20Mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Une démo sur WhatsApp</a>
+          <a class="btn btn-ghost only-mob" href="#tarifs">Voir les tarifs</a>
         </div>
         <div class="hero-meta">
-          <span><svg><use href="#i-check"/></svg>Essai gratuit 7 jours</span>
+          <span><svg><use href="#i-check"/></svg>Essai gratuit 7 jours, sans engagement</span>
           <span><svg><use href="#i-check"/></svg>Fonctionne sans internet</span>
-          <span><svg><use href="#i-check"/></svg>Mises à jour automatiques</span>
+          <span><svg><use href="#i-check"/></svg>À partir de 125 DH par mois</span>
         </div>
+        <p class="hero-note only-mob">Le logiciel s'installe sur un ordinateur Windows. Écrivez-nous depuis votre téléphone : on vous envoie le lien et on vous aide à l'installer.</p>
       </div>
       <div class="hero-stage" id="heroStage">
         <div class="win" id="heroWin">
-          <div class="win-bar"><span class="wmark" aria-hidden="true">D</span>DigiGestion 1.24.0 — DigiClient<div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
-          <img class="shot" data-shot="dc_fiche" src="img/dc_fiche.webp" alt="Fiche client de DigiClient : historique des livraisons et paiements, solde client et instance" width="1800" height="1075">
+          <div class="win-bar"><span class="wmark" aria-hidden="true">D</span>DigiGestion — DigiClient<div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
+          <img class="shot" data-shot="dc_fiche" src="img/dc_fiche.webp" alt="Fiche client de DigiClient : historique des livraisons et paiements, solde du client et chèques pas encore encaissés" width="1800" height="1075">
         </div>
         <div class="float f2"><span class="dot" style="background:rgba(95,227,160,.16);color:#5fe3a0"><svg><use href="#i-swap"/></svg></span><div><b>Synchronisé</b><small>3 postes · il y a 12 s</small></div></div>
         <div class="float f1"><span class="dot" style="background:rgba(243,192,107,.16);color:#f3c06b"><svg><use href="#i-cal"/></svg></span><div><b>25 920 DH</b><small>Échéances à 7 jours</small></div></div>
@@ -958,34 +984,21 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   </div>
 
 
-  <section class="sec" id="nouveautes">
+  <section class="sec proof-sec">
     <div class="wrap">
-      <div class="sec-head rv">
-        <span class="eyebrow">Nouveau dans DigiGestion 1.24</span>
-        <h2>Vos chèques scannés avec le téléphone. Des mises à jour qui s'installent toutes seules.</h2>
-        <p class="lead">Scan des chèques, effets et bons de livraison, mise à jour automatique, BL annulé sans trou dans les numéros, clôture des mois et un nouvel onglet Informations. Et toujours la sauvegarde Google Drive, les devis et les livraisons partielles.</p>
+      <!-- À compléter dès que le client est d'accord : sa phrase entre guillemets, son prénom, son métier et sa ville. -->
+      <div class="proof rv">
+        <div class="proof-main">
+          <span class="eyebrow">Le meilleur test : comparer</span>
+          <p class="proof-story">Un de nos premiers clients travaillait avec un autre logiciel de gestion. Il a utilisé les deux en parallèle pendant un mois. <b>Puis il a gardé uniquement DigiGestion.</b></p>
+          <p class="proof-sub">Faites le même test chez vous : 7 jours gratuits, avec vos vrais clients et vos vrais chèques.</p>
+        </div>
+        <ul class="proof-list">
+          <li><svg><use href="#i-import"/></svg><span><b>Rien à ressaisir</b>Vos clients, soldes et échéances repris depuis Excel ou votre cahier.</span></li>
+          <li><svg><use href="#i-wa"/></svg><span><b>Un vrai interlocuteur</b>Assistance directe par WhatsApp, avec la personne qui développe le logiciel.</span></li>
+          <li><svg><use href="#i-shield"/></svg><span><b>Vos données restent chez vous</b>Sur votre ordinateur, avec sauvegarde automatique. Elles ne sont jamais perdues, même à la fin de l'essai.</span></li>
+        </ul>
       </div>
-      <div class="news">
-        <a class="nw big rv" href="#scan">
-          <img data-shot="dlg_scan_cheque" src="img/dlg_scan_cheque.webp" alt="Chèque scanné par téléphone : l'image à gauche, les champs déjà remplis à droite" loading="lazy" width="1550" height="900">
-          <div><span class="nw-tag">Scan par téléphone</span><h3>Le téléphone devient votre scanner</h3><p>Photographiez un chèque, un effet ou un BL : tout se remplit seul dans DigiClient. Vous vérifiez, vous cliquez « Valider ».</p></div>
-        </a>
-        <a class="nw big rv" href="#astuces" data-astuce="as-maj">
-          <img data-shot="bienvenue" src="img/bienvenue.webp" alt="Écran d'accueil avec le bandeau « La version est prête : Installer maintenant · À la fermeture »" loading="lazy" width="1800" height="1075">
-          <div><span class="nw-tag">Mises à jour automatiques</span><h3>Toujours la dernière version, sans rien faire</h3><p>DigiGestion télécharge la nouvelle version en arrière-plan, la vérifie, puis l'installe maintenant ou à la fermeture. Vos données ne sont jamais touchées.</p></div>
-        </a>
-        <a class="nw rv" href="#astuces" data-astuce="as-annuler-bl"><svg><use href="#i-ban"/></svg><h3>Annuler un BL</h3><p>Le client se désiste ? Le BL garde son numéro, ne compte plus, la marchandise revient en stock.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-cloture"><svg><use href="#i-lock"/></svg><h3>Clôture des mois</h3><p>Verrouillez les mois terminés. Un mois à corriger se rouvre seul, sans toucher aux autres.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-informations"><svg><use href="#i-bulb"/></svg><h3>Onglet Informations</h3><p>Clients à relancer, clients à risque, stock qui dort, marge par article, comparaison avec l'an dernier.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-en-attente"><svg><use href="#i-history"/></svg><h3>En attente et sans suite</h3><p>Devis et commandes pas encore livrés, refusés, BL annulés : tout au même endroit, en un clic depuis l'accueil.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-representer"><svg><use href="#i-refresh"/></svg><h3>Représenter un chèque</h3><p>Un chèque impayé que le client redonne ? Un clic : il revient à encaisser, même numéro, même montant.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-impaye"><svg><use href="#i-warn"/></svg><h3>Total impayé</h3><p>En haut de chaque fiche client, en rouge, avec le nombre de chèques et d'effets revenus impayés.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-excel"><svg><use href="#i-excel"/></svg><h3>Tout vers Excel</h3><p>N'importe quel tableau part vers Excel, tel qu'il est à l'écran (Ctrl+E). Montants en vrais nombres.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-masquer"><svg><use href="#i-eye-off"/></svg><h3>BL sans les prix</h3><p>Masquez prix, TVA ou logo avant d'imprimer : un BL neutre en un clic.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-saisie"><svg><use href="#i-bolt"/></svg><h3>Saisie directe</h3><p>La case « 0,00 » se vide quand on clique dedans : on tape tout de suite, sans rien effacer.</p></a>
-        <a class="nw rv" href="#astuces" data-astuce="as-taille-texte"><svg><use href="#i-text"/></svg><h3>Texte plus grand</h3><p>Petit, Normal, Grand, Très grand : réglable à tout moment, partout. Et la fenêtre ne dépasse jamais l'écran.</p></a>
-      </div>
-      <p class="news-also rv">Toujours inclus : sauvegarde automatique sur Google Drive, page Articles, devis et bons de commande, livraisons partielles, plusieurs commandes dans un BL, suivi fournisseurs, codes-barres, transferts entre dépôts, synchronisation toutes les 15 secondes. <a href="#digiclient">Tout DigiClient</a> · <a href="#digistock">Tout DigiStock</a></p>
     </div>
   </section>
 
@@ -1024,13 +1037,13 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       <div class="sec-head rv">
         <span class="eyebrow">Visite guidée</span>
         <h2>Faites le tour du logiciel, écran par écran.</h2>
-        <p class="lead">Ce sont les vrais écrans de DigiGestion 1.24.0, avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs).</p>
+        <p class="lead">Ce sont les vrais écrans de DigiGestion, avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs).</p>
       </div>
       <div class="tour" id="tour">
         <div class="tour-list" role="tablist" aria-label="Écrans du logiciel" id="tourList"></div>
         <div class="tour-view">
           <div class="win" id="tourWin">
-            <div class="win-bar"><span class="wmark" aria-hidden="true">D</span><span id="tourTitle">DigiGestion 1.24.0</span><div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
+            <div class="win-bar"><span class="wmark" aria-hidden="true">D</span><span id="tourTitle">DigiGestion</span><div class="ctrl"><span><svg viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor"/></svg></span><span><svg viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></span></div></div>
             <div class="tour-frame" id="tourFrame"><img class="shot zoomable" id="tourImg" src="img/dc_accueil.webp" alt="" width="1800" height="1075"></div>
           </div>
           <div class="tour-cap">
@@ -1061,7 +1074,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
             <li><svg><use href="#i-check"/></svg>Devis, bons de commande, BL, retours et factures en PDF</li>
             <li><svg><use href="#i-check"/></svg>Chèques, effets et BL scannés avec le téléphone</li>
             <li><svg><use href="#i-check"/></svg>Livraisons partielles, plusieurs commandes dans un seul BL, BL annulé</li>
-            <li><svg><use href="#i-check"/></svg>Solde, instance et total impayé de chaque client</li>
+            <li><svg><use href="#i-check"/></svg>Solde, instance (chèques et effets pas encore encaissés) et total impayé de chaque client</li>
             <li><svg><use href="#i-check"/></svg>Échéancier, impayés représentés, avoirs, encaissements</li>
             <li><svg><use href="#i-check"/></svg>Chiffre d'affaires, Informations, meilleur client noté /100</li>
           </ul>
@@ -1092,6 +1105,31 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
     </div>
   </section>
 
+  <section class="sec" id="nouveautes" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Les nouveautés</span>
+        <h2>Vos chèques scannés avec le téléphone. Des mises à jour qui s'installent toutes seules.</h2>
+        <p class="lead">Scan des chèques, effets et bons de livraison, mise à jour automatique, BL annulé sans trou dans les numéros, clôture des mois et un nouvel onglet Informations. Et toujours la sauvegarde Google Drive, les devis et les livraisons partielles.</p>
+      </div>
+      <div class="news">
+        <a class="nw big rv" href="#scan">
+          <img data-shot="dlg_scan_cheque" src="img/dlg_scan_cheque.webp" alt="Chèque scanné par téléphone : l'image à gauche, les champs déjà remplis à droite" loading="lazy" width="1550" height="900">
+          <div><span class="nw-tag">Scan par téléphone</span><h3>Le téléphone devient votre scanner</h3><p>Photographiez un chèque, un effet ou un BL : tout se remplit seul dans DigiClient. Vous vérifiez, vous cliquez « Valider ».</p></div>
+        </a>
+        <a class="nw big rv" href="#astuces" data-astuce="as-maj">
+          <img data-shot="bienvenue" src="img/bienvenue.webp" alt="Écran d'accueil avec le bandeau « La version est prête : Installer maintenant · À la fermeture »" loading="lazy" width="1800" height="1075">
+          <div><span class="nw-tag">Mises à jour automatiques</span><h3>Toujours la dernière version, sans rien faire</h3><p>DigiGestion télécharge la nouvelle version en arrière-plan, la vérifie, puis l'installe maintenant ou à la fermeture. Vos données ne sont jamais touchées.</p></div>
+        </a>
+        <a class="nw rv" href="#astuces" data-astuce="as-annuler-bl"><svg><use href="#i-ban"/></svg><h3>Annuler un BL</h3><p>Le client se désiste ? Le BL garde son numéro, ne compte plus, la marchandise revient en stock.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-informations"><svg><use href="#i-bulb"/></svg><h3>Onglet Informations</h3><p>Clients à relancer, clients à risque, stock qui dort, marge par article, comparaison avec l'an dernier.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-impaye"><svg><use href="#i-warn"/></svg><h3>Total impayé</h3><p>En haut de chaque fiche client, en rouge, avec le nombre de chèques et d'effets revenus impayés.</p></a>
+        <a class="nw rv" href="#astuces" data-astuce="as-excel"><svg><use href="#i-excel"/></svg><h3>Tout vers Excel</h3><p>N'importe quel tableau part vers Excel, tel qu'il est à l'écran (Ctrl+E). Montants en vrais nombres.</p></a>
+      </div>
+      <p class="news-also rv">Toujours inclus : sauvegarde automatique sur Google Drive, page Articles, devis et bons de commande, livraisons partielles, plusieurs commandes dans un BL, suivi fournisseurs, codes-barres, transferts entre dépôts, synchronisation toutes les 15 secondes. <a href="#digiclient">Tout DigiClient</a> · <a href="#digistock">Tout DigiStock</a> · <a href="#astuces">Toutes les astuces</a></p>
+    </div>
+  </section>
+
   <section class="sec" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1112,11 +1150,12 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
       <div class="cta-band rv">
         <div>
           <h2>Essayez DigiGestion gratuitement pendant 7 jours.</h2>
-          <p>Téléchargez, envoyez votre code machine, et travaillez avec vos vraies données dès aujourd'hui.</p>
+          <p>Ensuite, à partir de <b>125 DH par mois</b>, ou <b>5 500 DH</b> une fois pour toutes avec la licence permanente. <a href="#tarifs">Voir les tarifs</a></p>
         </div>
         <div class="btns">
-          <a class="btn btn-primary dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-dl"/></svg>Télécharger</a>
-          <a class="btn btn-ghost" href="#contact">Nous contacter</a>
+          <a class="btn btn-primary dl-link only-desk" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener"><svg><use href="#i-dl"/></svg>Télécharger l'essai</a>
+          <a class="btn btn-primary only-mob wa-demo" href="https://wa.me/212678651359?text=Bonjour%2C%20je%20voudrais%20essayer%20DigiGestion%20%28essai%20gratuit%207%20jours%29.%20Mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Essai gratuit sur WhatsApp</a>
+          <a class="btn btn-ghost only-desk wa-demo" href="https://wa.me/212678651359?text=Bonjour%2C%20je%20voudrais%20essayer%20DigiGestion%20%28essai%20gratuit%207%20jours%29.%20Mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Une question ? WhatsApp</a>
         </div>
       </div>
     </div>
@@ -2088,6 +2127,12 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
         <div class="as-drop" id="asDrop" role="listbox" hidden></div>
       </div>
       <div class="as-try" id="asTry" aria-label="Exemples"></div>
+      <nav class="help-links" aria-label="Autres pages d'aide">
+        <a href="#guide"><svg><use href="#i-import"/></svg>Guide des imports Excel</a>
+        <a href="#simulateurs"><svg><use href="#i-chart"/></svg>Simulateurs</a>
+        <a href="#multiposte"><svg><use href="#i-net"/></svg>Réseau, comptes et sauvegardes</a>
+        <a href="#contact"><svg><use href="#i-wa"/></svg>Assistance WhatsApp</a>
+      </nav>
     </div>
   </div>
 
@@ -2241,7 +2286,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap page-hero">
     <span class="eyebrow">Captures d'écran</span>
     <h1>Tous les écrans, sans retouche.</h1>
-    <p class="lead">Captures réelles de DigiGestion 1.24.0 avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs). Cliquez pour agrandir, flèches du clavier pour naviguer.</p>
+    <p class="lead">Captures réelles de DigiGestion avec une entreprise de démonstration (Atlas Textiles, noms et chiffres fictifs). Cliquez pour agrandir, flèches du clavier pour naviguer.</p>
   </div>
   <div class="wrap" style="padding-bottom:80px">
     <div class="filters" role="group" aria-label="Filtrer les captures">
@@ -2270,38 +2315,40 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
     <div class="plans">
       <article class="plan rv">
         <h3>Essai</h3>
-        <div class="dur">7 jours <small>gratuit</small></div>
+        <div class="dur">0 DH <small>7 jours</small></div>
         <p>Pour tester avec vos vraies données avant de vous décider.</p>
-        <ul><li><svg><use href="#i-check"/></svg>Toutes les fonctions</li><li><svg><use href="#i-check"/></svg>Import de vos clients Excel</li><li><svg><use href="#i-check"/></svg>Vos données sont gardées si vous continuez</li></ul>
+        <ul><li><svg><use href="#i-check"/></svg>Toutes les fonctions</li><li><svg><use href="#i-check"/></svg>Import de vos clients depuis Excel</li><li><svg><use href="#i-check"/></svg>Si vous continuez, vous gardez tout : rien à ressaisir</li></ul>
         <a class="btn btn-ghost wa-plan" data-plan="Essai gratuit 7 jours" href="#contact">Demander l'essai</a>
       </article>
       <article class="plan rv">
         <h3>Mensuelle</h3>
-        <div class="dur">30 jours <small><span class="price" data-plan-price="mensuelle">Tarif sur demande</span></small></div>
-        <p>La souplesse d'un abonnement court, sans engagement.</p>
+        <div class="dur"><span class="price" data-plan-price="mensuelle">150 DH</span> <small>/ mois</small></div>
+        <p class="per">Payé chaque mois, sans engagement.</p>
         <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li></ul>
-        <a class="btn btn-ghost wa-plan" data-plan="Licence mensuelle" href="#contact">Demander le tarif</a>
+        <a class="btn btn-ghost wa-plan" data-plan="Licence mensuelle" href="#contact">Choisir</a>
       </article>
       <article class="plan rv">
         <h3>3 mois</h3>
-        <div class="dur">90 jours <small><span class="price" data-plan-price="3mois">Tarif sur demande</span></small></div>
-        <p>Un trimestre complet pour installer Digi dans vos habitudes.</p>
+        <div class="dur"><span class="price" data-plan-price="3mois">400 DH</span> <small>/ 3 mois</small></div>
+        <p class="per">Soit 133 DH par mois.</p>
+        <span class="save">50 DH d'économie</span>
         <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li></ul>
-        <a class="btn btn-ghost wa-plan" data-plan="Licence 3 mois" href="#contact">Demander le tarif</a>
+        <a class="btn btn-ghost wa-plan" data-plan="Licence 3 mois" href="#contact">Choisir</a>
       </article>
       <article class="plan best rv">
         <span class="ribbon">LE PLUS CHOISI</span>
         <h3>Annuelle</h3>
-        <div class="dur">365 jours <small><span class="price" data-plan-price="annuelle">Tarif sur demande</span></small></div>
-        <p>Une année sereine, au meilleur prix par mois.</p>
-        <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li><li><svg><use href="#i-check"/></svg>Un seul renouvellement par an</li></ul>
-        <a class="btn btn-primary wa-plan" data-plan="Licence annuelle" href="#contact">Demander le tarif</a>
+        <div class="dur"><span class="price" data-plan-price="annuelle">1 500 DH</span> <small>/ an</small></div>
+        <p class="per">Soit 125 DH par mois.</p>
+        <span class="save">2 mois offerts</span>
+        <ul><li><svg><use href="#i-check"/></svg>DigiClient + DigiStock</li><li><svg><use href="#i-check"/></svg>Multi-postes et comptes employés</li><li><svg><use href="#i-check"/></svg>Assistance par téléphone et WhatsApp</li></ul>
+        <a class="btn btn-primary wa-plan" data-plan="Licence annuelle" href="#contact">Choisir</a>
       </article>
     </div>
     <div class="liaison rv" style="margin-top:18px">
       <svg style="width:30px;height:30px;color:var(--saffron)"><use href="#i-shield"/></svg>
-      <div><b>Licence permanente.</b> <span style="color:var(--ink-2)">Payez une fois, utilisez Digi sans date d'expiration sur le poste licencié.</span></div>
-      <a class="btn btn-solid btn-sm wa-plan" data-plan="Licence permanente" href="#contact">Nous en parler</a>
+      <div><b>Licence permanente : 5 500 DH, payés une seule fois.</b> <span style="color:var(--ink-2)">Utilisez DigiGestion sans date d'expiration sur le poste licencié. Rentabilisée en moins de 4 ans par rapport à la licence annuelle.</span></div>
+      <a class="btn btn-solid btn-sm wa-plan" data-plan="Licence permanente" href="#contact">Choisir</a>
     </div>
     <div class="incl">
       <div><svg><use href="#i-lock"/></svg>Licence liée à l'ordinateur, vérifiée sans internet, par plusieurs contrôles</div>
@@ -2401,7 +2448,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
   <div class="wrap">
     <div>
       <a class="brand" href="#accueil" style="padding:0"><span class="mark" aria-hidden="true">D</span><span>DigiGestion<small>Client · Stock</small></span></a>
-      <p style="margin-top:12px;max-width:36ch">Gestion clients, paiements, échéances et stock pour grossistes, négociants et fabricants. Version 1.24.0.</p>
+      <p style="margin-top:12px;max-width:36ch">Gestion clients, paiements, échéances et stock pour grossistes, négociants et fabricants au Maroc.</p>
     </div>
     <div><h5>Le logiciel</h5><a href="#digiclient">DigiClient</a><a href="#digistock">DigiStock</a><a href="#scan">Scan par téléphone</a><a href="#multiposte">Réseau &amp; sécurité</a><a href="#captures">Captures</a></div>
     <div><h5>Essayer</h5><a href="#simulateurs">Simulateurs</a><a href="#astuces">Astuces</a><a href="#guide">Guide des imports</a><a href="#tarifs">Licences</a><a class="dl-link" href="https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe" target="_blank" rel="noopener">Télécharger pour Windows</a></div>
@@ -2425,7 +2472,7 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px
 <section class="ai-panel" id="aiPanel" role="dialog" aria-label="Assistant Digi" hidden>
   <header class="ai-head">
     <span class="mark" aria-hidden="true">D</span>
-    <div><b>Assistant Digi</b><small id="aiMode">Répond sur l'utilisation du logiciel</small></div>
+    <div><b>Assistant Digi</b><small id="aiMode">Prix, essai et utilisation du logiciel</small></div>
     <button class="ai-x" type="button" id="aiClose" aria-label="Fermer l'assistant"><svg><use href="#i-x"/></svg></button>
   </header>
   <div class="ai-log" id="aiLog" aria-live="polite"></div>
@@ -3546,8 +3593,11 @@ function answerHTML(x){
   h+='<div class="ai-fb" data-id="'+x.id+'"><span>Ça vous aide ?</span><button type="button" data-fb="1">Oui</button><button type="button" data-fb="0">Non</button></div>';
   return h;
 }
-var REFUS="Je ne peux répondre qu'aux questions sur l'utilisation de Digi (livraisons, paiements, stock, fournisseurs, réglages…). Pour tout le reste, contactez directement l'éditeur : "+CONTACT_HTML+".";
-var CONTACT="Je n'ai pas trouvé de réponse sûre. Essayez avec d'autres mots (par exemple « encaisser un chèque »), ou contactez l'assistance : "+CONTACT_HTML+".";
+var WA_NUM="212678651359";
+function waLink(msg, label){ return '<a class="ai-wa" href="https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>'+esc(label||"Écrire sur WhatsApp")+'</a>'; }
+var WA_ESSAI="Bonjour, je voudrais essayer DigiGestion (essai gratuit 7 jours). Mon activité : ";
+var REFUS="Je ne peux répondre qu'aux questions sur DigiGestion : prix, essai, fonctions et utilisation du logiciel. Pour tout le reste, contactez directement l'éditeur : "+CONTACT_HTML+".";
+function noAnswer(q){ return "<p>Je n'ai pas de réponse sûre à cette question. Le plus simple : posez-la directement sur WhatsApp, vous aurez une réponse de la personne qui développe le logiciel.</p>"+waLink("Bonjour, j'ai une question sur DigiGestion : "+q, "Envoyer ma question sur WhatsApp")+"<p class=\"ai-n\">Ou essayez avec d'autres mots, par exemple « encaisser un chèque ».</p>"; }
 var DL='https://github.com/digiclientstock/DigiClient/releases/latest/download/Installer_Digi.exe';
 function suggest(ids){ var z=$("#aiSugg"); z.innerHTML=""; ids.forEach(function(id){ var x=byId[id]; if(!x) return; var b=document.createElement("button"); b.type="button"; b.className="ai-chip"; b.textContent=x.q||x.t; b.addEventListener("click", function(){ ask(x.q||x.t, id); }); z.appendChild(b); }); }
 function intents(n){
@@ -3555,9 +3605,15 @@ function intents(n){
   var words=n.split(" ");
   if(/^(bonjour|salut|salam|slm|bonsoir|hello|coucou|cc|labas|sbah lkhir|msa lkhir)\b/.test(n) && words.length<5) return "Bonjour ! Dites-moi ce que vous voulez faire dans Digi, par exemple « livrer une commande en 2 fois » ou « activer la sauvegarde Google Drive ».";
   if(/^(merci|mrc|chokran|choukran|shukran|top|super|parfait|ok merci)\b/.test(n)) return "Avec plaisir ! Une autre question ?";
-  if(/\b(prix|tarif|combien|cout|coute|abonnement)\b/.test(n) && !/\b(prix de base|prix special|prix de revient|prix moyen|prix d achat|tarifs? client)\b/.test(n) && /\b(licence|abonnement|logiciel|digi|coute|mois|an|annee|acheter)\b/.test(n)) return "Licences : essai gratuit 7 jours, mensuelle, 3 mois, annuelle et permanente. Pour le tarif, contactez l'éditeur : "+CONTACT_HTML+". <button type=\"button\" class=\"linklike\" data-goto-page=\"tarifs\">Voir les licences →</button>";
+  if(/\b(mac|macbook|imac|apple|macos|linux|chromebook|tablette|ipad|android|iphone|smartphone|portable|telephone|mobile)\b/.test(n) && /\b(marche|fonctionne|compatible|installer|utiliser|tourne|existe|version|sur|avec|application|appli|app)\b/.test(n) && !/\b(numero|appeler|joindre|scanner (un|le|les|mon)|whatsapp)\b/.test(n)) return "DigiGestion s'installe sur un ordinateur <b>Windows 10 ou 11</b>. Il n'existe pas de version Mac ni d'application à installer sur le téléphone. Le téléphone sert au <b>scan des chèques, effets et BL</b> : il envoie la photo au PC, qui remplit tout seul les champs. <button type=\"button\" class=\"linklike\" data-goto-page=\"scan\">Voir le scan →</button>";
+  if(/\b(sans internet|sans connexion|hors connexion|pas d internet|pas de connexion|besoin d internet|faut internet|internet obligatoire|marche sans|fonctionne sans|internet coupe|coupure internet)\b/.test(n)) return "<p>Oui. DigiGestion fonctionne <b>sans internet</b> pour tout le travail de tous les jours : il est installé sur votre ordinateur, vos postes se synchronisent sur votre réseau local, et la licence se vérifie sans connexion.</p><p>Internet sert seulement au scan des chèques par téléphone, aux mises à jour automatiques, à la copie sur Google Drive et au VPN entre deux agences. Si internet coupe, tout le reste continue normalement.</p>";
+  if(/\b(prix|tarif|tarifs|combien|cout|coute|couter|abonnement|cher|payer|paye|payant|gratuit)\b/.test(n) && !/\b(article|articles|client|clients|bl|bon|remise|special|revient|achat|moyen|tva|ttc|ht|modifier|changer|poste|postes|depot|depots|cheque|cheques|effet|effets|fournisseur|fournisseurs|livraison|facture|imprimer|scan|scanner)\b/.test(n)) return "<p class=\"ai-t\">Tarifs DigiGestion</p><ul><li><b>Essai gratuit 7 jours</b>, toutes les fonctions</li><li><b>150 DH</b> par mois, sans engagement</li><li><b>400 DH</b> les 3 mois (133 DH/mois)</li><li><b>1 500 DH</b> par an (125 DH/mois, 2 mois offerts)</li><li><b>5 500 DH</b> une seule fois : licence permanente</li></ul><p>Chaque licence comprend DigiClient + DigiStock, le multi-postes et l'assistance par WhatsApp.</p>"+waLink(WA_ESSAI,"Commencer l'essai gratuit")+" <button type=\"button\" class=\"linklike\" data-goto-page=\"tarifs\">Voir la page Tarifs →</button>";
+  if(/\b(essai|essayer|tester|test|demo|demonstration|commencer|demarrer|acheter|commander|souscrire|interesse)\b/.test(n) && !/\b(scan|scanner|imprimante|impression|cheque|cheques|bl|article|client)\b/.test(n)) return "<p>L'essai est <b>gratuit pendant 7 jours</b>, avec toutes les fonctions et vos vraies données. Si vous continuez, vous gardez tout, rien à ressaisir.</p><ol><li>Téléchargez l'installateur sur un PC Windows.</li><li>Envoyez le code machine affiché par WhatsApp.</li><li>Vous recevez votre fichier de licence et c'est parti.</li></ol><p>Vous êtes sur téléphone ? Écrivez-nous : on vous envoie le lien et on vous aide à installer.</p>"+waLink(WA_ESSAI,"Demander l'essai sur WhatsApp");
+  if(/\b(sage|soft|odoo|logiciel actuel|deja un logiciel|autre logiciel|ancien logiciel|changer de logiciel|excel|cahier|carnet|papier)\b/.test(n) && !/\b(import|importer|export|exporter|fichier|modele|colonne|ctrl)\b/.test(n)) return "<p>Beaucoup de nos clients partaient d'un cahier, d'Excel ou d'un autre logiciel. DigiGestion reprend vos clients, leurs soldes, vos échéances et votre stock <b>depuis Excel</b> : rien à ressaisir à la main.</p><p>Un de nos premiers clients avait déjà un logiciel de gestion : il a utilisé les deux en parallèle pendant un mois, puis il a gardé uniquement DigiGestion. Faites le même test avec l'essai gratuit de 7 jours.</p>"+waLink("Bonjour, j'utilise actuellement : … Je voudrais comparer avec DigiGestion.","Comparer avec mon outil actuel")+" <button type=\"button\" class=\"linklike\" data-goto-page=\"guide\">Voir le guide des imports →</button>";
+  if(/\b(adapte|convient|metier|activite|secteur|commerce|grossiste|negociant|fabricant|distributeur|quincaillerie|textile|tissu|alimentaire|materiaux|pharmacie|boutique|magasin de detail|epicerie)\b/.test(n) && /\b(pour|adapte|convient|marche|utiliser|est ce|bon pour)\b/.test(n)) return "<p>DigiGestion est pensé pour les entreprises qui <b>livrent des clients avec des bons de livraison</b> et sont payées en chèques, effets, virements ou espèces : grossistes, négociants, distributeurs et fabricants. Il gère aussi le stock par dépôt, au mètre ou à la pièce.</p><p>Dites-nous votre activité : on vous dit franchement si DigiGestion vous convient.</p>"+waLink("Bonjour, mon activité : … Est-ce que DigiGestion me convient ?","Décrire mon activité sur WhatsApp");
+  if(/\b(formation|former|apprendre|accompagnement|accompagner|aide a l installation|installer chez|difficile|complique|facile)\b/.test(n)) return "<p>DigiGestion est fait pour être pris en main vite : les écrans sont en français, avec les mots du métier (BL, chèque, effet, instance). L'onglet <b>Aide</b> de ce site répond à plus de 60 situations, et l'assistance répond directement sur WhatsApp, y compris pour l'installation et l'import de vos fichiers.</p>"+waLink("Bonjour, j'aimerais de l'aide pour démarrer avec DigiGestion.","Demander de l'aide");
   if(/\b(telecharger|telechargement|installer|installation|installateur|download)\b/.test(n) && !/\b(poste|deuxieme|plusieurs|autre pc|secondaire|google|version|mise a jour|maj|maintenant|fermeture)\b/.test(n)) return "Téléchargez l'installateur ici : <a href=\""+DL+"\" target=\"_blank\" rel=\"noopener\">Télécharger DigiGestion pour Windows</a>. Double-clic, Suivant, Terminer. Au premier lancement, envoyez le code machine affiché à l'éditeur ("+CONTACT_HTML+") pour recevoir votre licence.";
-  if(/\b(nouveau|nouveaute|nouveautes|quoi de neuf|derniere version)\b/.test(n) && !/\b(client|article|bon|devis|compte|paiement|operation)\b/.test(n)) return "Nouveau dans DigiGestion 1.24 : scan des chèques, effets et BL avec le téléphone, mises à jour automatiques (« Installer maintenant » ou « À la fermeture »), BL annulé qui garde son numéro, clôture des mois, onglet Informations (clients à relancer, stock qui dort, marge), « En attente et sans suite », représenter un chèque impayé, total impayé dans la fiche client, export Excel de tous les tableaux, BL imprimé sans les prix, saisie directe dans les cases 0,00 et taille du texte réglable. Passage à la 1.24 : lancez l'installateur une dernière fois à la main, sur le poste principal d'abord ; ensuite les mises à jour se font toutes seules.";
+  if(/\b(nouveau|nouveaute|nouveautes|quoi de neuf|derniere version)\b/.test(n) && !/\b(client|article|bon|devis|compte|paiement|operation)\b/.test(n)) return "Dernières nouveautés de DigiGestion : scan des chèques, effets et BL avec le téléphone, mises à jour automatiques (« Installer maintenant » ou « À la fermeture »), BL annulé qui garde son numéro, clôture des mois, onglet Informations (clients à relancer, stock qui dort, marge), « En attente et sans suite », représenter un chèque impayé, total impayé dans la fiche client, export Excel de tous les tableaux, BL imprimé sans les prix, saisie directe dans les cases 0,00 et taille du texte réglable. Si vous avez une version plus ancienne que la 1.24 : lancez l'installateur une dernière fois à la main, sur le poste principal d'abord ; ensuite les mises à jour se font toutes seules.";
   if(/\b(parler|appeler|contacter|joindre|humain|quelqu un|whatsapp|telephone|numero|email|mail)\b/.test(n) && !/\b(numero (de )?(bl|cheque|secours|machine))\b/.test(n) && !/\b(scan|scanner|scanne|photo|photographier|qr|camera|digi scan)\b/.test(n)) return "Vous pouvez joindre l'éditeur directement : "+CONTACT_HTML+".";
   return null;
 }
@@ -3567,13 +3623,14 @@ function localAnswer(text, forcedId){
   var r=search(text);
   /* question de suite courte (« et pour un devis ? ») : on garde le sujet précédent en appui */
   if(lastQ && n.split(" ").length<=5 && /^(et|mais|aussi|pour|si|ou|w|o)\b/.test(n) && (!r.length || r[0].sc<1.6)){ var r2=search(lastQ+" "+text); if(r2.length) r=r2; }
-  if(!r.length){ suggest(["as-partiel","as-drive","as-encaisser","as-articles"]); return CONTACT; }
+  if(!r.length){ suggestText(["Combien ça coûte ?","Comment l'essayer ?"]); return noAnswer(text); }
   lastTopic=r[0].x.id; lastQ=text;
   suggest(r.slice(1,4).map(function(o){ return o.x.id; }));
   var h=answerHTML(r[0].x);
   if(r.length>1 && r[1].sc>r[0].sc*0.85) h+='<p class="ai-alt">Vous cherchiez peut-être : <button type="button" class="linklike" data-ask-id="'+r[1].x.id+'">'+esc(r[1].x.t)+'</button></p>';
   return h;
 }
+function suggestText(list){ var z=$("#aiSugg"); z.innerHTML=""; list.forEach(function(t){ var b=document.createElement("button"); b.type="button"; b.className="ai-chip"; b.textContent=t; b.addEventListener("click", function(){ ask(t); }); z.appendChild(b); }); }
 function relatedTo(id){ var x=byId[id]; return KB.filter(function(y){ return y.cat===x.cat && y.id!==id; }).slice(0,3).map(function(y){ return y.id; }); }
 function typing(){ return add("bot", '<span class="ai-typing"><i></i><i></i><i></i></span>'); }
 function reveal(el, html){ el.innerHTML=html; if(reduce) return; el.classList.add("rev"); setTimeout(function(){ el.classList.remove("rev"); }, 600); log.scrollTop=log.scrollHeight; }
@@ -3608,7 +3665,7 @@ function fmt(s){
 }
 function openAI(){
   panel.hidden=false; fab.setAttribute("aria-expanded","true"); fab.classList.add("hide");
-  if(!log.children.length){ add("bot","Bonjour ! Je connais Digi dans les moindres détails. Que voulez-vous faire ? Écrivez comme vous parlez, par exemple : <i>« je veux livrer la moitié de la commande »</i>."); suggest(["as-partiel","as-drive","as-regrouper","as-articles"]); }
+  if(!log.children.length){ add("bot","Bonjour ! Je réponds à vos questions sur DigiGestion : <b>prix</b>, <b>essai gratuit</b>, fonctions et utilisation du logiciel. Écrivez comme vous parlez, par exemple : <i>« c'est combien ? »</i> ou <i>« je veux livrer la moitié de la commande »</i>."); suggestText(["Combien ça coûte ?","Comment l'essayer ?","Ça marche sans internet ?","Scanner un chèque avec le téléphone"]); }
   setTimeout(function(){ $("#aiIn").focus(); },50);
 }
 function closeAI(){ panel.hidden=true; fab.setAttribute("aria-expanded","false"); fab.classList.remove("hide"); fab.focus(); }
@@ -3623,10 +3680,10 @@ if(fab){
     var fb=e.target.closest("[data-fb]"); if(fb){ var box=fb.parentNode;
       if(fb.dataset.fb==="1"){ box.innerHTML="<span>Merci !</span>"; }
       else { var id=box.dataset.id, alts=search(lastQ||byId[id].t).filter(function(o){ return o.x.id!==id; }).slice(0,3);
-        box.innerHTML="<span>Désolé.</span>"; add("bot", (alts.length?"Peut-être une de ces réponses ? "+alts.map(function(o){ return '<button type="button" class="linklike" data-ask-id="'+o.x.id+'">'+esc(o.x.t)+'</button>'; }).join(" · ")+"<br>":"")+"Sinon, l'éditeur répond directement : "+CONTACT_HTML+"."); }
+        box.innerHTML="<span>Désolé.</span>"; add("bot", (alts.length?"Peut-être une de ces réponses ? "+alts.map(function(o){ return '<button type="button" class="linklike" data-ask-id="'+o.x.id+'">'+esc(o.x.t)+'</button>'; }).join(" · ")+"<br>":"")+"Sinon, l'éditeur répond directement :<br>"+waLink("Bonjour, j'ai une question sur DigiGestion : "+(lastQ||byId[id].t),"Poser ma question sur WhatsApp")); }
     }
   });
-  if(window.DIGI_AI_ENDPOINT) $("#aiMode").textContent="Assistant IA · répond sur l'utilisation du logiciel";
+  if(window.DIGI_AI_ENDPOINT) $("#aiMode").textContent="Assistant IA · prix, essai et utilisation";
 }
 })();
 </script>
@@ -3677,13 +3734,13 @@ function route(){
   var h = (location.hash||"").replace("#","");
   if(PAGES.indexOf(h)<0) h="accueil";
   $$(".page").forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-page")===h); });
-  $$("#tabs a").forEach(function(a){ if(a.getAttribute("href")==="#"+h) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  $$("#tabs a").forEach(function(a){ var also=(a.getAttribute("data-also")||"").split(" "); if(a.getAttribute("href")==="#"+h || also.indexOf(h)>=0) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   $("#tabs").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false");
   window.scrollTo(0,0);
   observeReveal();
   if(h==="multiposte") netStart(); else netStop();
   if(h==="guide") loadXLSX();
-  document.title = (h==="accueil" ? "DigiGestion — logiciel de gestion clients, chèques et stock au Maroc" : ({digiclient:"DigiClient",digistock:"DigiStock",scan:"Scan des chèques par téléphone",multiposte:"Réseau & sécurité",simulateurs:"Simulateurs",captures:"Captures d'écran",astuces:"Astuces",guide:"Guide des imports",tarifs:"Licences & tarifs",contact:"Contact"})[h]+" · DigiGestion");
+  document.title = (h==="accueil" ? "DigiGestion — logiciel de gestion clients, chèques et stock au Maroc" : ({digiclient:"DigiClient",digistock:"DigiStock",scan:"Scan des chèques par téléphone",multiposte:"Réseau & sécurité",simulateurs:"Simulateurs",captures:"Captures d'écran",astuces:"Aide et astuces",guide:"Guide des imports",tarifs:"Licences & tarifs",contact:"Contact"})[h]+" · DigiGestion");
   if(h!=="scan" && window.scanStop) window.scanStop();
 }
 window.addEventListener("hashchange", route);
@@ -3791,7 +3848,7 @@ var TOUR = [
     setTimeout(function(){
       img.setAttribute("data-shot", s.id); img.src=shotSrc(s.id); img.alt="Écran « "+s.t+" » de Digi";
       img.setAttribute("height", 1075);
-      $("#tourTitle").textContent = "DigiGestion 1.24.0 — "+(s.id.indexOf("ds_")===0 ? "DigiStock" : "DigiClient")+" — "+s.t;
+      $("#tourTitle").textContent = "DigiGestion — "+(s.id.indexOf("ds_")===0 ? "DigiStock" : "DigiClient")+" — "+s.t;
       $("#tourH").textContent=s.t; $("#tourP").textContent=s.p;
       frame.classList.remove("swap");
     }, cur && user ? 180 : 0);
